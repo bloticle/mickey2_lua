@@ -43,8 +43,7 @@ gs3_Oswald_BalloonStartup = function()
 end
 gs3_DropPlanes = function(target)
   if (GetPrefabData("Trolly").trolleyInPlay == 1) then
-    local (for index), (for limit), (for step) = 1, 3, 1
-    for x = (for index), (for limit), (for step) do
+    for x = 1, 3 do
       SplineFollower_SetDisabled(("MoviePlane" .. tostring(x)), false)
       SplineFollower_StopAtPosition(("MoviePlane" .. tostring(x)), (("MoviePlane" .. tostring(x)) .. "_SplineTop"), (("MoviePlane" .. tostring(x)) .. "_SplineBottom"), 1)
       wait(0.20000000298023224)
@@ -94,8 +93,7 @@ gs3_FireFireworks = function(target, _Which)
   wait(0.6000000238418579)
   ForEachEntityInGroup(EnableMotion, ("Fireworks" .. tostring(_Which)))
   ForEachEntityInGroup(StartEmitters, ("FireworksTrail" .. tostring(_Which)))
-  local (for index), (for limit), (for step) = 1, 3, 1
-  for x = (for index), (for limit), (for step) do
+  for x = 1, 3 do
     ApplyImpulse(((("Fireworks" .. tostring(_Which)) .. "_") .. tostring(x)), 0, math.random(12, 16), math.random(-5, 5))
   end
   FireThread(gs3_DestroyFireworks, target, _Which)
@@ -109,8 +107,7 @@ gs3_DestroyFireworks = function(target, _Group)
   local strG = tostring(_Group)
   local spawner = ("FireworksSpawner" .. strG)
   wait(0.800000011920929)
-  local (for index), (for limit), (for step) = 1, 3, 1
-  for x = (for index), (for limit), (for step) do
+  for x = 1, 3 do
     local strX = tostring(x)
     local tixSpawner = GetRelativePrefabEntity(target, ".ticketSpawner 01")
     local tgtKnot = GetRelativePrefabEntity(target, ((".SplineKnot " .. strX) .. "1"))
@@ -146,8 +143,7 @@ gs3_TapeBlockerStimmed = function(target, _event)
       TapeBlockers[n] = 1
     end
     local count = 0
-    local (for index), (for limit), (for step) = 1, 10, 1
-    for x = (for index), (for limit), (for step) do
+    for x = 1, 10 do
       if (TapeBlockers[x] == 1) then
         count = (count + 1)
       end
@@ -309,8 +305,7 @@ g3_TeaKettle = function(target)
   Unhide("TeaKettleSteam")
   AudioPostEventOn(target, "Play_sfx_dec3_gears_oneshot")
   ForEachEntityInGroup(SetRotatorMaxSpeed, "TeaKettleRotators", 100)
-  local (for index), (for limit), (for step) = 1, 4, 1
-  for shots = (for index), (for limit), (for step) do
+  for shots = 1, 4 do
     Enable("Cannon_Shooter_TeaKettle")
     wait(0.10000000149011612)
     Disable("Cannon_Shooter_TeaKettle")
@@ -322,22 +317,13 @@ g3_TeaKettle = function(target)
   DestroyEntity("gremlinsubway_03b_static.TorchFlameInert_01_FX 01")
   DestroyEntity("TeaKettleSteam")
   ForEachEntityInGroup(Enable, "WindupToy")
-  local (for index), (for limit), (for step), (for index) = 100, 0, -5, 1
-  for speed = (for index), (for limit), (for step) do
-    (for index) = ForEachEntityInGroup
-    (for limit) = SetRotatorMaxSpeed
-    (for step) = "TeaKettleRotators"
+  for speed = 100, 0, -5 do
     speed = speed
-    (for index)((for limit), (for step), speed)
-    (for index) = wait
-    (for limit) = 0.20000000298023224
-    (for index)((for limit))
+    ForEachEntityInGroup(SetRotatorMaxSpeed, "TeaKettleRotators", speed)
+    wait(0.20000000298023224)
     if (speed == 60) then
-      (for index) = ForEachEntityInGroup
-      (for limit) = SetSplineFollowerInitialSpeed
-      (for step) = "WindupToy"
       speed = 2
-      (for index)((for limit), (for step), speed)
+      ForEachEntityInGroup(SetSplineFollowerInitialSpeed, "WindupToy", speed)
     end
   end
   Enable("trn_gremlinsubway_03a_pathdatabase.TriggerBase_CameraLookAheadCat 01")
@@ -358,3 +344,4 @@ gs3_BucketDrop = function(target)
   DestroyEntity("trn_gremlinsubway_03a_pathdatabase.TriggerBase_CameraLookAheadCat 01")
   return 
 end
+

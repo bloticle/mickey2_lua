@@ -23,8 +23,7 @@ Prefab_TurretDumboFire = function(target)
   if IsValidHandle(door) then
     if (data.Disable.AssocJumpVolumes[1] ~= "None") then
       local array_length = (#data.Disable.AssocJumpVolumes)
-      local (for index), (for limit), (for step) = 1, array_length, 1
-      for i = (for index), (for limit), (for step) do
+      for i = 1, array_length do
         if IsValidHandle(data.Disable.AssocJumpVolumes[i]) then
           enableJumpVolumeAvailability(data.Disable.AssocJumpVolumes[i])
         end
@@ -32,21 +31,12 @@ Prefab_TurretDumboFire = function(target)
     end
     if (data.Disable.OswaldAction[1] ~= "None") then
       local array_length = (#data.Disable.OswaldAction)
-      local (for index), (for limit), (for step) = 1, array_length, 1
-      for i = (for index), (for limit), (for step) do
+      for i = 1, array_length do
         array_length = IsValidHandle
-        (for index) = data.Disable
-        (for index) = (for index).OswaldAction
-        (for index) = (for index)[i]
-        array_length = array_length((for index))
+        array_length = array_length(data.Disable.OswaldAction[i])
         if array_length then
           array_length = SetPropertyBool
-          (for index) = data.Disable
-          (for index) = (for index).OswaldAction
-          (for index) = (for index)[i]
-          (for limit) = "ActionSpotEnabled"
-          (for step) = true
-          array_length((for index), (for limit), (for step))
+          array_length(data.Disable.OswaldAction[i], "ActionSpotEnabled", true)
         end
       end
     end
@@ -70,8 +60,7 @@ Prefab_TurretDumboFire = function(target)
       if IsValidHandle(door) then
         if (data.Disable.OswaldAction[1] ~= "None") then
           local array_length = (#data.Disable.OswaldAction)
-          local (for index), (for limit), (for step) = 1, array_length, 1
-          for i = (for index), (for limit), (for step) do
+          for i = 1, array_length do
             if IsValidHandle(data.Disable.OswaldAction[i]) then
               SetPropertyBool(data.Disable.OswaldAction[i], "ActionSpotEnabled", false)
             end
@@ -84,8 +73,7 @@ Prefab_TurretDumboFire = function(target)
       if IsValidHandle(door) then
         if (data.Disable.AssocJumpVolumes[1] ~= "None") then
           local array_length = (#data.Disable.AssocJumpVolumes)
-          local (for index), (for limit), (for step) = 1, array_length, 1
-          for i = (for index), (for limit), (for step) do
+          for i = 1, array_length do
             if IsValidHandle(data.Disable.AssocJumpVolumes[i]) then
               disableJumpVolumeAvailability(data.Disable.AssocJumpVolumes[i])
             end
@@ -108,5 +96,5 @@ Prefab_TurretDumboFire = function(target)
   return 
 end
 Prefab_TurretDumboBlockerCheck = function(reg_0)
-  return 
 end
+

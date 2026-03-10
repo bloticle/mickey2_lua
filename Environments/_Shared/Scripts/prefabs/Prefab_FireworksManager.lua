@@ -49,8 +49,7 @@ Prefab_FireworksManager_CheckFireworks = function(Entity, PrefabTarget, _Status)
   local data = GetPrefabData(PrefabTarget)
   Print(("__Target checking against list: " .. tostring(GetName(Entity))))
   local numElements = (#data.TrackedFireworks)
-  local (for index), (for limit), (for step) = 1, numElements, 1
-  for x = (for index), (for limit), (for step) do
+  for x = 1, numElements do
     if (GetName(Entity) == data.TrackedFireworks[x]) then
       Print("__We're part of the fireworks list! Don't do anything...we're in the airlock!")
     elseif (_Status == "StreamOut") then
@@ -77,7 +76,7 @@ Prefab_FireworksManager_FireworksTrigger = function(target, _Direction, _Trigger
     if (numElements == 1) then
       if (data.TrackedFireworks[1] == "None") then
         Print("__ List was empty! Adding to [1]")
-        data.TrackedFireworks[1] = GetName(_activator())
+        data.TrackedFireworks[reg_20] = GetName(_activator())
       end
     else
       Print("__ List was not empty! adding to next available slot")
@@ -86,10 +85,9 @@ Prefab_FireworksManager_FireworksTrigger = function(target, _Direction, _Trigger
         Print("__Fireworks left trigger, will remove this from the list")
         if (numElements == 1) then
           Print("__We only have one element, resetting the table!")
-          data.TrackedFireworks[1] = "None"
+          data.TrackedFireworks[reg_20] = "None"
         else
-          local (for index), (for limit), (for step) = 1, numElements, 1
-          for x = (for index), (for limit), (for step) do
+          for x = 1, numElements do
             if (data.TrackedFireworks[x] == GetName(_activator())) then
               Print((("__BTA_Airlock: Found matching fireworks activator at: [" .. tostring(x)) .. "], will remove this one!"))
               table.remove(data.TrackedFireworks, x)
@@ -111,10 +109,9 @@ Prefab_FireworksManager_FireworksTrigger = function(target, _Direction, _Trigger
     Print("__Fireworks left trigger, will remove this from the list")
     if (numElements == 1) then
       Print("__We only have one element, resetting the table!")
-      data.TrackedFireworks[1] = "None"
+      data.TrackedFireworks[reg_20] = "None"
     else
-      local (for index), (for limit), (for step) = 1, numElements, 1
-      for x = (for index), (for limit), (for step) do
+      for x = 1, numElements do
         if (data.TrackedFireworks[x] == GetName(_activator())) then
           Print((("__BTA_Airlock: Found matching fireworks activator at: [" .. tostring(x)) .. "], will remove this one!"))
           table.remove(data.TrackedFireworks, x)
@@ -133,16 +130,10 @@ Prefab_FireworksManager_FireworksTrigger = function(target, _Direction, _Trigger
   end
   numElements = (#data.TrackedFireworks)
   Print("__BTA_Airlock: Current Tracked Fireworks:")
-  local (for index), (for limit), (for step) = 1, numElements, 1
-  for x = (for index), (for limit), (for step) do
-    (for index) = Print
-    (for limit) = "__BTA_Airlock: Tracked Fireworks["
-    (for step) = tostring
+  for x = 1, numElements do
     x = x
-    (for step) = (for step)(x)
     x = "]: "
-    (for limit) = ((((for limit) .. (for step)) .. x) .. tostring(data.TrackedFireworks[x]))
-    (for index)((for limit))
+    Print(((("__BTA_Airlock: Tracked Fireworks[" .. tostring(x)) .. x) .. tostring(data.TrackedFireworks[x])))
   end
   return 
 end
@@ -151,3 +142,4 @@ Prefab_FireworksManager_FireworksDestroyed = function(target)
   Prefab_FireworksManager_FireworksTrigger(".Airlock_SideA_Trigger", "Exit", "-1")
   return 
 end
+

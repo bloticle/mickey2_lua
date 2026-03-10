@@ -96,8 +96,7 @@ Reprogram_Difficulty_Setting = function(self)
     SetPropertyFloat(self, "HackTime", 30)
   elseif (data.Episode == "2") then
     SetElementCount(self, "HackStageSweetSpots", 4)
-    local (for index), (for limit), (for step) = 0, 3, 1
-    for i = (for index), (for limit), (for step) do
+    for i = 0, 3 do
       SetPropertyFloat(self, "HackStageSweetSpots", 0.20000000298023224, i)
     end
     SetElementCount(self, "HackStageTypes", 4)
@@ -347,3 +346,4 @@ Reprogram_ChangeState = function(target, state)
   end
   return 
 end
+

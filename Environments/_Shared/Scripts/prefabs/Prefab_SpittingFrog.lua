@@ -95,3 +95,4 @@ SpittingFrog_DisablePermanently = function(target)
   Print(("__New Frog State: " .. tostring(GetPrefabData(target).FrogState)))
   return 
 end
+

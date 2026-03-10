@@ -28,3 +28,4 @@ gsXy_StartUp_Xylophone_ver02 = function(target)
   StartRotateToPosition(GetRelativePrefabEntity(target, ".hammer05"), 0)
   return 
 end
+

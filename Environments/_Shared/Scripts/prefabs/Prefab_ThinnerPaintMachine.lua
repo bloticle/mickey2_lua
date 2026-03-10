@@ -176,3 +176,4 @@ ThinnerPaintMachine_SetState = function(target, state)
   end
   return 
 end
+

@@ -68,3 +68,4 @@ Prefab_KnotholeSurprise_LaunchReward = function(target)
   SetPropertyInt(GetRelativePrefabEntity(target, ".Reward"), "Collision Layer", 19)
   return 
 end
+

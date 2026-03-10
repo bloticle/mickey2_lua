@@ -139,10 +139,8 @@ BruiserMaskOnDeath = function()
   return 
 end
 EnableExhaustBehaviorCallback = function()
-  return 
 end
 DisableExhaustBehaviorCallback = function()
-  return 
 end
 EnableRangedExhaustAttack = function()
   local exhaustAttack = GetChildEntityByName(_self(), "RangedBlotworxExhaustAttack")
@@ -334,8 +332,7 @@ BlotworxThinnerOceanDestroy = function(self)
   local health = 0
   SetHealth(self, health)
   local ObjectPosition = GetPosition(self)
-  local (for index), (for limit), (for step) = ObjectPosition.y, (ObjectPosition.y - 15), -0.02500000037252903
-  for i = (for index), (for limit), (for step) do
+  for i = ObjectPosition.y, (ObjectPosition.y - 15), -0.02500000037252903 do
     SetPositionFloat(self, ObjectPosition.x, i, ObjectPosition.z)
     Wait(0)
   end
@@ -400,3 +397,4 @@ BruiserBlotworxTremorDeathFX = function(self)
   ForceSpawn(self, 1)
   return 
 end
+

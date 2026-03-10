@@ -60,8 +60,7 @@ OsTown_Setup_p2 = function(state)
   Print(("OsTown_Setup_p2: state = " .. state))
   if (state == "Goofy") then
     local global = GetGlobal("OST_Center_OpeningMoviePlayed")
-    local (for index), (for limit), (for step) = 1, 3, 1
-    for i = (for index), (for limit), (for step) do
+    for i = 1, 3 do
       DestroyEntity((("Pump" .. i) .. "_Location"))
       Print((("OsTown_Setup_p2: Destroying Entity = Pump" .. i) .. "_Location"))
       SetGlobal((("OST_Pump" .. i) .. "Status"), (i + 3))
@@ -82,16 +81,9 @@ OsTown_Setup_p2 = function(state)
     DisableMotion("PumpMachine1")
     SetGlobal("OST_Pump1Status", 10)
     ForEachEntityInGroup(Disable, "Pump_Locations")
-    local (for index), (for limit), (for step) = 2, 3, 1
-    for i = (for index), (for limit), (for step) do
-      (for index) = "OST_Pump_ThinnerFX"
-      (for limit) = i
-      (for index) = ((for index) .. (for limit))
-      StopEmitters((for index))
-      (for index) = "OST_Pump_ThinnerFXHigh"
-      (for limit) = i
-      (for index) = ((for index) .. (for limit))
-      StartEmitters((for index))
+    for i = 2, 3 do
+      StopEmitters(("OST_Pump_ThinnerFX" .. i))
+      StartEmitters(("OST_Pump_ThinnerFXHigh" .. i))
     end
   end
   return 
@@ -181,8 +173,7 @@ OST_Layer2_RoomCheck = function(target, state, ...)
       if shake then
         ShakeCamera(1, 5, 0.10000000149011612, 2, 0.02500000037252903, 0.02500000037252903)
       end
-      local (for index), (for limit), (for step) = 1, thinnerdistance, 1
-      for i = (for index), (for limit), (for step) do
+      for i = 1, thinnerdistance do
         SetTransformation("Layer2_Thinner", vector4(pos.x, (pos.y - (0.009999999776482582 * i)), pos.z), vector4(0, 0, 0))
         wait(0)
       end
@@ -277,8 +268,7 @@ OST_Layer2_PipeStateChange = function(target, state)
   return 
 end
 OST_Layer2_StartPipeFX = function(target, FX_num)
-  local (for index), (for limit), (for step) = 1, 4, 1
-  for i = (for index), (for limit), (for step) do
+  for i = 1, 4 do
     StopEmitters(((("Layer2_Pipe" .. FX_num) .. "_ThinnerFX") .. i))
     local next_FX = i
     if (i ~= 4) then
@@ -302,8 +292,7 @@ OST_Layer2_RoomChangeState = function(state)
   local LowerThinner = function(lowerDistance)
     local pos = GetPosition("Layer2_Thinner")
     Enable("OST_Center_TriggerBase_TurnstileAIObstacle")
-    local (for index), (for limit), (for step) = 1, lowerDistance, 1
-    for i = (for index), (for limit), (for step) do
+    for i = 1, lowerDistance do
       SetTransformation("Layer2_Thinner", vector4(pos.x, (pos.y - (0.05000000074505806 * i)), pos.z), vector4(0, 0, 0))
       wait(0)
     end
@@ -363,8 +352,7 @@ OST_Layer2_RaisePlatforms = function(target, platform, state, ...)
     local platform_num = string.sub(platform, -1)
     pos = ((8 - (tonumber(platform_num) * 2)) / 10)
     SplineFollower_StopAtPosition(("SF_Raising" .. platform), ("SK1_OST_Layer2_" .. platform), ("SK2_OST_Layer2_" .. platform), pos)
-    local (for index), (for limit), (for step) = 1, 4, 1
-    for i = (for index), (for limit), (for step) do
+    for i = 1, 4 do
       StartEmitters(((("Layer2_Pipe" .. platform_num) .. "_ThinnerFX") .. i))
       Enable(((("OST_Layer2_Valve" .. platform_num) .. "_TriggerDamage") .. i))
     end
@@ -672,8 +660,7 @@ end
 OST_Center_UnhideBunnyChildren = function()
   Print("Function entered: OST_Center_UnhideBunnyChildren")
   if (10 <= GetGlobal("OST_BunnyQuest_Count")) then
-    local (for index), (for limit), (for step) = 1, 3, 1
-    for i = (for index), (for limit), (for step) do
+    for i = 1, 3 do
       MoveToEntity("Spawner_BunnyChildrenOutside", ("PM_BunnyChildOutside" .. i))
       AnimVarInt(ForceSpawn("Spawner_BunnyChildrenOutside", 1)[1], VAR_NPC_State, 1)
     end
@@ -681,3 +668,4 @@ OST_Center_UnhideBunnyChildren = function()
   end
   return 
 end
+

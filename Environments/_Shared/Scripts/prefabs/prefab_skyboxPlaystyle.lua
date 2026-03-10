@@ -36,8 +36,7 @@ prefab_healthManager_getHealth = function(manager, setup)
   local zoneStreamedOut = false
   if (data.SB_Jigsaw ~= "default") then
     if (n ~= 0) then
-      local (for index), (for limit), (for step) = 1, n, 1
-      for i = (for index), (for limit), (for step) do
+      for i = 1, n do
         if IsValidHandle((data.SB_Jigsaw[1] .. i)) then
           JigsawPercentage = --[[ return 2 of ]] Jigsaw_GetPercentagePainted((data.SB_Jigsaw[1] .. i))
           before = Jigsaw_GetPercentagePainted((data.SB_Jigsaw[1] .. i))
@@ -56,45 +55,24 @@ prefab_healthManager_getHealth = function(manager, setup)
   if (data.SB_OneShots == "default") then
     OneShotPercentage = 0
   elseif (data.SB_OneShots[2] ~= 0) then
-    local (for index), (for limit), (for step) = 1, data.SB_OneShots[2], 1
-    for i = (for index), (for limit), (for step) do
-      (for index) = IsValidHandle
-      (for limit) = data.SB_OneShots
-      (for limit) = (for limit)[1]
-      (for step) = i
-      (for limit) = ((for limit) .. (for step))
-      (for index) = (for index)((for limit))
-      if (for index) then
-        (for index) = GetPropertyBool
-        (for limit) = data.SB_OneShots
-        (for limit) = (for limit)[1]
-        (for step) = i
-        (for limit) = ((for limit) .. (for step))
-        (for step) = "Is Painted"
+    for i = 1, data.SB_OneShots[2] do
+      if IsValidHandle((data.SB_OneShots[1] .. i)) then
         i = 0
-        (for index) = (for index)((for limit), (for step), i)
-        if (for index) then
+        if GetPropertyBool((data.SB_OneShots[1] .. i), "Is Painted", i) then
           OneShotsPainted = (OneShotsPainted + 1)
         end
-        (for index) = Wait
-        (for limit) = 0.10000000149011612
-        (for index)((for limit))
+        Wait(0.10000000149011612)
       else
         zoneStreamedOut = true
-        (for index) = Print
-        (for limit) = "*_*_*_*_*_*_* prefab_healthManager_getHealth: WARNING! One Shot Entity Group Name: "
-        (for step) = data.SB_OneShots
-        (for step) = (for step)[1]
         i = i
-        (for limit) = ((((for limit) .. (for step)) .. i) .. " no longer Exists. Assuming it Streamed out. Aborting prefab_healthManager_getHealth")
-        (for index)((for limit))
+        Print(((("*_*_*_*_*_*_* prefab_healthManager_getHealth: WARNING! One Shot Entity Group Name: " .. data.SB_OneShots[1]) .. i) .. " no longer Exists. Assuming it Streamed out. Aborting prefab_healthManager_getHealth"))
       end
     end
   end
   if (data.GuardianPoolToUpdate ~= "None") then
     local poolData = GetPrefabData(data.GuardianPoolToUpdate)
     if (poolData.GP_PaintedObjects[2] ~= OneShotsPainted) then
-      poolData.GP_PaintedObjects[2] = OneShotsPainted
+      poolData.GP_PaintedObjects[reg_25] = OneShotsPainted
       SetGlobal(poolData.GP_PaintedObjects[1], OneShotsPainted)
     end
     FireThread(Prefab_ChangeGuardianPoolState, data.GuardianPoolToUpdate)
@@ -122,8 +100,7 @@ prefab_healthManager_getHealth = function(manager, setup)
   local n = (#dataSkybox.ToonGlobals)
   local totHealth = GetGlobal(dataSkybox.QuestGlobal)
   if (n ~= 0) then
-    local (for index), (for limit), (for step) = 1, n, 1
-    for i = (for index), (for limit), (for step) do
+    for i = 1, n do
       paintedpercentage = dataSkybox.ToonGlobals
       paintedpercentage = paintedpercentage[i]
       zoneFinal = GetGlobal
@@ -143,5 +120,5 @@ prefab_healthManager_getHealth = function(manager, setup)
   return 
 end
 prefab_skybox_updateTotal = function(reg_0)
-  return 
 end
+

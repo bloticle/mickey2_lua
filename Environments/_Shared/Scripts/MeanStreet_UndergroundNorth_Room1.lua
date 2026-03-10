@@ -41,8 +41,7 @@ UtilNorth1_Setup = function(target, side)
   SetPlayStyleScoreBias(-100)
   Print("UtilNorth1_Setup: Disabled combat music")
   Print("UtilNorth1_Setup: Gus Hint check")
-  local (for index), (for limit), (for step) = 1, 2, 1
-  for i = (for index), (for limit), (for step) do
+  for i = 1, 2 do
     if (GetGlobal(("MSN_PTMachine0" .. i)) == -1) then
       Print((("UtilNorth1_Setup: Gus Hint check MSN_PTMachine0" .. i) .. " = -1 so enabling exit hint"))
       EnableGuardianHint(("GusHint_VaultRoomExit_Side" .. i))
@@ -57,30 +56,14 @@ UtilNorth1_Setup = function(target, side)
   end
   if (GetGlobal("MSN_PTMachine01") < 0) then
     if (GetGlobal("MSN_PTMachine02") < 0) then
-      local (for index), (for limit), (for step) = 1, 2, 1
-      for i = (for index), (for limit), (for step) do
-        (for index) = "North1_OswaldSwitch"
-        (for limit) = i
-        (for index) = ((for index) .. (for limit))
-        (for limit) = "Deactivate"
-        Prefab_OswaldElectricSwitch_ChangeState((for index), (for limit))
-        (for index) = "HiddenOswaldAction_Room"
-        (for limit) = i
-        (for index) = ((for index) .. (for limit))
-        (for limit) = "ActionSpotEnabled"
-        (for step) = false
-        SetPropertyBool((for index), (for limit), (for step))
+      for i = 1, 2 do
+        Prefab_OswaldElectricSwitch_ChangeState(("North1_OswaldSwitch" .. i), "Deactivate")
+        SetPropertyBool(("HiddenOswaldAction_Room" .. i), "ActionSpotEnabled", false)
         local flipper_degree = 0
-        (for index) = GetGlobal
-        (for limit) = "Fixer_Upper_Pin"
-        (for index) = (for index)((for limit))
-        if ((for index) == 1) then
+        if (GetGlobal("Fixer_Upper_Pin") == 1) then
           flipper_degree = 180
         end
-        (for index) = InstantRotateToPosition
-        (for limit) = "UtilNRoom1_TreasureFlipper"
-        (for step) = flipper_degree
-        (for index)((for limit), (for step))
+        InstantRotateToPosition("UtilNRoom1_TreasureFlipper", flipper_degree)
       end
     end
   end
@@ -183,12 +166,11 @@ Room1PrizeCheck = function(Room)
   end
   if (GetGlobal("MSN_PTMachine01") < 0) then
     if (GetGlobal("MSN_PTMachine02") < 0) then
-      local (for index), (for index), (for limit) = 1, 2, 1
-      for (for step) = (for index), (for index), (for limit) do
+      for i = 1, 2 do
         i = Prefab_OswaldElectricSwitch_ChangeState
-        i(("North1_OswaldSwitch" .. (for step)), "Deactivate")
+        i(("North1_OswaldSwitch" .. i), "Deactivate")
         i = SetPropertyBool
-        i(("HiddenOswaldAction_Room" .. (for step)), "ActionSpotEnabled", false)
+        i(("HiddenOswaldAction_Room" .. i), "ActionSpotEnabled", false)
       end
     end
   elseif (GetGlobal(("MSN_PTMachine0" .. Room)) < 0) then
@@ -251,3 +233,4 @@ UtilNorth1_LoadCheckpoint = function()
   ForEachEntityInGroup(Enable, "Trigger_Save")
   return 
 end
+

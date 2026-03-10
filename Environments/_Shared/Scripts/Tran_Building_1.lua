@@ -168,8 +168,7 @@ Building1_ActionSpotsDone = function(target, side)
     DecrementAbilityDisabled(GetPlayer(), "Toss")
     Print("Building1_ActionSpotsDone is deactivating action spots")
     wait(1)
-    local (for index), (for limit), (for step) = 1, 6, 1
-    for x = (for index), (for limit), (for step) do
+    for x = 1, 6 do
       Disable(("Building1_ActionSpot_Left" .. tostring(x)))
       Disable(("Building1_ActionSpot_Right" .. tostring(x)))
     end
@@ -198,3 +197,4 @@ Building1_ManageOswaldAssistMickey = function(target, action, node1)
   end
   return 
 end
+

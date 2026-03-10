@@ -10,3 +10,4 @@ Prefab_DetonateMachine = function(target)
   StopEmitters(GetRelativePrefabEntity(target, ".ExplosionFX"))
   return 
 end
+

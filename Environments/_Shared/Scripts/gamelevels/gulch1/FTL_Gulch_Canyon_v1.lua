@@ -1,7 +1,6 @@
 FTL_Gulch_Intro = function(target)
   Print("!!!!!!!!!!!!!!!!!!!!!!!!! FTL_Gulch_Intro - VISIT 1")
-  local (for index), (for limit), (for step) = 1, 2, 1
-  for i = (for index), (for limit), (for step) do
+  for i = 1, 2 do
     MoveToEntity("Spawner_Spatters", ("ftl_gulch_01a_visit1_ai.PM_SpatterSpawn 0" .. i))
     ForceSpawn("Spawner_Spatters", 1)
     wait(0)
@@ -41,22 +40,11 @@ FTL_Gulch_Intro = function(target)
     SetParentEntity(introGlobal, _player)
     introGlobal = 3
     _player = 1
-    local (for index) = 1
-    for _player2 = (for index), introGlobal, _player do
-      (for index) = GetGlobal
-      (for limit) = "FTL_Gulch_Ball0"
-      (for step) = _player2
+    for _player2 = 1, introGlobal, _player do
       x = "State"
-      (for limit) = (((for limit) .. (for step)) .. x)
-      (for index) = (for index)((for limit))
-      if ((for index) == 0) then
-        (for index) = SetGlobal
-        (for limit) = "FTL_Gulch_Ball0"
-        (for step) = _player2
+      if (GetGlobal((("FTL_Gulch_Ball0" .. _player2) .. x)) == 0) then
         x = "State"
-        (for limit) = (((for limit) .. (for step)) .. x)
-        (for step) = 1
-        (for index)((for limit), (for step))
+        SetGlobal((("FTL_Gulch_Ball0" .. _player2) .. x), 1)
       end
     end
     introGlobal = "TriggerLookAt_SpatterRock"
@@ -502,3 +490,4 @@ FTL_Gulch_SpatterReloadCheck = function(spatter)
   EnableMotion(spatter)
   return 
 end
+

@@ -2,8 +2,7 @@ Prefab_Jugband_AlwaysSetup = function(target)
   Print("___Function: Prefab_Jugband_AlwaysSetup")
   local data = GetPrefabData(target)
   math.randomseed(os.time())
-  local (for index), (for limit), (for step) = 1, 6, 1
-  for x = (for index), (for limit), (for step) do
+  for x = 1, 6 do
     SetR3MTConstReg(GetRelativePrefabEntity(target, (".VolumeLight0" .. tostring(x))), 1, vector4(0.10000000149011612, 0.10000000149011612, 0.10000000149011612, 1))
   end
   if (GetGlobal("NOS_BogEasy_FirstVisit") ~= 1) then
@@ -38,12 +37,11 @@ Prefab_Jugband_SetState = function(target, _State)
   Print(("RightMember: " .. tostring(GetName(RightMember))))
   if (_State == "Fixed") then
     Print("__JUGBAND WAS FIXED!")
-    data.CurrentPositions[1] = ".Fat"
-    data.CurrentPositions[2] = ".Tall"
-    data.CurrentPositions[3] = ".Short"
-    data.VolumeLevel[1] = 6
-    local (for index), (for limit), (for step) = 1, 6, 1
-    for x = (for index), (for limit), (for step) do
+    data.CurrentPositions[reg_25] = ".Fat"
+    data.CurrentPositions[reg_26] = ".Tall"
+    data.CurrentPositions[reg_27] = ".Short"
+    data.VolumeLevel[reg_25] = 6
+    for x = 1, 6 do
       if (x == 1) then
         SetR3MTConstReg(GetRelativePrefabEntity(target, (".VolumeLight0" .. tostring(x))), 1, vector4(0, 1, 0, 1))
       end
@@ -116,12 +114,12 @@ Prefab_Jugband_SwitchPressed = function(target, _event)
       Print((((((("__[" .. tostring(data.CurrentPositions[1])) .. "] [") .. tostring(data.CurrentPositions[2])) .. "] [") .. tostring(data.CurrentPositions[3])) .. "]"))
       local FlipFlop = data.CurrentPositions[3]
       if (data.SwitchSide == "Right") then
-        data.CurrentPositions[3] = data.CurrentPositions[2]
-        data.CurrentPositions[2] = FlipFlop
+        data.CurrentPositions[reg_66] = data.CurrentPositions[2]
+        data.CurrentPositions[reg_65] = FlipFlop
       else
-        data.CurrentPositions[3] = data.CurrentPositions[2]
-        data.CurrentPositions[2] = data.CurrentPositions[1]
-        data.CurrentPositions[1] = FlipFlop
+        data.CurrentPositions[reg_66] = data.CurrentPositions[2]
+        data.CurrentPositions[reg_65] = data.CurrentPositions[1]
+        data.CurrentPositions[data.CurrentPositions[1]] = FlipFlop
       end
       Print("__After Move Values__")
       Print((((((("__[" .. tostring(data.CurrentPositions[1])) .. "] [") .. tostring(data.CurrentPositions[2])) .. "] [") .. tostring(data.CurrentPositions[3])) .. "]"))
@@ -226,11 +224,11 @@ end
 Prefab_Jugband_IncreaseVolume = function(target)
   Print("__Function: Prefab_Jugband_IncreaseVolume")
   local data = GetPrefabData("NOS_BogEasy_Jugband")
-  data.VolumeLevel[2] = "Climbing"
+  data.VolumeLevel[reg_9] = "Climbing"
   StartEmitters(GetRelativePrefabEntity("NOS_BogEasy_Jugband", ".MusicFX"))
-  data.VolumeLevel[1] = (data.VolumeLevel[1] + 1)
+  data.VolumeLevel[reg_18] = (data.VolumeLevel[1] + 1)
   if (data.VolumeLevel[1] == 7) then
-    data.VolumeLevel[1] = 6
+    data.VolumeLevel[reg_18] = 6
   end
   Prefab_Jugband_DisplayVolume(target)
   if (data.CurrentState ~= "Broken") then
@@ -273,7 +271,7 @@ Prefab_Jugband_DecreaseVolume = function(target)
   local data = GetPrefabData("NOS_BogEasy_Jugband")
   TimerDisable(GetRelativePrefabEntity("NOS_BogEasy_Jugband", ".VolumeTimer"))
   if (data.CurrentState ~= "Fixed") then
-    data.VolumeLevel[2] = "Falling"
+    data.VolumeLevel[reg_18] = "Falling"
     if (GetGlobal("NOS_BogEasy_JugbandPlayersState") == 1) then
       AudioPostEventOn("nos_bogeasy_01a_louisshackarea_audio.Sound_Marker_Music_Jugband", "Winddown_MX_BOG_Jugband_Good")
       MusicPostEventOn(GetPlayer(), "Fadein_MX_Bog")
@@ -291,7 +289,7 @@ Prefab_Jugband_DecreaseVolume = function(target)
       if (data.VolumeLevel[2] == "Climbing") then
         return 
       end
-      data.VolumeLevel[1] = (data.VolumeLevel[1] - 1)
+      data.VolumeLevel[reg_24] = (data.VolumeLevel[1] - 1)
       wait(0.30000001192092896)
       Prefab_Jugband_DisplayVolume(target)
     end
@@ -319,8 +317,7 @@ Prefab_Jugband_DisplayVolume = function(target)
   target = "NOS_BogEasy_Jugband"
   local data = GetPrefabData(target)
   Print(("__Volume Level: " .. tostring(data.VolumeLevel[1])))
-  local (for index), (for limit), (for step) = 1, 6, 1
-  for x = (for index), (for limit), (for step) do
+  for x = 1, 6 do
     if (x <= data.VolumeLevel[1]) then
       if (x == 1) then
         SetR3MTConstReg(GetRelativePrefabEntity(target, (".VolumeLight0" .. tostring(x))), 1, vector4(0, 1, 0, 1))
@@ -490,3 +487,4 @@ Prefab_Jugband_Camera = function(target, _Camera)
   end
   return 
 end
+

@@ -23,7 +23,7 @@ Prefab_DECFoopToob_AlwaysSetup = function(target)
       EnteredBut2D = true
     else
       return 
-      data.HardLoadExitFunction[3](((("__FOOPTOOB: Exit Function and Load Callback: " .. tostring(data.HardLoadExitFunction[2])) .. " DOES NOT MATCH MostRecentCheckpointCallback in GlobalScripts: ") .. tostring(MostRecentCheckpointCallback)))
+      Print(((("__FOOPTOOB: Exit Function and Load Callback: " .. tostring(data.HardLoadExitFunction[2])) .. " DOES NOT MATCH MostRecentCheckpointCallback in GlobalScripts: ") .. tostring(MostRecentCheckpointCallback)))
       Print("__FOOPTOOB: THIS MEANS WE HAVE NOT ENTERED THIS ZONE BEFORE, FIRING EXIT FUNCTION AND ANIMATIONS -- YOUR EXIT FUNCTION OVERRIDE SHOULD AND MUST BE YOUR LOAD CALLBACK FOR THIS TO WORK PROPERLY!!")
     end
   end
@@ -31,7 +31,7 @@ Prefab_DECFoopToob_AlwaysSetup = function(target)
     Print(((("__FOOPTOOB: Exit Function and Load Callback: " .. tostring(data.HardLoadExitFunction[2])) .. " DOES NOT MATCH MostRecentCheckpointCallback in GlobalScripts: ") .. tostring(MostRecentCheckpointCallback)))
     Print("__FOOPTOOB: THIS MEANS WE HAVE NOT ENTERED THIS ZONE BEFORE, FIRING EXIT FUNCTION AND ANIMATIONS -- YOUR EXIT FUNCTION OVERRIDE SHOULD AND MUST BE YOUR LOAD CALLBACK FOR THIS TO WORK PROPERLY!!")
   end
-  data.HardLoadExitFunction[1] = "Busy"
+  data.HardLoadExitFunction[reg_18] = "Busy"
   SetGlobal("DEC_Hardload", false)
   local CheckpointMarkerName = GetPropertyString(GetRelativePrefabEntity(target, ".TeleportMarker"), "EntityGroups", 1)
   if (data.HardLoadExitFunction[3] ~= "ExitCameraOverride") then
@@ -58,16 +58,16 @@ Prefab_DECFoopToob_AlwaysSetup = function(target)
     RestrictCutSceneInput()
     SetVerticalSplit(true)
     ActiveToobData = GetPrefabData(target)
-    HardLoadDefaultTable[1] = data.EntranceDirection
-    HardLoadDefaultTable[2] = data.StatesToStream[1]
-    HardLoadDefaultTable[3] = data.ExitCameraOverride
-    HardLoadDefaultTable[4] = data.Functions[2]
-    HardLoadDefaultTable[5] = data.DECMarkers[1]
-    HardLoadDefaultTable[6] = data.StatesToStream[2]
+    HardLoadDefaultTable[reg_18] = data.EntranceDirection
+    HardLoadDefaultTable[reg_32] = data.StatesToStream[1]
+    HardLoadDefaultTable[reg_44] = data.ExitCameraOverride
+    HardLoadDefaultTable[reg_105] = data.Functions[2]
+    HardLoadDefaultTable[reg_107] = data.DECMarkers[1]
+    HardLoadDefaultTable[reg_109] = data.StatesToStream[2]
     ActiveToobData.EntranceDirection = "3D"
-    ActiveToobData.StatesToStream[1] = "3D"
+    ActiveToobData.StatesToStream[reg_18] = "3D"
     ActiveToobData.ExitCameraOverride = "HARDLOAD"
-    ActiveToobData.Functions[2] = data.HardLoadExitFunction[2]
+    ActiveToobData.Functions[reg_32] = data.HardLoadExitFunction[2]
     local EntityGroupName, EntityGroupName = GetPropertyString(GetRelativePrefabEntity(target, ".TeleportMarker"), "EntityGroups", 1), GetRelativePrefabEntity(target, ".TeleportMarker")
     EntityGroupName = Print
     EntityGroupName("__FOOPTOOB: If the next print is nil, did you forget to add a unique name to your TeleportMarker?")
@@ -75,7 +75,7 @@ Prefab_DECFoopToob_AlwaysSetup = function(target)
     EntityGroupName((("__FOOPTOOB: Calling Prefab_DECFoopToob_Exit with param: " .. tostring(EntityGroupName)) .. "!"))
     EntityGroupName = ActiveToobData
     EntityGroupName = EntityGroupName.DECMarkers
-    EntityGroupName[1] = EntityGroupName
+    EntityGroupName[reg_18] = EntityGroupName
     EntityGroupName = SetInside2DMap
     EntityGroupName(false)
     EntityGroupName = Prefab_DECFoopToob_Exit
@@ -125,7 +125,7 @@ Prefab_DECFoopToob_AlwaysSetup = function(target)
     Print(("__FOOPTOOB: CALLING EXIT ON HARD LOAD FUNCTION: " .. tostring(data.HardLoadExitFunction[2])))
     FireThread(_G[data.HardLoadExitFunction[2]], "DEC")
   end
-  data.HardLoadExitFunction[1] = "False"
+  data.HardLoadExitFunction[reg_18] = "False"
   return 
 end
 Prefab_DECFoopToob_2DLoadCallback = function(target)
@@ -216,13 +216,13 @@ Prefab_DECFoopToob_Enter = function(target)
       if (data.HARDLOAD == "False") then
         Print((((((("__FOOPTOOB: GLOBAL " .. tostring(data.EpisodeCheckGlobal)) .. " VALUE: ") .. tostring(Global)) .. " GREATER/EQUAL TO VALUE SPECIFIED IN EPISODECHECK[2]: ") .. tostring(data.EpisodeCheck[2])) .. ", REPLACING NEXT3DSTATE"))
         local Old3D = data.StatesToStream[3]
-        data.StatesToStream[3] = data.EpisodeCheck[3]
+        data.StatesToStream[reg_83] = data.EpisodeCheck[3]
         Print(((("__FOOPTOOB: OLD 3D: " .. tostring(Old3D)) .. ", NEW 3D: ") .. tostring(data.StatesToStream[3])))
       else
         Print((((((("__FOOPTOOB: GLOBAL " .. tostring(data.EpisodeCheckGlobal)) .. " VALUE: ") .. tostring(Global)) .. " GREATER/EQUAL TO VALUE SPECIFIED IN EPISODECHECK[2]: ") .. tostring(data.EpisodeCheck[2])) .. ", REPLACING HARDLOAD[2]"))
         local OldHardLoad, OldHardLoad = data.HARDLOAD[2], (((((("__FOOPTOOB: GLOBAL " .. tostring(data.EpisodeCheckGlobal)) .. " VALUE: ") .. tostring(Global)) .. " GREATER/EQUAL TO VALUE SPECIFIED IN EPISODECHECK[2]: ") .. tostring(data.EpisodeCheck[2])) .. ", REPLACING HARDLOAD[2]")
         OldHardLoad = data.HARDLOAD
-        OldHardLoad[2] = data.EpisodeCheck[3]
+        OldHardLoad[reg_76] = data.EpisodeCheck[3]
         OldHardLoad = Print
         OldHardLoad(((("__FOOPTOOB: OLD HARDLOAD: " .. tostring(OldHardLoad)) .. ", NEW HARDLOAD: ") .. tostring(data.HARDLOAD[2])))
       end
@@ -313,19 +313,13 @@ Prefab_DECFoopToob_Enter = function(target)
     Print(OriginalPosition)
     OriginalPosition = Music_array
     Music_array = 1
-    local (for index), (for index) = 1, " events! Listed next"
-    for (for index) = (for index), OriginalPosition, Music_array do
-      (for limit) = Print
-      (for step) = "__FOOPTOOB: Stopping MusicEvent["
+    for i = 1, OriginalPosition, Music_array do
       i = tostring
-      i = i((for index))
-      (for step) = ((((for step) .. i) .. "]: ") .. tostring(data.MusicEvent[(for index)]))
-      (for limit)((for step))
-      (for limit) = AudioPostEventOn
-      (for step) = _player
+      i = i(i)
+      Print(((("__FOOPTOOB: Stopping MusicEvent[" .. i) .. "]: ") .. tostring(data.MusicEvent[i])))
       i = "Stop_"
-      i = (i .. data.MusicEvent[(for index)])
-      (for limit)((for step), i)
+      i = (i .. data.MusicEvent[i])
+      AudioPostEventOn(_player, i)
     end
   else
     Print("__FOOPTOOB: MusicEvent[1] defined as Starting_Music! This is the default! Is this intended?")
@@ -463,7 +457,7 @@ Prefab_DECFoopToob_Exit = function(target)
   if (ActiveToobData.ExitCameraOverride == "HARDLOAD") then
     Print("__FOOPTOOB: Exit's been called from a hardload! Will not attempt to clear camera attributes!")
     ActiveToobData.ExitCameraOverride = data.HardLoadExitFunction[3]
-    ActiveToobData.StatesToStream[2] = "HARDLOAD"
+    ActiveToobData.StatesToStream[reg_93] = "HARDLOAD"
   else
     Print(("__FOOPTOOB: Exit's been called from a stream! Will clear camera attributes from override: " .. tostring(data.ExitCameraOverride)))
     ClearCameraAttributesForPlayer(data.ExitCameraOverride, _player)
@@ -629,11 +623,11 @@ Prefab_DECFoopToob_Finish = function(target)
     Print("__FOOPTOOB: We came into finish from a hardload! will not attempt to change states")
     Print(("__FOOPTOOB: Resetting Prefab Data to defaults for Toob: " .. data.DECMarkers[1]))
     data.EntranceDirection = HardLoadDefaultTable[1]
-    data.StatesToStream[1] = HardLoadDefaultTable[2]
+    data.StatesToStream[reg_25] = HardLoadDefaultTable[2]
     data.ExitCameraOverride = HardLoadDefaultTable[3]
-    data.Functions[2] = HardLoadDefaultTable[4]
-    data.DECMarkers[1] = HardLoadDefaultTable[5]
-    data.StatesToStream[2] = HardLoadDefaultTable[6]
+    data.Functions[reg_44] = HardLoadDefaultTable[4]
+    data.DECMarkers[reg_25] = HardLoadDefaultTable[5]
+    data.StatesToStream[reg_44] = HardLoadDefaultTable[6]
     Print("__FOOPTOOB: Overridden Values for hardload now returned to:")
     Print(("__FOOPTOOB: EntranceDirection: " .. tostring(data.EntranceDirection)))
     Print(("__FOOPTOOB: StatesToStream[1]: " .. tostring(data.StatesToStream[1])))
@@ -653,8 +647,7 @@ Prefab_DECFoopToob_Finish = function(target)
   local skipFade = false
   local skipUnpauseAI = false
   if (data.Finish_Skip[1] ~= "None") then
-    local (for index), (for limit), (for step) = 1, len_Finish_Skip, 1
-    for i = (for index), (for limit), (for step) do
+    for i = 1, len_Finish_Skip do
       if (data.Finish_Skip[i] == "Fade") then
         Print("__FOOPTOOB: Skipping FadeIn")
         skipFade = true
@@ -732,3 +725,4 @@ Prefab_DECFoopToob_GetPositionDifferenceIgnoreAxis = function(position1, positio
   local diff = (position1 - position2)
   return diff:length2()
 end
+

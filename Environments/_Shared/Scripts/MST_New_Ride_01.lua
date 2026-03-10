@@ -68,7 +68,6 @@ debug_SkipS2 = function()
   return 
 end
 NewRide_TestBark = function(reg_0, reg_1)
-  return 
 end
 NewRide_SetSpiderTop = function()
   AnimEvent(SpiderBoss, EVENT_TopSection)
@@ -358,8 +357,7 @@ NewRide_CrushedByAnvil = function(self, anvil)
 end
 NewRide_SendStimulus = function(self, validStimTypes, event, target)
   if IsValidHandle(target) then
-    local (for generator), (for state), (for control) = ipairs(validStimTypes)
-    for index, stimulusType in (for generator), (for state), (for control) do
+    for index, stimulusType in ipairs(validStimTypes) do
       if StimulusEvent_HasStimulusType(event, stimulusType) then
         local direction = GetVelocity(target)
         direction:normalize3()
@@ -585,8 +583,7 @@ NewRide_SwapTeaCup = function(self, activator)
     Print("********************************MDDBF TEACUP SPAWNER 1")
     local numChildren = GetElementCount(activator, "Child Entities")
     Print("********************************MDDBF TEACUP SPAWNER 2")
-    local (for index), (for limit), (for step) = 0, numChildren, 1
-    for i = (for index), (for limit), (for step) do
+    for i = 0, numChildren do
       Print("********************************MDDBF TEACUP SPAWNER 3")
       local childEntity = GetChildEntityByIndex(activator, i)
       ClearParent(childEntity)
@@ -627,7 +624,6 @@ NewRide_Zone01a_SaveCheckpoint = function()
   return 
 end
 NewRide_Zone01a_CheckpointLoad = function()
-  return 
 end
 NewRide_DeathByThinner = function()
   Print("Death by thinner START")
@@ -779,7 +775,6 @@ HandIsVulnerableOrGrabbing = function(hand)
     return true
   end
   return false
-  return 
 end
 NewRide_SetGrabCam = function()
   local hand = "mst_maddoctornewride_01a_main.AI_NewRideHand 01"
@@ -1161,3 +1156,4 @@ NewRide_2DTransitionSetup = function(method)
   end
   return 
 end
+

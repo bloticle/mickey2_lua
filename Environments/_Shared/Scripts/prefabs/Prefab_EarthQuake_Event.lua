@@ -56,3 +56,4 @@ Prefab_RandomEarthQuake_Event = function(target)
   end
   return 
 end
+

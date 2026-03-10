@@ -1,8 +1,7 @@
 Prefab_Breakable_Fade = function(target)
   local data = GetPrefabData(target)
   Wait(data.FadeDelay)
-  local (for index), (for limit), (for step) = 1, 0, -0.05000000074505806
-  for a = (for index), (for limit), (for step) do
+  for a = 1, 0, -0.05000000074505806 do
     SetR3MTConstRegAlpha(target, data.alphaRegister, a)
     Wait(data.FadeOutDelta)
   end
@@ -27,3 +26,4 @@ Prefab_BreakableSetAlpha = function(target, alphaInt)
   SetR3MTConstRegAlpha(target, data.alphaRegister, alphaInt)
   return 
 end
+

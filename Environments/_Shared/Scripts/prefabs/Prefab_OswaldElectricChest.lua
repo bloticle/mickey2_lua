@@ -110,3 +110,4 @@ Prefab_MickeyNearOswaldBlueChest = function(target, direction)
   end
   return 
 end
+

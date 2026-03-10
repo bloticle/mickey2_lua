@@ -8,3 +8,4 @@ Prefab_PullHandle_ResetHandle = function(target)
   ApplyImpulse(target, impulseDir.x, 0, impulseDir.z)
   return 
 end
+

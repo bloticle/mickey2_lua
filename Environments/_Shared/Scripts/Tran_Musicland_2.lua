@@ -203,14 +203,10 @@ Music2_DrumJumpAI = function()
     wait(0.10000000149011612)
   end
   Print("Music2_DrumJumpAI end loop")
-  local (for index), (for limit), (for step) = 1, 4, 1
-  for (for index) = (for index), (for limit), (for step) do
-    (for limit) = enableJumpVolumeAvailability
-    (for step) = "Music2_DrumJump"
+  for x = 1, 4 do
     x = tostring
-    x = x((for index))
-    (for step) = ((for step) .. x)
-    (for limit)((for step))
+    x = x(x)
+    enableJumpVolumeAvailability(("Music2_DrumJump" .. x))
   end
   DrumJumpState = 0
   return 
@@ -248,3 +244,4 @@ Musicland2_ManageOswaldAssistMickey = function(target, action, node1)
   end
   return 
 end
+

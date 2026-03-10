@@ -77,3 +77,4 @@ Prefab_SetUpEncyclopediaMapMarker = function(target)
   end
   return 
 end
+

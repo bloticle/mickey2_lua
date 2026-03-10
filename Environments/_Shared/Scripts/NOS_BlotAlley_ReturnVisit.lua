@@ -83,3 +83,4 @@ NOS_BlotAlley_ClothGot = function(target)
   ForceSequence("NOS_BlotAlley_Gus", "Global_Gus_FoundCloth")
   return 
 end
+

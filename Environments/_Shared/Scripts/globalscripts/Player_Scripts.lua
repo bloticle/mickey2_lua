@@ -62,7 +62,6 @@ Mickey_Start_Revive = function()
   return 
 end
 Mickey_Stop_Death = function()
-  return 
 end
 ScaleDrip = function(mickey, emitter)
   local startScale = 0
@@ -76,3 +75,4 @@ ScaleDrip = function(mickey, emitter)
   end
   return 
 end
+

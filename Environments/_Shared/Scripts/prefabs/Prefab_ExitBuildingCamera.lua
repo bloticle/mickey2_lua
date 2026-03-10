@@ -310,7 +310,6 @@ Prefab_DoorState_Decrement = function(target)
   return 
 end
 Prefab_Reset_DoorState = function(reg_0)
-  return 
 end
 Prefab_Activate_Doors = function(target, action)
   local data = GetPrefabData(target)
@@ -349,3 +348,4 @@ Prefab_ExitInterior_CheckDialogPlaying = function(target)
   end
   return 
 end
+

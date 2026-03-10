@@ -149,8 +149,7 @@ DBC_SpawnIcons = function()
   if (DBC_CallForHelpTraining == 1) then
     DBC_CallForHelpTrainingManage("CallForHelpTrigger")
   end
-  local (for index), (for limit), (for step) = 1, 8, 1
-  for i = (for index), (for limit), (for step) do
+  for i = 1, 8 do
     ForceSpawn(("OverheadIconSpawner" .. i), 1)
     Wait(0.10000000149011612)
     Print(("___________________________Spawning from OverheadIconSpawner" .. tostring(i)))
@@ -199,27 +198,16 @@ DBC_TurnOnChestIcon = function(target, event, activator, icon)
   return 
 end
 DBC_DestroyChestIcons = function()
-  local (for index), (for limit), (for step) = 1, 9, 1
-  for i = (for index), (for limit), (for step) do
+  for i = 1, 9 do
     if IsValidHandle((("dbc_courtyard_01a_scripting.training_tutorialicon 0" .. i) .. ".ControllerIcon")) then
       DestroyEntity((("dbc_courtyard_01a_scripting.training_tutorialicon 0" .. i) .. ".ControllerIcon"))
     end
   end
-  local (for index), (for limit), (for step) = 10, 23, 1
-  for i = (for index), (for limit), (for step) do
-    (for index) = IsValidHandle
-    (for limit) = "dbc_courtyard_01a_scripting.training_tutorialicon "
-    (for step) = i
+  for i = 10, 23 do
     i = ".ControllerIcon"
-    (for limit) = (((for limit) .. (for step)) .. i)
-    (for index) = (for index)((for limit))
-    if (for index) then
-      (for index) = DestroyEntity
-      (for limit) = "dbc_courtyard_01a_scripting.training_tutorialicon "
-      (for step) = i
+    if IsValidHandle((("dbc_courtyard_01a_scripting.training_tutorialicon " .. i) .. i)) then
       i = ".ControllerIcon"
-      (for limit) = (((for limit) .. (for step)) .. i)
-      (for index)((for limit))
+      DestroyEntity((("dbc_courtyard_01a_scripting.training_tutorialicon " .. i) .. i))
     end
   end
   return 
@@ -1077,8 +1065,7 @@ DBC_ActivateRemoteStand = function(target, action, event)
     FireSequence("DBC_GusConversationTrigger", "DBC_Gus_Boomerang02", 0)
     Wait(0.4000000059604645)
     ActivateGremlinHint("GusHintUnderhall3")
-    local (for index), (for limit), (for step) = 1, 5, 1
-    for i = (for index), (for limit), (for step) do
+    for i = 1, 5 do
       DBC_ActivateUnderhallMachines(tostring(i))
       Wait(0.6000000238418579)
     end
@@ -1493,8 +1480,7 @@ DBC_ElectricalRoom_ThirdMachineCheck = function()
   return 
 end
 DBC_FadeoutElectricalRoom_ThirdMachine = function()
-  local (for index), (for limit), (for step) = 1, 0, -0.05000000074505806
-  for a = (for index), (for limit), (for step) do
+  for a = 1, 0, -0.05000000074505806 do
     SetR3MTConstRegAlpha("DBC_ElectricalRoommachine3BrokenState", 3, a)
     Wait(0.05000000074505806)
   end
@@ -1788,7 +1774,6 @@ DBC_SecondMachinePatrolNode = function()
   return 
 end
 DBC_ElectricalRoom_ElectricBlastLoop = function()
-  return 
 end
 DBC_ElectricalTowerFall = function()
   AnimGBSequence("DBC_ElectricalFallingTower", "fall")
@@ -2848,3 +2833,4 @@ DBC_CheckpointLoad_Train = function()
   DBC_DestroyChestIcons()
   return 
 end
+

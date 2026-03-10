@@ -24,3 +24,4 @@ gsCB_BootTimeOut = function(target)
   SetRotatorMaxSpeed(GetRelativePrefabEntity(target, ".ElecBeam_Indicator 01"), 0)
   return 
 end
+

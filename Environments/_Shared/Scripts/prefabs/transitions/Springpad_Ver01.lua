@@ -81,3 +81,4 @@ gsSP_BlockerThinned = function(target)
   SplineKnotComponent_SetBranchProbability(GetRelativePrefabEntity(data.Springpad, ".Ball_SplineKnot 01"), 0)
   return 
 end
+

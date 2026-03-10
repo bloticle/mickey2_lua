@@ -37,3 +37,4 @@ SetCameraAttributesForPlayerOnReviveDelayed = function(target, event, instigator
   end
   return 
 end
+

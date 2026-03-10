@@ -48,13 +48,10 @@ PistonsFlat = function(target)
   return 
 end
 PistonsActiveSlow = function(reg_0)
-  return 
 end
 PistonsActive = function(reg_0)
-  return 
 end
 PistonsUp = function(reg_0)
-  return 
 end
 PistonsStep = function(target)
   FireThread(EnablePistonAudio)
@@ -308,3 +305,4 @@ PistonsAudioMovementLoop_Single = function()
   PistonAudioActive = false
   return 
 end
+

@@ -49,8 +49,7 @@ Prefab_OswaldSwitch_ConstantStreamLightsLoop = function(target)
     if (not (data.OswaldSwitchState == 1)) then
       break
     end
-    local (for index), (for limit), (for step) = 1, 3, 1
-    for i = (for index), (for limit), (for step) do
+    for i = 1, 3 do
       SetR3MTColorReg(GetRelativePrefabEntity(target, ".OswaldSwitchLever"), 1, vector4(0, 0, (i * 0.3199999928474426)))
       AnimGBSequence(GetRelativePrefabEntity(target, ".OswaldSwitchLever"), ("stage" .. i))
       wait(0.6000000238418579)
@@ -235,3 +234,4 @@ Prefab_OswaldElectricSwitch_ChangeState = function(target, state)
   end
   return 
 end
+

@@ -674,8 +674,7 @@ MechTurret_Initialise = function()
   AnimGBSequence("Door2Animation", "B")
   MechTurretStageoneHints(nil)
   TimerEnable("StageOneHintLogicTimer")
-  local (for index), (for limit), (for step) = 1, 3, 1
-  for i = (for index), (for limit), (for step) do
+  for i = 1, 3 do
     local collisionEntity = GetChildEntityByName(MechTurret_name, ("MT_LoaderArms0" .. i))
     if (GetGlobal(("FTL_PrescottMechTurretLoaderToon" .. i)) == 1) then
       Print(("MechTurret_Initialise : Disabling loder number " .. i))
@@ -807,14 +806,13 @@ MechTurret_LoadCheckpoint = function()
   MechTurret_Initialise()
   FireThread(MechTurret_StartAttackSequence)
   MT_OnLevelLoaded(MechTurret_name, false, MechState, MechSeqIndex, fightPhase)
-  local (for index), (for limit), (for step) = 1, string.len(MechRoute), 1
-  for index = (for index), (for limit), (for step) do
+  for index = 1, string.len(MechRoute) do
     local char = string.sub(MechRoute, index, index)
     MT_CurrentRoute[index] = tonumber(char)
     if (index == 3) then
       if (MT_CurrentRoute[index] ~= 0) then
         Print("You should not get to this state. The checkpoint saved in an invalid state! Setting the last set of tanks to 0")
-        MT_CurrentRoute[3] = 0
+        MT_CurrentRoute[reg_82] = 0
       end
     end
     if (char ~= MT_Tank_None) then
@@ -875,8 +873,7 @@ MechTurret_ElectricFloorDefenceStart = function()
   wait(0.20000000298023224)
   if (MechTurret_CurrentFightState == FightState_Stage1Phase1) then
     MT_ElectricStage1 = 1
-    local (for index), (for limit), (for step) = 1, 12, 1
-    for num = (for index), (for limit), (for step) do
+    for num = 1, 12 do
       if (FloorTurningOff == 1) then
         return 
       end
@@ -890,64 +887,33 @@ MechTurret_ElectricFloorDefenceStart = function()
   end
   if (MechTurret_CurrentFightState == FightState_Stage1Phase2) then
     MT_ElectricStage2 = 1
-    local (for index), (for limit), (for step) = 1, 18, 1
-    for num = (for index), (for limit), (for step) do
-      (for index) = FloorTurningOff
-      if ((for index) == 1) then
-        return 
-      end
-      (for index) = Unhide
-      (for limit) = "FloorElectricityGroupC "
-      (for step) = num
-      (for limit) = ((for limit) .. (for step))
-      (for index)((for limit))
-      (for index) = Enable
-      (for limit) = "FloorElectricityGroupC "
-      (for step) = num
-      (for limit) = ((for limit) .. (for step))
-      (for index)((for limit))
-      (for index) = StartEmitters
-      (for limit) = "FloorElectricityGroupC "
-      (for step) = num
-      (for limit) = ((for limit) .. (for step))
-      (for index)((for limit))
-      (for index) = SetPropertyFloat
-      (for limit) = "FloorElectricityGroupC "
-      (for step) = num
-      (for limit) = ((for limit) .. (for step))
-      (for step) = "StimulusPerSecondList"
-      num = 100
-      (for index)((for limit), (for step), num, 0)
-      (for index) = SetPropertyFloat
-      (for limit) = "FloorElectricityGroupC "
-      (for step) = num
-      (for limit) = ((for limit) .. (for step))
-      (for step) = "StimulusPerSecondList"
-      num = 1
-      (for index)((for limit), (for step), num, 1)
-      if (12 < num) then
-        (for index) = wait
-        (for limit) = 0.10000000149011612
-        (for index)((for limit))
-      end
-      (for index) = wait
-      (for limit) = 0.10000000149011612
-      (for index)((for limit))
-    end
-  elseif (MechTurret_CurrentFightState == FightState_Stage1Phase3) then
-    MT_ElectricStage3 = 1
-    local (for index), (for limit), (for step) = 1, 24, 1
-    for num = (for index), (for limit), (for step) do
+    for num = 1, 18 do
       if (FloorTurningOff == 1) then
         return 
       end
       Unhide(("FloorElectricityGroupC " .. num))
       Enable(("FloorElectricityGroupC " .. num))
       StartEmitters(("FloorElectricityGroupC " .. num))
-      (for index) = 0
-      SetPropertyFloat(("FloorElectricityGroupC " .. num), "StimulusPerSecondList", 100, (for index))
-      (for index) = 1
-      SetPropertyFloat(("FloorElectricityGroupC " .. num), "StimulusPerSecondList", 1, (for index))
+      num = 100
+      SetPropertyFloat(("FloorElectricityGroupC " .. num), "StimulusPerSecondList", num, 0)
+      num = 1
+      SetPropertyFloat(("FloorElectricityGroupC " .. num), "StimulusPerSecondList", num, 1)
+      if (12 < num) then
+        wait(0.10000000149011612)
+      end
+      wait(0.10000000149011612)
+    end
+  elseif (MechTurret_CurrentFightState == FightState_Stage1Phase3) then
+    MT_ElectricStage3 = 1
+    for num = 1, 24 do
+      if (FloorTurningOff == 1) then
+        return 
+      end
+      Unhide(("FloorElectricityGroupC " .. num))
+      Enable(("FloorElectricityGroupC " .. num))
+      StartEmitters(("FloorElectricityGroupC " .. num))
+      SetPropertyFloat(("FloorElectricityGroupC " .. num), "StimulusPerSecondList", 100, 0)
+      SetPropertyFloat(("FloorElectricityGroupC " .. num), "StimulusPerSecondList", 1, 1)
       if (12 < num) then
         wait(0.10000000149011612)
       end
@@ -960,8 +926,7 @@ MechTurret_ElectricFloorDefenceStop = function()
   FloorTurningOff = 1
   if (MechTurret_CurrentFightState == FightState_Stage1Phase1) then
     MT_ElectricStage1 = 0
-    local (for index), (for limit), (for step) = 12, 1, -1
-    for num = (for index), (for limit), (for step) do
+    for num = 12, 1, -1 do
       StopEmitters(("FloorElectricityGroupC " .. num))
       Disable(("FloorElectricityGroupC " .. num))
       Hide(("FloorElectricityGroupC " .. num))
@@ -972,52 +937,24 @@ MechTurret_ElectricFloorDefenceStop = function()
   end
   if (MechTurret_CurrentFightState == FightState_Stage1Phase2) then
     MT_ElectricStage2 = 0
-    local (for index), (for limit), (for step) = 18, 1, -1
-    for num = (for index), (for limit), (for step) do
-      (for index) = StopEmitters
-      (for limit) = "FloorElectricityGroupC "
-      (for step) = num
-      (for limit) = ((for limit) .. (for step))
-      (for index)((for limit))
-      (for index) = Disable
-      (for limit) = "FloorElectricityGroupC "
-      (for step) = num
-      (for limit) = ((for limit) .. (for step))
-      (for index)((for limit))
-      (for index) = Hide
-      (for limit) = "FloorElectricityGroupC "
-      (for step) = num
-      (for limit) = ((for limit) .. (for step))
-      (for index)((for limit))
-      (for index) = SetPropertyFloat
-      (for limit) = "FloorElectricityGroupC "
-      (for step) = num
-      (for limit) = ((for limit) .. (for step))
-      (for step) = "StimulusPerSecondList"
-      num = 0
-      (for index)((for limit), (for step), num, 0)
-      (for index) = SetPropertyFloat
-      (for limit) = "FloorElectricityGroupC "
-      (for step) = num
-      (for limit) = ((for limit) .. (for step))
-      (for step) = "StimulusPerSecondList"
-      num = 0
-      (for index)((for limit), (for step), num, 1)
-      (for index) = wait
-      (for limit) = 0.10000000149011612
-      (for index)((for limit))
-    end
-  elseif (MechTurret_CurrentFightState == FightState_Stage1Phase3) then
-    MT_ElectricStage3 = 0
-    local (for index), (for limit), (for step) = 24, 1, -1
-    for num = (for index), (for limit), (for step) do
+    for num = 18, 1, -1 do
       StopEmitters(("FloorElectricityGroupC " .. num))
       Disable(("FloorElectricityGroupC " .. num))
       Hide(("FloorElectricityGroupC " .. num))
-      (for index) = 0
-      SetPropertyFloat(("FloorElectricityGroupC " .. num), "StimulusPerSecondList", 0, (for index))
-      (for index) = 1
-      SetPropertyFloat(("FloorElectricityGroupC " .. num), "StimulusPerSecondList", 0, (for index))
+      num = 0
+      SetPropertyFloat(("FloorElectricityGroupC " .. num), "StimulusPerSecondList", num, 0)
+      num = 0
+      SetPropertyFloat(("FloorElectricityGroupC " .. num), "StimulusPerSecondList", num, 1)
+      wait(0.10000000149011612)
+    end
+  elseif (MechTurret_CurrentFightState == FightState_Stage1Phase3) then
+    MT_ElectricStage3 = 0
+    for num = 24, 1, -1 do
+      StopEmitters(("FloorElectricityGroupC " .. num))
+      Disable(("FloorElectricityGroupC " .. num))
+      Hide(("FloorElectricityGroupC " .. num))
+      SetPropertyFloat(("FloorElectricityGroupC " .. num), "StimulusPerSecondList", 0, 0)
+      SetPropertyFloat(("FloorElectricityGroupC " .. num), "StimulusPerSecondList", 0, 1)
       wait(0.10000000149011612)
     end
   end
@@ -1028,8 +965,7 @@ MechTurret_ElectricFloorSetup = function()
   SetPropertyFloat("ForceFieldExitA", "StimulusPerSecondList", 100, 0)
   SetPropertyFloat("ForceFieldExitA", "StimulusPerSecondList", 1, 1)
   StartEmitters("ForceFieldExitA")
-  local (for index), (for limit), (for step) = 1, 24, 1
-  for num = (for index), (for limit), (for step) do
+  for num = 1, 24 do
     StopEmitters(("FloorElectricityGroupC " .. num))
     Disable(("FloorElectricityGroupC " .. num))
     Hide(("FloorElectricityGroupC " .. num))
@@ -1043,3 +979,4 @@ MechTurret_JunkBallSpeed = function(target, speed)
   SetPropertyFloat(shooter, "Shooter Speed", speed)
   return 
 end
+

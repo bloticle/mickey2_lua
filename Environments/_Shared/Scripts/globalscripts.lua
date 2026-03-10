@@ -98,8 +98,7 @@ HandleSoundMarker = function(label)
 end
 PrintTable = function(title, table)
   print("----", title, "----")
-  local (for generator), (for state), (for control) = pairs(table)
-  for i, v in (for generator), (for state), (for control) do
+  for i, v in pairs(table) do
     print("t[", i, "]=", v)
   end
   print("----------------------------------------------------")
@@ -775,7 +774,6 @@ GetNPCHitPoints = function(npc)
     hitPoints = 0
   end
   return hitPoints
-  return 
 end
 MovePickupToMickey = function(target)
   MoveToEntity(target, GetPlayer())
@@ -1045,8 +1043,7 @@ QA_SetupEndGame = function(arg)
     print((("Invalid argument. String must be " .. tostring(numStates)) .. " characters long consisted of only 1s and 0s"))
     return 
   end
-  local (for index), (for limit), (for step) = 1, numStates, 1
-  for i = (for index), (for limit), (for step) do
+  for i = 1, numStates do
     local c = string.sub(states, i, i)
     if (c ~= "1") then
       if (c ~= "0") then
@@ -1128,3 +1125,4 @@ QA_StartEndGame = function()
   StartSequence(nil, "EndGame:0", true, true)
   return 
 end
+

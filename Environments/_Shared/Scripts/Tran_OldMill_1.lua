@@ -219,8 +219,7 @@ OldMill1_ActionSpotsDone = function()
     DecrementAbilityDisabled(GetPlayer(), "Toss")
     Print("OldMill1_ActionSpotsDone is deactivating action spots")
     wait(1)
-    local (for index), (for limit), (for step) = 1, 6, 1
-    for x = (for index), (for limit), (for step) do
+    for x = 1, 6 do
       Disable(("OldMill1_ActionSpot_Left" .. tostring(x)))
       Disable(("OldMill1_ActionSpot_Right" .. tostring(x)))
     end
@@ -264,3 +263,4 @@ OldMill1_CharacterPastOneWayCollision = function(character)
   end
   return 
 end
+

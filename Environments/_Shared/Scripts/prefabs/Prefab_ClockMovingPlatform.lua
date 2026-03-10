@@ -10,3 +10,4 @@ Prefab_ClockPlatform_DisablePlatform = function(target)
   data.StopAtStart = "true"
   return 
 end
+

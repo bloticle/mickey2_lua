@@ -38,3 +38,4 @@ Prefab_Found_PhotoLocation = function(target)
   Disable(target)
   return 
 end
+

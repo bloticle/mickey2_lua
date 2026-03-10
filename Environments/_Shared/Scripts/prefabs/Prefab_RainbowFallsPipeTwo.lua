@@ -76,7 +76,6 @@ Prefab_GeneratorStateChange = function(target)
   return 
 end
 Prefab_StartThinnerSpray = function(reg_0)
-  return 
 end
 Prefab_StopSprayPaint = function(target)
   DisableMotion(GetRelativePrefabEntity(target, ".ReturnPipe"))
@@ -147,7 +146,6 @@ Prefab_CheckPipes = function(target)
   return 
 end
 Prefab_SetupGearBlockers = function(reg_0)
-  return 
 end
 Prefab_PaintThinGearBlockers = function(target, state)
   if (state == "paint") then
@@ -262,3 +260,4 @@ Prefab_PipeLeaveUnderWeight = function()
   Print(("WeightPosition Leaving Under Weight: " .. WeightPosition))
   return 
 end
+

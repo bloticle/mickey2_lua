@@ -19,3 +19,4 @@ gsCG_initialize = function(target)
   StartRotateToPosition(GetRelativePrefabEntity(target, ".centralCrayon"), -100)
   return 
 end
+

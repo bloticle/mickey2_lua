@@ -83,3 +83,4 @@ GrabCameraNifFancy = function(target, cameraAnim)
   end
   return 
 end
+

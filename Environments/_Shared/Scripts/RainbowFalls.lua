@@ -969,7 +969,6 @@ RF_PaintGeyserCameraRelease = function()
   return 
 end
 RF_GrelinOmegaFixGeyser = function()
-  return 
 end
 RF_OswaldMoveNearFanLift = function()
   OswaldSetPathAction("FanPlatformOswaldPatrolNode")
@@ -978,7 +977,6 @@ RF_OswaldMoveNearFanLift = function()
   return 
 end
 RFPipeTwoColorChange = function()
-  return 
 end
 RF_StairstepFallsColumnDrop = function()
   local data = GetPrefabData("ThinnerStepFallsChest")
@@ -1041,8 +1039,7 @@ RF_BlockFalls = function(target, var)
   return 
 end
 RF_BlockFalls2 = function(target)
-  local (for index), (for limit), (for step) = 1, 0, -0.05000000074505806
-  for i = (for index), (for limit), (for step) do
+  for i = 1, 0, -0.05000000074505806 do
     SetR3MTColorReg(target, 1, vector4(0, 0, 0, i))
     wait(0.05000000074505806)
   end
@@ -1059,8 +1056,7 @@ BluePipe = 0
 PurplePipe = 0
 FanOpeningDestroyed = 0
 RF_FillFXPipes = function(target, color)
-  local (for index), (for limit), (for step) = 4, 1, -1
-  for x = (for index), (for limit), (for step) do
+  for x = 4, 1, -1 do
     AnimGBSequence(((color .. tostring(x)) .. "FX"), "Fill", true)
     wait(0.20000000298023224)
   end
@@ -1617,3 +1613,4 @@ RF_PlayerGainedIndelibe = function(target)
   end
   return 
 end
+

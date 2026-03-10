@@ -45,3 +45,4 @@ ChangeClothHiddenState = function(target, state)
   end
   return 
 end
+

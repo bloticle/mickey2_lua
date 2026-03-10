@@ -5,3 +5,4 @@ Prefab_PlayLeavesEffect = function(target)
   StopEmitters(GetRelativePrefabEntity(target, ".Leaves"))
   return 
 end
+

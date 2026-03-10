@@ -412,8 +412,7 @@ Mech_UpdateJunkPosition = function(junk, shadow)
   return 
 end
 Mech_ScaleShadow = function(self)
-  local (for index), (for limit), (for step) = 0, 4.300000190734863, 0.10000000149011612
-  for scale = (for index), (for limit), (for step) do
+  for scale = 0, 4.300000190734863, 0.10000000149011612 do
     SetShadowScale(self, vector4(scale, 350, scale))
     wait(0.05000000074505806)
   end
@@ -461,8 +460,7 @@ Mech_V2_hardloadonlyFromOstown = function()
 end
 Mech_V2_Setup = function()
   Print("__Function: Mech_V2_Setup")
-  local (for index), (for limit), (for step) = 1, 6, 1
-  for i = (for index), (for limit), (for step) do
+  for i = 1, 6 do
     Hide(("PanelA" .. i))
     Hide(("PanelB" .. i))
     Hide(("PanelC" .. i))
@@ -476,81 +474,29 @@ Mech_V2_Setup = function()
   AudioPostEventOn("PanelShockEffect5", "Stop_mboss_panel_electrified")
   AudioPostEventOn("PanelShockEffect6", "Stop_mboss_panel_electrified")
   DestroyEntity("CloseSuctionTrigger")
-  local (for index), (for limit), (for step) = 1, 6, 1
-  for value = (for index), (for limit), (for step) do
-    (for index) = GetGlobal
-    (for limit) = "FTL_Panel"
-    (for step) = value
+  for value = 1, 6 do
     value = "HitCounter"
-    (for limit) = (((for limit) .. (for step)) .. value)
-    (for index) = (for index)((for limit))
-    if ((for index) == 0) then
-      (for index) = Unhide
-      (for limit) = "PanelA"
-      (for step) = value
-      (for limit) = ((for limit) .. (for step))
-      (for index)((for limit))
+    if (GetGlobal((("FTL_Panel" .. value) .. value)) == 0) then
+      Unhide(("PanelA" .. value))
     else
-      (for index) = GetGlobal
-      (for limit) = "FTL_Panel"
-      (for step) = value
       value = "HitCounter"
-      (for limit) = (((for limit) .. (for step)) .. value)
-      (for index) = (for index)((for limit))
-      if ((for index) == 1) then
-        (for index) = Unhide
-        (for limit) = "PanelB"
-        (for step) = value
-        (for limit) = ((for limit) .. (for step))
-        (for index)((for limit))
+      if (GetGlobal((("FTL_Panel" .. value) .. value)) == 1) then
+        Unhide(("PanelB" .. value))
       else
-        (for index) = GetGlobal
-        (for limit) = "FTL_Panel"
-        (for step) = value
         value = "HitCounter"
-        (for limit) = (((for limit) .. (for step)) .. value)
-        (for index) = (for index)((for limit))
-        if ((for index) == 2) then
-          (for index) = Unhide
-          (for limit) = "PanelC"
-          (for step) = value
-          (for limit) = ((for limit) .. (for step))
-          (for index)((for limit))
+        if (GetGlobal((("FTL_Panel" .. value) .. value)) == 2) then
+          Unhide(("PanelC" .. value))
         else
-          (for index) = GetGlobal
-          (for limit) = "FTL_Panel"
-          (for step) = value
           value = "HitCounter"
-          (for limit) = (((for limit) .. (for step)) .. value)
-          (for index) = (for index)((for limit))
-          if (3 <= (for index)) then
+          if (3 <= GetGlobal((("FTL_Panel" .. value) .. value))) then
             if (value == "1") then
-              (for index) = TeleportToEntity
-              (for limit) = "CogGroup"
-              (for step) = value
-              (for limit) = ((for limit) .. (for step))
-              (for step) = "PM_CogTeleport_"
               value = value
-              (for step) = ((for step) .. value)
-              (for index)((for limit), (for step))
+              TeleportToEntity(("CogGroup" .. value), ("PM_CogTeleport_" .. value))
             end
             if (value == "2") then
-              (for index) = StartEmitters
-              (for limit) = "PanelShockEffect"
-              (for step) = value
-              (for limit) = ((for limit) .. (for step))
-              (for index)((for limit))
-              (for index) = Unhide
-              (for limit) = "PanelShockEffect"
-              (for step) = value
-              (for limit) = ((for limit) .. (for step))
-              (for index)((for limit))
-              (for index) = AudioPostEventOn
-              (for limit) = "PanelShockEffect"
-              (for step) = value
-              (for limit) = ((for limit) .. (for step))
-              (for step) = "Play_mboss_panel_electrified"
-              (for index)((for limit), (for step))
+              StartEmitters(("PanelShockEffect" .. value))
+              Unhide(("PanelShockEffect" .. value))
+              AudioPostEventOn(("PanelShockEffect" .. value), "Play_mboss_panel_electrified")
             end
           end
         end
@@ -593,8 +539,7 @@ Mech_V2_DoorFreakOut = function()
   return 
 end
 Mech_HidePanels = function()
-  local (for index), (for limit), (for step) = 1, 6, 1
-  for i = (for index), (for limit), (for step) do
+  for i = 1, 6 do
     Hide(("PanelB" .. i))
     Hide(("PanelC" .. i))
     Hide((("Panel" .. i) .. "Glow"))
@@ -809,8 +754,7 @@ Mech_Initialise = function()
   end
   ForEachEntityInGroup(AnimGBSequence, "PM_ColorChange", "PULSE")
   if (GetGlobal("MSN_Arcade_FromArcade") ~= 0) then
-    local (for index), (for limit), (for step) = 1, 6, 1
-    for value = (for index), (for limit), (for step) do
+    for value = 1, 6 do
       _G[(("Panel" .. value) .. "HitCounterTemp")] = GetGlobal((("FTL_Panel" .. value) .. "HitCounter"))
       SetGlobal((("FTL_Panel" .. value) .. "HitCounter"), 0)
     end
@@ -891,8 +835,7 @@ Mech_CogsArePainted = function()
                 DoStinger("Exp_D_3D")
                 PlayIGC("IGC_0295a_EndBossFight_Paint")
               else
-                local (for index), (for limit), (for step) = 1, 6, 1
-                for value = (for index), (for limit), (for step) do
+                for value = 1, 6 do
                   SetGlobal((("FTL_Panel" .. value) .. "HitCounter"), _G[(("Panel" .. value) .. "HitCounterTemp")])
                 end
                 SetGlobal("MSN_Arcade_FromArcade", 2)
@@ -957,8 +900,7 @@ Mech_ThinnerEnd = function()
     DoStinger("Exp_L_3D")
     PlayIGC("IGC_0295b_EndBossFight_Thinner")
   else
-    local (for index), (for limit), (for step) = 1, 6, 1
-    for value = (for index), (for limit), (for step) do
+    for value = 1, 6 do
       SetGlobal((("FTL_Panel" .. value) .. "HitCounter"), _G[(("Panel" .. value) .. "HitCounterTemp")])
     end
     SetGlobal("MSN_Arcade_FromArcade", 2)
@@ -1012,20 +954,14 @@ end
 Mech_AIOswald_JunkTarget = function(command)
   if (command == "throw") then
     ForEachEntityInGroup(Enable, "BuddyAIJunkTargetMarkerCenter")
-    local (for index), (for limit), (for step) = 1, 6, 1
-    for value = (for index), (for limit), (for step) do
+    for value = 1, 6 do
       Disable(("BuddyAIJunkTargetMarker" .. value))
     end
   end
   if (command == "clear") then
     ForEachEntityInGroup(Disable, "BuddyAIJunkTargetMarkerCenter")
-    local (for index), (for limit), (for step) = 1, 6, 1
-    for value = (for index), (for limit), (for step) do
-      (for index) = Disable
-      (for limit) = "BuddyAIJunkTargetMarker"
-      (for step) = value
-      (for limit) = ((for limit) .. (for step))
-      (for index)((for limit))
+    for value = 1, 6 do
+      Disable(("BuddyAIJunkTargetMarker" .. value))
     end
   end
   local MickeyPanelDistance = 100
@@ -1033,8 +969,7 @@ Mech_AIOswald_JunkTarget = function(command)
   local ShortestPanelDistanceNum = 0
   if (command == "decoy") then
     ForEachEntityInGroup(Disable, "BuddyAIJunkTargetMarkerCenter")
-    local (for index), (for limit), (for step) = 1, 6, 1
-    for value = (for index), (for limit), (for step) do
+    for value = 1, 6 do
       MickeyPanelDistance = "FTL_Panel"
       TotalLeftPanels = value
       ShortestPanelDistanceNum = "HitCounter"
@@ -1094,8 +1029,7 @@ Mech_SucktionEventSpawnJunk = function(target)
     if (not (MechCurrentlySucking == true)) then
       break
     end
-    local (for index), (for limit), (for step) = 1, 5, 1
-    for i = (for index), (for limit), (for step) do
+    for i = 1, 5 do
       ForceSpawn(("SuctionDebrisSpawner" .. i), 1)
       wait(0.5)
     end
@@ -1108,8 +1042,7 @@ Mech_SuctionItemImpulse = function(target)
   return 
 end
 Mech_SuctionItemImpulse2 = function(target)
-  local (for index), (for limit), (for step) = 1, 100, 1
-  for i = (for index), (for limit), (for step) do
+  for i = 1, 100 do
     if (MechCurrentlySucking == false) then
       return 
     end
@@ -1158,3 +1091,4 @@ Mech_Outside_KillAIAndRescuePlayer = function(_activator)
   end
   return 
 end
+

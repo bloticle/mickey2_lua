@@ -20,13 +20,13 @@ RBC_Caverns_Setup_Launcher = function(target, level)
       Print("__WARNING: Came in from launcher side!")
       Print("__WARNING: SETTING PREFAB DATA FoopToob_ToRBCavernsActivator TO TRUE")
       if (data.HardLoadExitFunction[1] ~= "Busy") then
-        data.HardLoadExitFunction[1] = "True"
+        data.HardLoadExitFunction[reg_32] = "True"
         Prefab_DECFoopToob_AlwaysSetup("FoopToob_CavernsToDECMarker")
       end
     else
       Print("__WARNING: Came in from opposite side!")
       Print("__WARNING: SETTING PREFAB DATA RBC_ExitFoopToobDevil TO REVERSE")
-      GetPrefabData("RBC_ExitFoopToobDevil").HardLoadExitFunction[1] = "Reverse"
+      GetPrefabData("RBC_ExitFoopToobDevil").HardLoadExitFunction[reg_32] = "Reverse"
       Prefab_DECFoopToob_AlwaysSetup("RBC_ExitFoopToobDevil")
       Print("RBC_Caverns_Setup_Launcher(): Projector Load")
       if (GetGlobal("RBC_FallGlobal") ~= -1) then
@@ -223,8 +223,7 @@ RBC_SinkIntoLava = function(target)
   local ObjectPosition = GetPosition(target)
   DisableMotion(target)
   Print("Stopping the object in the lava")
-  local (for index), (for limit), (for step) = ObjectPosition.y, (ObjectPosition.y - 10), -0.02500000037252903
-  for i = (for index), (for limit), (for step) do
+  for i = ObjectPosition.y, (ObjectPosition.y - 10), -0.02500000037252903 do
     SetPropertyVector(target, "Translation", vector4(ObjectPosition.x, i, ObjectPosition.z))
     wait(0)
   end
@@ -290,27 +289,15 @@ end
 RBC_OccupyAIWithGhost = function(entityToOccupy)
   Print("#### Change enemy to neutral")
   if (entityToOccupy == "Right") then
-    local (for index), (for limit), (for step) = 1, 2, 1
-    for i = (for index), (for limit), (for step) do
+    for i = 1, 2 do
       if (GetCurrentTeam(("RightSideSpiritSweeper0" .. i)) == 2) then
         SetTargetTeam(("RightSideSpiritSweeper0" .. i), 4)
       end
     end
   elseif (entityToOccupy == "Left") then
-    local (for index), (for limit), (for step) = 3, 4, 1
-    for i = (for index), (for limit), (for step) do
-      (for index) = GetCurrentTeam
-      (for limit) = "RightSideSpiritSweeper0"
-      (for step) = i
-      (for limit) = ((for limit) .. (for step))
-      (for index) = (for index)((for limit))
-      if ((for index) == 2) then
-        (for index) = SetTargetTeam
-        (for limit) = "RightSideSpiritSweeper0"
-        (for step) = i
-        (for limit) = ((for limit) .. (for step))
-        (for step) = 4
-        (for index)((for limit), (for step))
+    for i = 3, 4 do
+      if (GetCurrentTeam(("RightSideSpiritSweeper0" .. i)) == 2) then
+        SetTargetTeam(("RightSideSpiritSweeper0" .. i), 4)
       end
     end
   end
@@ -319,27 +306,15 @@ end
 RBC_StopOccupyingAIWithGhost = function(entityToOccupy)
   Print("#### Change neutral to enemy")
   if (entityToOccupy == "Right") then
-    local (for index), (for limit), (for step) = 1, 2, 1
-    for i = (for index), (for limit), (for step) do
+    for i = 1, 2 do
       if (GetCurrentTeam(("RightSideSpiritSweeper0" .. i)) == 4) then
         SetTargetTeam(("RightSideSpiritSweeper0" .. i), 2)
       end
     end
   elseif (entityToOccupy == "Left") then
-    local (for index), (for limit), (for step) = 3, 4, 1
-    for i = (for index), (for limit), (for step) do
-      (for index) = GetCurrentTeam
-      (for limit) = "RightSideSpiritSweeper0"
-      (for step) = i
-      (for limit) = ((for limit) .. (for step))
-      (for index) = (for index)((for limit))
-      if ((for index) == 4) then
-        (for index) = SetTargetTeam
-        (for limit) = "RightSideSpiritSweeper0"
-        (for step) = i
-        (for limit) = ((for limit) .. (for step))
-        (for step) = 2
-        (for index)((for limit), (for step))
+    for i = 3, 4 do
+      if (GetCurrentTeam(("RightSideSpiritSweeper0" .. i)) == 4) then
+        SetTargetTeam(("RightSideSpiritSweeper0" .. i), 2)
       end
     end
   end
@@ -377,10 +352,8 @@ RBC_SevenSistersStatue = function(target, state, side)
   return 
 end
 RBC_PillarsTravelCameraSet = function()
-  return 
 end
 RBC_PillarsTravelCameraRelease = function()
-  return 
 end
 RBC_BlotworxTemp = function()
   DestroyEntity("BLOTWORXMELEE")
@@ -420,8 +393,7 @@ RBC_BridgeJumpCheck = function(target, setup)
   enableJumpVolumeAvailability("JumpVolumeAvailability16")
   Print("#### Bridge Check 01")
   local toon_state = {}
-  local (for index), (for limit), (for step) = 1, 15, 1
-  for i = (for index), (for limit), (for step) do
+  for i = 1, 15 do
     if (i <= 11) then
       toon_state[i] = GetPropertyBool(GetRelativePrefabEntity(target, (".ToonSword" .. i)), "Is Painted")
     end
@@ -813,7 +785,6 @@ RBC_DeathCamera2 = function(target)
   return 
 end
 RBC_ShutOffMouthCamPlanes = function()
-  return 
 end
 RBC_TurnOnMouthCamPlanes = function()
   Enable("RBC_MouthCamPlane01")
@@ -828,3 +799,4 @@ RBC_OpenDevilMouthFast = function()
   SplineFollower_StopAtPosition("DevilMouthRisingPlatform", "DevilRisingPlatSKBottom", "DevilRisingPlatSKTop", 1)
   return 
 end
+

@@ -177,3 +177,4 @@ Prefab_DualSwitches_DebugInfo = function(target)
   Print(("+_+_+_+_+_+_+_+_+_+ DualSwitches_AutoReverse_Prefab: Lever 2 state = " .. tostring(data.Lever02State)))
   return 
 end
+

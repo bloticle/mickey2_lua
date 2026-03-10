@@ -138,8 +138,7 @@ Prefab_Gremlin_AllowFreedDialogue = function(target)
 end
 Prefab_GremlinDynamicCage_Breakage = function(target)
   local a = 1
-  local (for index), (for limit), (for step) = 1, 0, -0.05000000074505806
-  for a = (for index), (for limit), (for step) do
+  for a = 1, 0, -0.05000000074505806 do
     SetR3MTConstRegAlpha(target, 3, a)
     Wait(0.05000000074505806)
   end
@@ -198,3 +197,4 @@ Prefab_Check_Oswald_Spin_BreakCage = function(self, event)
   end
   return 
 end
+

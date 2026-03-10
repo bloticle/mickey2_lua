@@ -390,7 +390,6 @@ NewRide_Thinner_Stage_End = function(MarkerMickey, MarkerOswald)
   return 
 end
 DoEndGame2 = function()
-  return 
 end
 MST_NewRide_LoadNextLevel = function(target)
   FireUser1("MadDocObservatoryPickup")
@@ -733,3 +732,4 @@ NewRide_FindOswald = function()
   print("end")
   return 
 end
+

@@ -15,13 +15,13 @@ gs05_StartUp = function(target)
   Prefab_DECFoopToob_Finish()
   ForEachEntityInGroup(SetEntityToNotCollideWithBuddyAI, "Oswald2DAvoidObject")
   if (GetGlobal("FTL_FloatGraveyard_IntroIGC") == 0) then
-    data.HARDLOAD[2] = "FTL_FloatGraveyard.A1_IGC"
+    data.HARDLOAD[reg_39] = "FTL_FloatGraveyard.A1_IGC"
   elseif (GetGlobal("FTL_FloatGraveyard_VisitNumber") == 1) then
-    data.HARDLOAD[2] = "FTL_FloatGraveyard.A1_v1"
+    data.HARDLOAD[reg_39] = "FTL_FloatGraveyard.A1_v1"
   elseif (GetGlobal("OST_Moody_Destination") == 4) then
-    data.HARDLOAD[2] = "FTL_FloatGraveyard.A1_Pirate"
+    data.HARDLOAD[reg_39] = "FTL_FloatGraveyard.A1_Pirate"
   else
-    data.HARDLOAD[2] = "FTL_FloatGraveyard.A1_v2"
+    data.HARDLOAD[reg_39] = "FTL_FloatGraveyard.A1_v2"
   end
   return 
 end
@@ -244,3 +244,4 @@ gs05_TicketButton = function()
   end
   return 
 end
+

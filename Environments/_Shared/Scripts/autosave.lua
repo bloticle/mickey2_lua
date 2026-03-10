@@ -26,3 +26,4 @@ RestartFromSave = function(target)
   ZeroCharacterVelocity(_player())
   return 
 end
+

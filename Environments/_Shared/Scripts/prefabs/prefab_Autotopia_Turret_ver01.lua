@@ -83,7 +83,6 @@ tcy_TurretShocked = function(target, event)
   return 
 end
 tcy_TurretRecover = function(reg_0)
-  return 
 end
 tcy_turretPlayerTracking = function(player, setting, turret)
   local tarTurret = 0
@@ -644,3 +643,4 @@ tcy_TurretSpray_Interrupt = function(target, turret, state)
   end
   return 
 end
+

@@ -59,7 +59,7 @@ Prefab_BlotAlleyRoom3Floor_FloorPieceThinned = function(target, _Thinned, _Which
     if (data.ToonState[4] == 0) then
       if (data.FloorState[1] == 1) then
         FireThread(Prefab_BlotAlleyRoom3Floor_DropFloorPiece, GetRelativePrefabEntity(target, ".FloorPiece1"), GetRelativePrefabEntity(target, ".FloorPiece1_SinkFX"))
-        data.FloorState[1] = 0
+        data.FloorState[reg_18] = 0
       end
     end
   end
@@ -67,7 +67,7 @@ Prefab_BlotAlleyRoom3Floor_FloorPieceThinned = function(target, _Thinned, _Which
     if (data.ToonState[3] == 0) then
       if (data.FloorState[2] == 1) then
         FireThread(Prefab_BlotAlleyRoom3Floor_DropFloorPiece, GetRelativePrefabEntity(target, ".FloorPiece2"), GetRelativePrefabEntity(target, ".FloorPiece2_SinkFX"))
-        data.FloorState[2] = 0
+        data.FloorState[reg_33] = 0
       end
     end
   end
@@ -75,7 +75,7 @@ Prefab_BlotAlleyRoom3Floor_FloorPieceThinned = function(target, _Thinned, _Which
     if (data.ToonState[3] == 0) then
       if (data.FloorState[3] == 1) then
         FireThread(Prefab_BlotAlleyRoom3Floor_DropFloorPiece, GetRelativePrefabEntity(target, ".FloorPiece3"), GetRelativePrefabEntity(target, ".FloorPiece3_SinkFX"))
-        data.FloorState[3] = 0
+        data.FloorState[reg_32] = 0
       end
     end
   end
@@ -83,7 +83,7 @@ Prefab_BlotAlleyRoom3Floor_FloorPieceThinned = function(target, _Thinned, _Which
     if (data.ToonState[4] == 0) then
       if (data.FloorState[4] == 1) then
         FireThread(Prefab_BlotAlleyRoom3Floor_DropFloorPiece, GetRelativePrefabEntity(target, ".FloorPiece4"), GetRelativePrefabEntity(target, ".FloorPiece4_SinkFX"))
-        data.FloorState[4] = 0
+        data.FloorState[reg_19] = 0
       end
     end
   end
@@ -105,8 +105,7 @@ Prefab_BlotAlleyRoom3Floor_DropFloorPiece = function(target, _FX)
 end
 Prefab_BlotAlleyRoom3Floor_EnableFloorTargetsToAI = function(target)
   Print("__Function: Prefab_BlotAlleyRoom3Floor_EnableFloorTargetsToAI")
-  local (for index), (for limit), (for step) = 1, 4, 1
-  for x = (for index), (for limit), (for step) do
+  for x = 1, 4 do
     AIHintEnable(GetRelativePrefabEntity("Room3Floor_FloorOnly", (".ToonPiece" .. tostring(x))), true)
   end
   Prefab_BlotAlleyRoom3Floor_TimerTick(target)
@@ -114,3 +113,4 @@ Prefab_BlotAlleyRoom3Floor_EnableFloorTargetsToAI = function(target)
   TimerEnable(target)
   return 
 end
+

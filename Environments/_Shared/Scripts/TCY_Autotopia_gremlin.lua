@@ -20,7 +20,6 @@ VTL_Oasis_toAutotopia = function(projector)
   return 
 end
 TCY_aut_HardLoaded = function()
-  return 
 end
 AUT_SaveCheckpoint_Gen = function()
   SaveCheckpointNoPosition(nil, "AUT_AlwaysSetup")
@@ -323,7 +322,6 @@ AUT_EticketsCheck = function()
   return 
 end
 AUT_GremlinFreed_in1stVisit = function()
-  return 
 end
 AUT_WaitForStream = function()
   wait(0.10000000149011612)
@@ -2450,3 +2448,4 @@ AUT_GuardianPool_rx = function(trigger, target, hasPlaystyle)
   end
   return 
 end
+

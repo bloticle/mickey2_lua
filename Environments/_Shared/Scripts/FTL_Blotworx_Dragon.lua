@@ -142,8 +142,7 @@ FTL_BlotworxDragon_Arcade_DragonSetup = function()
   if (GetGlobal("MSN_Arcade_FromArcade") == 0) then
     SetGlobal("MSN_Arcade_FromArcade", 1)
   end
-  local (for index), (for limit), (for step) = 1, 3, 1
-  for i = (for index), (for limit), (for step) do
+  for i = 1, 3 do
     SetGlobal(("FTL_BlotworxDragon_ReprogramSpot" .. i), 0)
     Reprogram_Difficulty_Setting(("HackPoint" .. i))
   end
@@ -1007,8 +1006,7 @@ DragonAttackSlamCollision = function(activator, intensity, handID)
     if (groupName == "ChamberFloor") then
       blotworxDragonIsAbleToSlam = false
       local innerGroupName = GetPropertyString(activator, "EntityGroups", 1)
-      local (for index), (for limit), (for step) = 1, 12, 1
-      for floorID = (for index), (for limit), (for step) do
+      for floorID = 1, 12 do
         if (innerGroupName == ("ChamberFloor" .. floorID)) then
           local dragonAttackLimbID = tonumber(handID)
           WobbleFlooring(floorID, 0, tonumber(intensity))
@@ -1643,8 +1641,7 @@ FTL_BlotworxDragon_SpawnController = function()
   print(GetGlobal("FTL_BlotworxDragon_ReprogramSpot1"))
   print(GetGlobal("FTL_BlotworxDragon_ReprogramSpot2"))
   print(GetGlobal("FTL_BlotworxDragon_ReprogramSpot3"))
-  local (for index), (for limit), (for step) = 1, 3, 1
-  for i = (for index), (for limit), (for step) do
+  for i = 1, 3 do
     if (GetGlobal(("FTL_BlotworxDragon_ReprogramSpot" .. i)) == 0) then
       Enable(("Spawner" .. i))
       print(GetGlobal(("FTL_BlotworxDragon_ReprogramSpot" .. i)))
@@ -2328,8 +2325,7 @@ FTL_BlotworxDragon_SecondVisit = function()
       end
     end
   end
-  local (for index), (for limit), (for step) = 1, 3, 1
-  for i = (for index), (for limit), (for step) do
+  for i = 1, 3 do
     SetGlobal(("FTL_BlotworxDragon_ReprogramSpot" .. i), 1)
     Reprogram_Difficulty_Setting(("HackPoint" .. i))
   end
@@ -2393,7 +2389,6 @@ FTL_BlotworxDragon_JiminyAdvance = function()
   return 
 end
 G3_FTL_BulbSwitch = function(reg_0, reg_1)
-  return 
 end
 FTL_BlotworxDragon_TopCamera = function(activator)
   Wait(0.30000001192092896)
@@ -2474,3 +2469,4 @@ FTL_BlotworxDragon_LoadGulchAlt = function()
   ClearOverridesAndLoadLevel("FTL_Gulch.TRAN_toMadDocLabSho")
   return 
 end
+

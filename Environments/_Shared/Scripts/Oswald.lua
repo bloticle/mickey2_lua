@@ -175,8 +175,7 @@ OswaldGlideActionCheck = function(end_target)
   ClearNextPatrolNode(GetOswaldAI())
   OswaldStopFollowAction()
   OswaldClearGlideTargetsAction()
-  local (for index), (for limit), (for step) = 1, 8, 1
-  for i = (for index), (for limit), (for step) do
+  for i = 1, 8 do
     local temp = ("GlidePathPoint" .. i)
     if (data[temp] ~= "none") then
       OswaldAddGlideTargetAction(data[temp])
@@ -239,8 +238,7 @@ OswaldAddBoomerangTarget = function(target)
     QueueBrainEvent(GetOswaldAI(), BRAIN_Boomerang_Add_Target, vector4(0, 0, 0, 0), target)
   else
     local numChildren = GetElementCount(target, "Child Entities")
-    local (for index), (for limit), (for step) = 0, numChildren, 1
-    for index = (for index), (for limit), (for step) do
+    for index = 0, numChildren do
       local child = GetChildEntityByIndex(target, index)
       if (GetPropertyFloat(child, "Target Value", 0) ~= nil) then
         QueueBrainEvent(GetOswaldAI(), BRAIN_Boomerang_Add_Target, vector4(0, 0, 0, 0), child)
@@ -393,3 +391,4 @@ OswaldStartFighting = function()
   QueueBrainEvent(GetOswaldAI(), BRAIN_StartFighting)
   return 
 end
+

@@ -84,3 +84,4 @@ YS_SpawnPaintPickup = function(target)
   end
   return 
 end
+

@@ -615,27 +615,18 @@ end
 YSL_PaintStars = function(target, state)
   Print("PAINTING ALPHA FADE ZLKXCJ")
   if (state == "paint") then
-    local (for index), (for limit), (for step) = 0, 1, 0.0333000011742115
-    for i = (for index), (for limit), (for step) do
+    for i = 0, 1, 0.0333000011742115 do
       StartEmitters(target)
       SetR3MTConstReg(target, 1, vector4(1, 1, 1, i))
       wait(0.0333000011742115)
     end
   else
-    local (for index), (for limit), (for step) = 1, 0, -0.0333000011742115
-    for i = (for index), (for limit), (for step) do
-      (for index) = StopEmitters
-      (for limit) = target
-      (for index)((for limit))
-      (for index) = SetR3MTConstReg
-      (for limit) = target
-      (for step) = 1
+    for i = 1, 0, -0.0333000011742115 do
+      StopEmitters(target)
       i = vector4
       i = i(1, 1, 1, i)
-      (for index)((for limit), (for step), i)
-      (for index) = wait
-      (for limit) = 0.0333000011742115
-      (for index)((for limit))
+      SetR3MTConstReg(target, 1, i)
+      wait(0.0333000011742115)
     end
   end
   return 
@@ -702,14 +693,12 @@ SetEntityRotate = function(target, state)
   return 
 end
 YS_EndPaintRoomCamera = function()
-  return 
 end
 YS_LookAtMap = function()
   StartCameraPivotSnap("tut_yensidstudy.Tut_MapA1 01", 2, 0, false, false)
   return 
 end
 CometStateChange = function(reg_0, reg_1)
-  return 
 end
 YS_MickeyHouseCamStart = function()
   SetDefaultCameraValues(3, 10, -7)
@@ -734,7 +723,6 @@ YS_MickeySlide = function(target)
   return 
 end
 StartSweetMusic = function()
-  return 
 end
 telescopeBaseThinned = 0
 YSL_ThinnerTutorialText = function()
@@ -877,8 +865,7 @@ YSL_SpawnPlanetReward = function(target, spawnloc)
   local spawnedObjs = ForceSpawn(PickupSpawner, 1)
   local numChildren = GetElementCount(spawnedObjs[1], "Child Entities")
   AudioPostEventOn(target, "Play_sfx_Spawner_Spawn")
-  local (for index), (for limit), (for step) = 0, numChildren, 1
-  for i = (for index), (for limit), (for step) do
+  for i = 0, numChildren do
     local childEntity = GetChildEntityByIndex(spawnedObjs[1], i)
     PlayerPickup_SetPendingActivation(childEntity, 0.800000011920929)
   end
@@ -1053,7 +1040,6 @@ YS_ChoiceThin = function()
   return 
 end
 YSL_RedChestCheckpoint = function()
-  return 
 end
 YS_BookshelfDust = function()
   ForEachEntityInGroup(StartEmitters, "BookcaseDust")
@@ -1158,7 +1144,6 @@ PostIGC_0050_IntroToTV = function()
   return 
 end
 ResetIGC_0050 = function()
-  return 
 end
 local stingervar = 0
 YSL_Music_WallReveal = function()
@@ -1178,3 +1163,4 @@ YSL_Music_BypassWallReveal = function()
   Print("Music - bypassed wall reveal, disabled plane trigger")
   return 
 end
+

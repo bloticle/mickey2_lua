@@ -51,8 +51,8 @@ Prefab_InkWell_TriggerTouch = function(target, player)
   local data = GetPrefabData(target)
   if (data.Ammo_Amount[1] == "Invisible") then
     Print((("*_*_*_*_*_*_* Prefab_InkWell_TriggerTouch- " .. data.IW_PaintedObjects[1]) .. ": Ammo_Amount not properly set, changing to defaults of 10"))
-    data.Ammo_Amount[1] = 10
-    data.Ammo_Amount[2] = 10
+    data.Ammo_Amount[(("*_*_*_*_*_*_* Prefab_InkWell_TriggerTouch- " .. data.IW_PaintedObjects[1]) .. ": Ammo_Amount not properly set, changing to defaults of 10")] = 10
+    data.Ammo_Amount[": Ammo_Amount not properly set, changing to defaults of 10"] = 10
   end
   if (data.InkWellState == "Invisible") then
     Disable(target)
@@ -110,8 +110,7 @@ Prefab_InkWell_StartTransition = function(target, inktype, player)
   Entity_StartAbility(_activator(), inktype)
   Enable(damageLeap_trigger)
   local land_spot = (GetPosition(damageLeap_fx) - GetPosition(playerHandle))
-  local (for index), (for limit), (for step) = 1, 5, 1
-  for i = (for index), (for limit), (for step) do
+  for i = 1, 5 do
     Wait((0.10000000149011612 * timeDilationFactor))
     ApplyImpulse(playerHandle, (land_spot.x * 200), 0, (land_spot.z * 200))
   end
@@ -149,8 +148,7 @@ Prefab_GetInkWell_PaintedPercentage = function(data)
   if (data.Inkwell_Jigsaw[1] == "EntityGroupName") then
     Print("*_*_*_*_*_*_* Prefab_GetInkWell_PaintedPercentage: Jigsaw Entity Group Name not set up. Assuming No Jigsaw")
   elseif (n ~= 0) then
-    local (for index), (for limit), (for step) = 1, n, 1
-    for i = (for index), (for limit), (for step) do
+    for i = 1, n do
       JigsawPercentage = --[[ return 2 of ]] Jigsaw_GetPercentagePainted((data.Inkwell_Jigsaw[1] .. i))
       before = Jigsaw_GetPercentagePainted((data.Inkwell_Jigsaw[1] .. i))
       JigsawWeightPercentage = (JigsawWeightPercentage + (JigsawPercentage * data.Inkwell_Jigsaw[(i + 1)]))
@@ -282,3 +280,4 @@ Prefab_GuardianInkwellPlaystyleSetup = function(target)
   end
   return 
 end
+

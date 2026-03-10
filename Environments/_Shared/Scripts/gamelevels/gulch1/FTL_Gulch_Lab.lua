@@ -17,8 +17,7 @@ FTL_Gulch_LabSetup = function(fromProjector)
     Quest_SetCriticalPath("Critical_Gulch1", "Critical_Gulch1_5")
   end
   local Numof_CartSphere = nil
-  local (for index), (for limit), (for step) = 1, 3, 1
-  for i = (for index), (for limit), (for step) do
+  for i = 1, 3 do
     Numof_CartSphere = GetGlobal((("FTL_Gulch_TrainCart" .. i) .. "State"))
     if (Numof_CartSphere ~= 0) then
       if (GetGlobal((("FTL_Gulch_Ball0" .. Numof_CartSphere) .. "State")) == 3) then
@@ -27,77 +26,60 @@ FTL_Gulch_LabSetup = function(fromProjector)
     end
   end
   local SphereSetup = {0, 0, 0}
-  local (for index), (for limit), (for step) = 1, 4, 1
-  for SphereSetup = (for index), (for limit), (for step) do
-    (for index) = GetGlobal
-    (for limit) = "FTL_Gulch_TrainCart"
-    (for step) = SphereSetup
+  for SphereSetup = 1, 4 do
     x = "State"
-    (for limit) = (((for limit) .. (for step)) .. x)
-    (for index) = (for index)((for limit))
-    (for limit) = Print
-    (for step) = "FTL_Gulch_TrainCart"
+    local Numof_CartSphere = GetGlobal((("FTL_Gulch_TrainCart" .. SphereSetup) .. x))
     x = SphereSetup
     Numof_CartSphere = "State: "
-    (for step) = ((((for step) .. x) .. Numof_CartSphere) .. tostring((for index)))
-    (for limit)((for step))
-    (for limit) = 0
-    local SphereGlobal = tostring((for index))
-    if ((for index) ~= 0) then
+    Print(((("FTL_Gulch_TrainCart" .. x) .. Numof_CartSphere) .. tostring(Numof_CartSphere)))
+    local SphereGlobal, SphereGlobal = 0, tostring(Numof_CartSphere)
+    if (Numof_CartSphere ~= 0) then
       if (SphereSetup < 4) then
-        (for step) = GetGlobal
         x = "FTL_Gulch_Ball0"
-        Numof_CartSphere = (for index)
+        Numof_CartSphere = Numof_CartSphere
         SphereGlobal = "State"
         x = ((x .. Numof_CartSphere) .. SphereGlobal)
-        (for step) = (for step)(x)
-        (for limit) = (for step)
+        SphereGlobal = GetGlobal(x)
       end
     elseif (SphereSetup == 4) then
-      (for limit) = (for index)
-      if ((for limit) == -1) then
-        (for step) = ForEachEntityInPrefab
+      SphereGlobal = Numof_CartSphere
+      if (SphereGlobal == -1) then
         x = Hide
         Numof_CartSphere = "RedChest_Caboose"
-        (for step)(x, Numof_CartSphere)
+        ForEachEntityInPrefab(x, Numof_CartSphere)
       end
     end
-    if ((for limit) == -1) then
-      (for step) = ForEachEntityInGroup
+    if (SphereGlobal == -1) then
       x = Hide
       Numof_CartSphere = "TrainCar0"
       SphereGlobal = SphereSetup
       Numof_CartSphere = (Numof_CartSphere .. SphereGlobal)
-      (for step)(x, Numof_CartSphere)
+      ForEachEntityInGroup(x, Numof_CartSphere)
     end
-    if ((for limit) == 3) then
+    if (SphereGlobal == 3) then
       if (SphereSetup < 4) then
-        (for step) = MoveToEntity
         x = "TrainBall"
-        Numof_CartSphere = (for index)
+        Numof_CartSphere = Numof_CartSphere
         x = (x .. Numof_CartSphere)
         Numof_CartSphere = "TrainCar0"
         SphereGlobal = SphereSetup
         Numof_CartSphere = ((Numof_CartSphere .. SphereGlobal) .. "BallMarker")
-        (for step)(x, Numof_CartSphere)
-        (for step) = Print
+        MoveToEntity(x, Numof_CartSphere)
         x = "Moving TrainBall"
-        Numof_CartSphere = (for index)
+        Numof_CartSphere = Numof_CartSphere
         SphereGlobal = " to TrainCar0"
         x = ((((x .. Numof_CartSphere) .. SphereGlobal) .. SphereSetup) .. " BallMarker")
-        (for step)(x)
-        SphereSetup[(for index)] = 1
-        (for step) = ForEachEntityInGroup
+        Print(x)
+        SphereSetup[Numof_CartSphere] = 1
         x = Unhide
         Numof_CartSphere = "TrainCar0"
         SphereGlobal = SphereSetup
         Numof_CartSphere = (Numof_CartSphere .. SphereGlobal)
-        (for step)(x, Numof_CartSphere)
+        ForEachEntityInGroup(x, Numof_CartSphere)
       end
     end
   end
-  local (for index), (for limit), (for step) = 1, 3, 1
-  for SphereSetup = (for index), (for limit), (for step) do
+  for SphereSetup = 1, 3 do
     if (SphereSetup[SphereSetup] == 0) then
       Hide(("TrainBall" .. SphereSetup))
     else
@@ -193,8 +175,7 @@ FTL_Gulch_LabSetup = function(fromProjector)
         local spatter_global = GetGlobal("FTL_Gulch_GreeneSpatters")
         local marker = "none"
         if (spatter_global ~= 0) then
-          local (for index), (for limit), (for step) = 1, spatter_global, 1
-          for i = (for index), (for limit), (for step) do
+          for i = 1, spatter_global do
             piratesLoaded = Print
             Parrotless_Steve_Pin = "Spawning Spatter "
             Parrotless_Evan_Pin = i
@@ -334,8 +315,7 @@ FTL_BallReceptorDetection = function(state, ...)
     local initial_var_balls = var_balls
     local Numof_CartSphere = nil
     local SphereSetup = {0, 0, 0}
-    local (for index), (for limit), (for step) = 1, 3, 1
-    for i = (for index), (for limit), (for step) do
+    for i = 1, 3 do
       Numof_CartSphere = GetGlobal((("FTL_Gulch_TrainCart" .. i) .. "State"))
       if (Numof_CartSphere ~= 0) then
         if (GetGlobal((("FTL_Gulch_Ball0" .. Numof_CartSphere) .. "State")) == 3) then
@@ -390,8 +370,7 @@ FTL_BallReceptorDetection = function(state, ...)
         local args = {}
         FireThread(FTL_BallReceptorDetection, nil, args[2], "FromIGC")
         local SphereSetup = args[1]
-        local (for index), (for limit), (for step) = 3, 1, -1
-        for x = (for index), (for limit), (for step) do
+        for x = 3, 1, -1 do
           RemoveSpheres = SphereSetup[x]
           if (RemoveSpheres == 1) then
             RemoveSpheres = FireThread
@@ -406,8 +385,7 @@ FTL_BallReceptorDetection = function(state, ...)
         Print("FTL_BallReceptorDetection: Start Bridge")
         local args = {}
         Print(("#args = " .. (#args)))
-        local (for index), (for limit), (for step) = 1, (#args), 1
-        for i = (for index), (for limit), (for step) do
+        for i = 1, (#args) do
           Print(((("args[" .. i) .. "] = ") .. tostring(args[i])))
         end
         local initial_var_balls = args[1]
@@ -558,8 +536,7 @@ FTL_BallReceptorDetection = function(state, ...)
     local args = {}
     FireThread(FTL_BallReceptorDetection, nil, args[2], "FromIGC")
     local SphereSetup = args[1]
-    local (for index), (for limit), (for step) = 3, 1, -1
-    for x = (for index), (for limit), (for step) do
+    for x = 3, 1, -1 do
       RemoveSpheres = SphereSetup[x]
       if (RemoveSpheres == 1) then
         RemoveSpheres = FireThread
@@ -574,8 +551,7 @@ FTL_BallReceptorDetection = function(state, ...)
     Print("FTL_BallReceptorDetection: Start Bridge")
     local args = {}
     Print(("#args = " .. (#args)))
-    local (for index), (for limit), (for step) = 1, (#args), 1
-    for i = (for index), (for limit), (for step) do
+    for i = 1, (#args) do
       Print(((("args[" .. i) .. "] = ") .. tostring(args[i])))
     end
     local initial_var_balls = args[1]
@@ -975,3 +951,4 @@ FTL_Gulch_Lab_ProjectorTraining = function()
   end
   return 
 end
+

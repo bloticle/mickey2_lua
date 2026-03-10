@@ -167,8 +167,7 @@ Bald2_ActionSpotsDone = function()
     DecrementAbilityDisabled(GetPlayer(), "Toss")
     Print("Bald2_ActionSpotsDone is deactivating action spots")
     wait(1)
-    local (for index), (for limit), (for step) = 1, 9, 1
-    for x = (for index), (for limit), (for step) do
+    for x = 1, 9 do
       Disable(("Bald2_ActionSpot_Left" .. tostring(x)))
       Disable(("Bald2_ActionSpot_Right" .. tostring(x)))
     end
@@ -194,3 +193,4 @@ Bald2_ManageOswaldAssistMickey = function(target, action, node1)
   end
   return 
 end
+

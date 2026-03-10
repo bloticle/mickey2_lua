@@ -1,5 +1,4 @@
 gsPM_PinballMachineStartUp = function(reg_0)
-  return 
 end
 Oswald_PB_Active = 0
 gsPM_PinballMachine_Charged = function(target)
@@ -161,3 +160,4 @@ gsPM_DisableHiddenOswald = function(target)
   end
   return 
 end
+

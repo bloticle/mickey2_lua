@@ -156,7 +156,7 @@ Prefab_BeetleworxSpawner_Base_Spawn = function(target)
     if (data.ClearToSpawn == 1) then
       if (data.SpawnerActive == "True") then
         if (data.DoorsRemainOpen == "False") then
-          data.BeetleworxNumSpawned[1] = (data.BeetleworxNumSpawned[1] + 1)
+          data.BeetleworxNumSpawned[reg_38] = (data.BeetleworxNumSpawned[1] + 1)
           Print(((("__SpawnerBase: Beetleworx Spawned: " .. tostring(data.BeetleworxNumSpawned[1])) .. ", Max: ") .. tostring(data.BeetleworxNumSpawned[2])))
           if (data.EntityGroupNames[1] == "None") then
             Print("__SpawnerBase: EntityGroupNames[1] isn't overridden! This spawner WILL NOT work!")
@@ -586,7 +586,7 @@ Prefab_BeetleworxSpawner_Child_BeetleworxHandled = function(target, _How)
   end
   local BaseData = GetPrefabData(ChildData.BasePrefabMarkerEntityGroupName)
   if (_How == "Death") then
-    BaseData.BeetleworxNumSpawned[1] = (BaseData.BeetleworxNumSpawned[1] - 1)
+    BaseData.BeetleworxNumSpawned[reg_16] = (BaseData.BeetleworxNumSpawned[1] - 1)
     Print(("__SpawnerChild: NumBlotworxSpawned according to the BaseData: " .. tostring(BaseData.BeetleworxNumSpawned[1])))
     if (1 < BaseData.BeetleworxNumSpawned[2]) then
       Print("__SpawnerChild: SpawnerBase has more than one possible bwx to spawn! Setting unique entity group name to spawn the what we just destroyed")
@@ -621,8 +621,7 @@ Prefab_BeetleworxSpawner_Child_BeetleworxHandled = function(target, _How)
     if (BaseData.BeetleworxNumSpawned[1] == BaseData.BeetleworxNumSpawned[2]) then
       Print("__SpawnerChild: All BWX are spawned!")
       local Hacked = 0
-      local (for index), (for limit), (for step) = 1, BaseData.BeetleworxNumSpawned[1], 1
-      for x = (for index), (for limit), (for step) do
+      for x = 1, BaseData.BeetleworxNumSpawned[1] do
         if (GetCurrentTeam(tostring((BaseData.EntityGroupName[2] .. tostring(x)))) == 3) then
           Hacked = (Hacked + 1)
         end
@@ -651,3 +650,4 @@ Prefab_BeetleworxSpawner_Child_BeetleworxHandled = function(target, _How)
   end
   return 
 end
+

@@ -31,3 +31,4 @@ BunnyChildThinnerImmunity = function(self)
   DestroyEntity(self)
   return 
 end
+

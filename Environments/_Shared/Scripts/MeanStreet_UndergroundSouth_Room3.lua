@@ -12,8 +12,7 @@ UtilSouth3_Intro = function(target, Room)
   AudioPostEventOn(GetPlayer(), "Play_sfx_msu_amb")
   AudioSetState(GetPlayer(), "Utilidors_Amb", "SideRoom_Amb")
   AudioPostEventOn("mst_utilidors_01a_southroom3_scripting.gremlintech_floatingplatform 01.Snd_Platform", "Play_sfx_msu_MovingPlatform_SetUtil")
-  local (for index), (for limit), (for step) = 1, 2, 1
-  for i = (for index), (for limit), (for step) do
+  for i = 1, 2 do
     if (GetPropertyBool((("mst_utilidors_01a_southroom3_scripting.rotatinggear_smallplatform 0" .. i) .. ".Gear_Toon"), "Is Painted") == false) then
       SetRotatorMaxSpeed((("mst_utilidors_01a_southroom3_scripting.rotatinggear_smallplatform 0" .. i) .. ".Gear_Toon"), 0)
       SetRotatorMaxSpeed(("mst_utilidors_01a_southroom3_art.DBC_gremlinGear_01a_Inert 0" .. i), 0)
@@ -284,3 +283,4 @@ UtilSouth3_DisableResCam = function()
   ResCamEnabled = false
   return 
 end
+

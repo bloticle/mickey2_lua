@@ -109,8 +109,7 @@ gsPG_PieSplatFade = function(target)
   ApplyImpulse(target, 0, 2000, 6000)
   wait(1)
   local a = 1
-  local (for index), (for limit), (for step) = 1, 0, -0.05000000074505806
-  for a = (for index), (for limit), (for step) do
+  for a = 1, 0, -0.05000000074505806 do
     SetR3MTConstRegAlpha(target, 3, a)
     Wait(0.05000000074505806)
   end
@@ -159,3 +158,4 @@ gsPG_PieArm_TVcharge = function(target)
   end
   return 
 end
+

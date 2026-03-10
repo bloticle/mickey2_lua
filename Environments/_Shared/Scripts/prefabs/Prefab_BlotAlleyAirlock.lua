@@ -94,8 +94,7 @@ Prefab_BlotAlleyAirlock_ChangeState = function(target, _Section)
   return 
 end
 Prefab_BlotAlleyAirlock_UpdateHiddenMickey = function(doornum)
-  local (for index), (for limit), (for step) = 1, 3, 1
-  for i = (for index), (for limit), (for step) do
+  for i = 1, 3 do
     if (doornum == tostring(i)) then
       Print((("Prefab_BlotAlleyAirlock_UpdateHiddenMickey : DISabling Section" .. tostring(i)) .. "HiddenMickey"))
       DisableComponent((("Section" .. doornum) .. "HiddenMickey"), "Camera Ability Target Component")
@@ -197,8 +196,8 @@ Prefab_BlotAlleyAirlock_SwitchStimmed = function(target, _SwitchNum, _StartOrSto
     if (data.OnSplineTrack[1] == "False") then
       if (data.OnConstraintTrack[1] == "False") then
         Print("__BTA_Airlock: WE'RE IN THE CENTER, SWITCHING TO A CONSTRAINT TRACK")
-        data.OnConstraintTrack[1] = "True"
-        data.OnConstraintTrack[2] = tonumber(_SwitchNum)
+        data.OnConstraintTrack[reg_18] = "True"
+        data.OnConstraintTrack[reg_23] = tonumber(_SwitchNum)
         Prefab_BlotAlleyAirlock_ChangeTriggerState(target, _SwitchNum)
         wait(0.5)
         Prefab_BlotAlleyAirlock_SwitchKeyTracks(target, _SwitchNum)
@@ -245,8 +244,7 @@ Prefab_BlotAlleyAirlock_SwitchKeyTracks = function(target, _TrackNum)
   Print(("__BTA_Airlock: Function: Prefab_BlotAlleyAirlock_SwitchKeyTracks, _TrackNum: " .. tostring(_TrackNum)))
   local data = GetPrefabData(target)
   DisableMotion("AirlockKey_Base")
-  local (for index), (for limit), (for step) = 1, 3, 1
-  for x = (for index), (for limit), (for step) do
+  for x = 1, 3 do
     SetConstraintEntities(("Constraint" .. tostring(x)), nil, nil)
   end
   Print(("__BTA_Airlock: Setting Key to new constraint track: " .. tostring(_TrackNum)))
@@ -324,9 +322,9 @@ Prefab_BlotAlleyAirlock_MoveToOpenDoor = function(target, _DoorNum)
   OverrideSpawnTransform(PLAYER_TWO, GetPosition("TempRespawnMarker"), GetFacing("TempRespawnMarker"))
   Disable(target)
   Enable(GetRelativePrefabEntity(target, ".CenterTrigger"))
-  data.OnSplineTrack[1] = "True"
-  data.OnSplineTrack[2] = tonumber(_DoorNum)
-  data.OnConstraintTrack[1] = "False"
+  data.OnSplineTrack[reg_34] = "True"
+  data.OnSplineTrack[reg_36] = tonumber(_DoorNum)
+  data.OnConstraintTrack[reg_34] = "False"
   local OldGlobal = GetGlobal(data.BatteryPositionGlobal)
   SetGlobal(data.BatteryPositionGlobal, (OldGlobal + 3))
   Prefab_BlotAlleyAirlock_HandleFireworks(target, tonumber(OldGlobal), "StreamOut")
@@ -356,8 +354,7 @@ Prefab_BlotAlleyAirlock_MoveToOpenDoor = function(target, _DoorNum)
   StopAbility(GetPlayer(), "Use")
   StopAbility(GetPlayer2OrAI(), "Use")
   DisableMotion("AirlockKey_Base")
-  local (for index), (for limit), (for step) = 1, 3, 1
-  for x = (for index), (for limit), (for step) do
+  for x = 1, 3 do
     SetConstraintEntities(("Constraint" .. tostring(x)), nil, nil)
   end
   Print("__BTA_Airlock: Enabling Spline follower!")
@@ -660,8 +657,7 @@ Prefab_BlotAlleyAirlock_KeyReachedCenter = function(target)
   end
   local VisitNum = tonumber(string.sub(LevelManager_GetCurrentState(), 34, 34))
   Print((("__BTA_Airlock: We just opened door: " .. tostring(data.OnSplineTrack[2])) .. "! Re-enable all switches and hints except that one!"))
-  local (for index), (for limit), (for step) = 1, 3, 1
-  for x = (for index), (for limit), (for step) do
+  for x = 1, 3 do
     if (data.OnSplineTrack[2] == x) then
       Prefab_OswaldElectricSwitch_ChangeState(("Airlock_Switch" .. tostring(x)), "Deactivate")
       Disable((("Section" .. tostring(x)) .. "_OswaldHint"))
@@ -674,8 +670,8 @@ Prefab_BlotAlleyAirlock_KeyReachedCenter = function(target)
       Enable((("Section" .. tostring(x)) .. "_OswaldHint"))
     end
   end
-  data.OnSplineTrack[1] = "False"
-  data.OnConstraintTrack[1] = "False"
+  data.OnSplineTrack[reg_27] = "False"
+  data.OnConstraintTrack[reg_27] = "False"
   SetPropertyFloat("AirlockKey_Base", "UsableRadius", 0)
   StopEmitters(GetRelativePrefabEntity(target, ".DustFX_Backward"))
   return 
@@ -725,7 +721,7 @@ Prefab_BlotAlleyAirlock_FireworksAirlockTrigger = function(target, _Direction, _
     if (numElements == 1) then
       if (data.FireworksList[1] == "None") then
         Print("__BTA_Airlock: List was empty! Adding to [1]")
-        data.FireworksList[1] = GetName(_activator())
+        data.FireworksList[reg_25] = GetName(_activator())
       end
     else
       Print("__BTA_Airlock: List was not empty! adding to next available slot")
@@ -734,10 +730,9 @@ Prefab_BlotAlleyAirlock_FireworksAirlockTrigger = function(target, _Direction, _
         Print("__BTA_Airlock: Fireworks left trigger, will remove this from the list")
         if (numElements == 1) then
           Print("__BTA_Airlock: We only have one element, resetting the table!")
-          data.FireworksList[1] = "None"
+          data.FireworksList[reg_25] = "None"
         else
-          local (for index), (for limit), (for step) = 1, numElements, 1
-          for x = (for index), (for limit), (for step) do
+          for x = 1, numElements do
             if (data.FireworksList[x] == GetName(_activator())) then
               Print((("__BTA_Airlock: Found matching fireworks activator at: [" .. tostring(x)) .. "], will remove this one!"))
               table.remove(data.FireworksList, x)
@@ -759,10 +754,9 @@ Prefab_BlotAlleyAirlock_FireworksAirlockTrigger = function(target, _Direction, _
     Print("__BTA_Airlock: Fireworks left trigger, will remove this from the list")
     if (numElements == 1) then
       Print("__BTA_Airlock: We only have one element, resetting the table!")
-      data.FireworksList[1] = "None"
+      data.FireworksList[reg_25] = "None"
     else
-      local (for index), (for limit), (for step) = 1, numElements, 1
-      for x = (for index), (for limit), (for step) do
+      for x = 1, numElements do
         if (data.FireworksList[x] == GetName(_activator())) then
           Print((("__BTA_Airlock: Found matching fireworks activator at: [" .. tostring(x)) .. "], will remove this one!"))
           table.remove(data.FireworksList, x)
@@ -781,16 +775,10 @@ Prefab_BlotAlleyAirlock_FireworksAirlockTrigger = function(target, _Direction, _
   end
   numElements = (#data.FireworksList)
   Print("__BTA_Airlock: Current Tracked Fireworks:")
-  local (for index), (for limit), (for step) = 1, numElements, 1
-  for x = (for index), (for limit), (for step) do
-    (for index) = Print
-    (for limit) = "__BTA_Airlock: Tracked Fireworks["
-    (for step) = tostring
+  for x = 1, numElements do
     x = x
-    (for step) = (for step)(x)
     x = "]: "
-    (for limit) = ((((for limit) .. (for step)) .. x) .. tostring(data.FireworksList[x]))
-    (for index)((for limit))
+    Print(((("__BTA_Airlock: Tracked Fireworks[" .. tostring(x)) .. x) .. tostring(data.FireworksList[x])))
   end
   return 
 end
@@ -808,8 +796,7 @@ Prefab_BlotAlleyAirlock_CheckFireworks = function(target, _State)
   Print(("__BTA_Airlock: Function: Prefab_BlotAlleyAirlock_CheckFireworks, target: " .. tostring(GetName(target))))
   local data = GetPrefabData("AirlockKey_Base")
   local numElements = (#data.FireworksList)
-  local (for index), (for limit), (for step) = 1, numElements, 1
-  for x = (for index), (for limit), (for step) do
+  for x = 1, numElements do
     if (GetName(target) == data.FireworksList[x]) then
       Print("__BTA_Airlock: We're part of the fireworks list! Don't do anything")
     elseif (_State == "StreamOut") then
@@ -855,3 +842,4 @@ Prefab_BlotAlleyAirlock_Room3SpattersStreamed = function(target, _Which)
   end
   return 
 end
+

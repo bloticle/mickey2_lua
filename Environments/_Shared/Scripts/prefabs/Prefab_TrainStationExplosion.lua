@@ -23,8 +23,7 @@ Prefab_TrainStationExplosion_AlwaysSetup = function(target)
     SetGlobal(data.StateGlobal, (GetGlobal(data.StateGlobal) + 1))
   end
   if (doCheck == true) then
-    local (for index), (for limit), (for step) = 1, 3, 1
-    for x = (for index), (for limit), (for step) do
+    for x = 1, 3 do
       if (GetGlobal("EM2_EpisodeCheck") == data.EpisodeCheck[x]) then
         Print((("__TrainStationExplosion__Episode Check is equal to [" .. tostring(x)) .. "] of the episode check array!"))
         if (x == 1) then
@@ -62,8 +61,7 @@ Prefab_TrainStationExplosion_TriggerExplosion = function(target)
       SetGlobal(data.StateGlobal, (GetGlobal(data.StateGlobal) + 1))
       Print(("__TrainStationExplosion__Will activate this explosion again in episode: " .. tostring(GetGlobal(data.StateGlobal))))
       local ArraySpot = -1
-      local (for index), (for limit), (for step) = 1, 3, 1
-      for x = (for index), (for limit), (for step) do
+      for x = 1, 3 do
         if (GetGlobal("EM2_EpisodeCheck") == data.EpisodeCheck[x]) then
           Print((("__TrainStationExplosion__Episode Check is equal to [" .. tostring(x)) .. "] of the episode check array! Using those values!"))
           ArraySpot = x
@@ -217,3 +215,4 @@ Prefab_TrainStationExplosion_EndCutscene = function(target)
   end
   return 
 end
+

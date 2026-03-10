@@ -1,7 +1,6 @@
 gsXy_StartUp_Xylophone_ver01 = function(target)
   Print("__Function: gsXy_StartUp_Xylophone_ver01")
-  local (for index), (for limit), (for step) = 1, 5, 1
-  for x = (for index), (for limit), (for step) do
+  for x = 1, 5 do
     StartRotateToPosition(GetRelativePrefabEntity(target, (".Xylophone_0" .. tostring(x))), 0)
     StartRotateToPosition(GetRelativePrefabEntity(target, (".Hammer" .. tostring(x))), 0)
   end
@@ -57,14 +56,12 @@ gsXy_CycleHits = function(target)
     Print("__** YOU HAVE TOO MANY ARGUMENTS, RETURNING. MAKE SURE THE FORMAT IS {{FIRSTPATTERN}, TIME1, {SECONDPATTERN}, TIME2, {LAST PATTERN }} ETC **__")
     return 
   end
-  local (for index), (for limit), (for step) = 1, ParentTableSize, 1
-  for x = (for index), (for limit), (for step) do
+  for x = 1, ParentTableSize do
     if (math.mod(x, 2) == 0) then
       wait(data.XylophonePatterns[x])
     else
       local ChildTableSize = (#data.XylophonePatterns[x])
-      local (for index), (for limit), (for step) = 1, ChildTableSize, 1
-      for y = (for index), (for limit), (for step) do
+      for y = 1, ChildTableSize do
         FireThread(gsXy_HitStep, target, tostring(data.XylophonePatterns[x][y]))
       end
     end
@@ -77,3 +74,4 @@ gsXy_BarStateChange = function(target, _Bar, _State)
   Print(((("__Bar " .. tostring(_Bar)) .. " State changed to: ") .. tostring(_State)))
   return 
 end
+

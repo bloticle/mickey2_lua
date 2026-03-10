@@ -55,3 +55,4 @@ UnhideCompass = function()
   Unhide("ScurvyPat_Compass")
   return 
 end
+

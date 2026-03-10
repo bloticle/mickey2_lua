@@ -335,3 +335,4 @@ DEC2_MovePlaneSplineFollower = function()
   SplineFollower_StopAtPosition("PlaneStuck_SplineFollower", "PlaneStuck_SplineKnot1", "PlaneStuck_SplineKnot2", 1)
   return 
 end
+

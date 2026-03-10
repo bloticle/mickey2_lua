@@ -59,8 +59,7 @@ Prefab_RVAIPicker_SpawnEnemy = function(target, _Room, _Type)
   end
   SetPropertyString(target, "Spawn Group", ("Spatter_Room" .. tostring(_Room)))
   Print(("__Spatter Spawning Getting Set to Spawn Group: " .. GetPropertyString(target, "Spawn Group")))
-  local (for index), (for limit), (for step) = 1, Loop, 1
-  for x = (for index), (for limit), (for step) do
+  for x = 1, Loop do
     local TeleportLocation = (((".SpawnMarker_Room" .. tostring(_Room)) .. "_Spatter") .. tostring(x))
     Print(("__Teleporting To Entity: " .. TeleportLocation))
     TeleportToEntity(target, GetRelativePrefabEntity(target, TeleportLocation))
@@ -131,3 +130,4 @@ Prefab_RVAIPicker_SpatterDeath = function(target)
   end
   return 
 end
+

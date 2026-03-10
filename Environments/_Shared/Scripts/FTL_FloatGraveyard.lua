@@ -573,13 +573,13 @@ PostIGC_0250a_PrescottIntroElectricalParade = function()
   Hide("ftl_floatgraveyard_01a_ai.GremlinPrescott 01")
   SetPropertyString("BasherGeneratorSpawner", "Spawn Group", "Float_BeetleworxBasher_AI")
   ForceSpawn("BasherGeneratorSpawner", 1)
-  data2.BeetleworxNumSpawned[1] = 1
+  data2.BeetleworxNumSpawned[reg_38] = 1
   SetGlobal("FTL_FloatGraveyard_IntroIGC", 1)
   SetGlobal("FTL_FloatGraveyard_BasherGenerator", 0)
   data2.SpawnerActive = "True"
   FireSequence("ftl_floatgraveyard_01a_scripting.ConversationMarker 01", "FTL_FloatGraveyard_Gus_Hint1")
-  data.SkipExitAnimationAndTeleport[1] = "Animation"
-  data.SkipExitAnimationAndTeleport[2] = "Teleport"
+  data.SkipExitAnimationAndTeleport[reg_38] = "Animation"
+  data.SkipExitAnimationAndTeleport[reg_74] = "Teleport"
   FTL_FloatGraveyard_Checkpoint(nil, "electric")
   TeleportToEntity("BasherGeneratorSpawner", "ElectricBasherSpawnerMarker")
   FireThread(StationaryCamera_UntilPlayerMoves)
@@ -629,7 +629,7 @@ PostIGC_0255_PrescottBeforeBossFight = function()
   SetGlobal("FTL_FloatGraveyard_TankerSpawned", 1)
   SetPropertyString("Float_BeetleworxTanker_Spawner", "Spawn Group", "Float_BeetleworxTanker_AI")
   ForceSpawn("ftl_floatgraveyard_01a_ai.TankerSpawner 01", 1)
-  data.BeetleworxNumSpawned[1] = 1
+  data.BeetleworxNumSpawned[reg_67] = 1
   data.SpawnerActive = "True"
   AnimGBSequence("BandConcertScreen", "loop")
   FireSequence("ftl_floatgraveyard_01a_scripting.ConversationMarker 01", "FTL_FloatGraveyard_Gus_Hint2")
@@ -792,24 +792,16 @@ end
 FTL_FloatGraveyard_ManageJumps = function(target, action, name, edge1, edge2)
   if (action == "enable") then
     if (edge2 ~= nil) then
-      local (for index), (for limit), (for step) = tonumber(edge1), tonumber(edge2), 1
-      for i = (for index), (for limit), (for step) do
+      for i = tonumber(edge1), tonumber(edge2) do
         enableJumpVolumeAvailability((((tostring(name) .. ".prefab_jumpvolumeavailability 0") .. i) .. ".TargetToSend"))
       end
     else
       enableJumpVolumeAvailability((((tostring(name) .. ".prefab_jumpvolumeavailability 0") .. tostring(edge1)) .. ".TargetToSend"))
       if (action == "disable") then
         if (edge2 ~= nil) then
-          local (for index), (for limit), (for step), (for index) = tonumber(edge1), tonumber(edge2), 1, ".TargetToSend"
-          for i = (for index), (for limit), (for step) do
-            (for index) = disableJumpVolumeAvailability
-            (for limit) = tostring
-            (for step) = name
-            (for limit) = (for limit)((for step))
-            (for step) = ".prefab_jumpvolumeavailability 0"
+          for i = tonumber(edge1), tonumber(edge2) do
             i = i
-            (for limit) = ((((for limit) .. (for step)) .. i) .. ".TargetToSend")
-            (for index)((for limit))
+            disableJumpVolumeAvailability((((tostring(name) .. ".prefab_jumpvolumeavailability 0") .. i) .. ".TargetToSend"))
           end
         else
           disableJumpVolumeAvailability((((tostring(name) .. ".prefab_jumpvolumeavailability 0") .. tostring(edge1)) .. ".TargetToSend"))
@@ -818,16 +810,9 @@ FTL_FloatGraveyard_ManageJumps = function(target, action, name, edge1, edge2)
     end
   elseif (action == "disable") then
     if (edge2 ~= nil) then
-      local (for index), (for limit), (for step) = tonumber(edge1), tonumber(edge2), 1
-      for i = (for index), (for limit), (for step) do
-        (for index) = disableJumpVolumeAvailability
-        (for limit) = tostring
-        (for step) = name
-        (for limit) = (for limit)((for step))
-        (for step) = ".prefab_jumpvolumeavailability 0"
+      for i = tonumber(edge1), tonumber(edge2) do
         i = i
-        (for limit) = ((((for limit) .. (for step)) .. i) .. ".TargetToSend")
-        (for index)((for limit))
+        disableJumpVolumeAvailability((((tostring(name) .. ".prefab_jumpvolumeavailability 0") .. i) .. ".TargetToSend"))
       end
     else
       disableJumpVolumeAvailability((((tostring(name) .. ".prefab_jumpvolumeavailability 0") .. tostring(edge1)) .. ".TargetToSend"))
@@ -874,8 +859,8 @@ end
 FTL_FloatGraveyard_ManageFooptoob = function(target)
   local data = GetPrefabData(target)
   if (GetGlobal("FTL_FloatGraveyard_IntroIGC") == 0) then
-    data.SkipExitAnimationAndTeleport[1] = "False"
-    data.SkipExitAnimationAndTeleport[2] = "False"
+    data.SkipExitAnimationAndTeleport[reg_9] = "False"
+    data.SkipExitAnimationAndTeleport[reg_11] = "False"
   end
   return 
 end
@@ -1700,8 +1685,7 @@ FTL_FloatGraveyard_ShipMastFall = function(target, action)
 end
 FTL_FloatGraveyard_DynamicObjectFade = function(target)
   local a = 1
-  local (for index), (for limit), (for step) = 1, 0, -0.05000000074505806
-  for a = (for index), (for limit), (for step) do
+  for a = 1, 0, -0.05000000074505806 do
     SetR3MTConstRegAlpha(target, 3, a)
     Wait(0.05000000074505806)
   end
@@ -1950,7 +1934,6 @@ FTL_FloatGraveyard_PlayDrumVFX = function(target)
   return 
 end
 FTL_FloatGraveyard_GepettoAreaSetup = function()
-  return 
 end
 FTL_FloatGraveyard_ExitClownHall01 = function(target, direction)
   if (direction == "backward") then
@@ -2900,7 +2883,6 @@ FTL_FloatGraveyard_CenterPlatformDrop = function()
   return 
 end
 FTL_FloatGraveyard_AliceAreaSetup = function()
-  return 
 end
 FTL_FloatGraveyard_PrescottTransitionSetup = function()
   if (GetGlobal("OST_BunnyQuest_QuestStarted") == 2) then
@@ -3719,8 +3701,7 @@ FTL_FloatGraveyard_EncyclopediaElectric = function()
 end
 FTL_EncyclopediaPhoto2 = 0
 FTL_FloatGraveyard_EncyclopediaCenterHall = function()
-  local (for index), (for limit), (for step) = 1, 7, 1
-  for i = (for index), (for limit), (for step) do
+  for i = 1, 7 do
     local before = 0
     local after = 0
     after = --[[ return 2 of ]] Jigsaw_GetPercentagePainted(("FTL_CenterHallToon" .. i))
@@ -3729,11 +3710,8 @@ FTL_FloatGraveyard_EncyclopediaCenterHall = function()
       FTL_EncyclopediaPhoto2 = (FTL_EncyclopediaPhoto2 + 1)
     end
   end
-  local (for index), (for limit), (for step) = 8, 10, 1
-  for i = (for index), (for limit), (for step) do
-    (for index) = i
-    (for index) = "Is Painted"
-    if (GetPropertyBool(("FTL_CenterHallToon" .. (for index)), (for index)) == true) then
+  for i = 8, 10 do
+    if (GetPropertyBool(("FTL_CenterHallToon" .. i), "Is Painted") == true) then
       FTL_EncyclopediaPhoto2 = (FTL_EncyclopediaPhoto2 + 1)
     end
   end
@@ -4280,3 +4258,4 @@ FTL_LightParadeDrum_TriggerInside = function(target, _Which, _State)
   end
   return 
 end
+

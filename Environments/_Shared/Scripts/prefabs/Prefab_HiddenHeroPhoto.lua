@@ -3,7 +3,7 @@ Prefab_SetUp_HiddenHeroPhoto = function(target)
   Print(("***************************** - Prefab_SetUp_HiddenHeroPhoto: " .. data.Global))
   SetPropertyString(target, "QuestFlag", data.Global)
   local CheckpointFunctionParam = data.CheckpointFunction[1]
-  data.CheckpointFunction[1] = "Setup"
+  data.CheckpointFunction[reg_13] = "Setup"
   if (1 <= GetGlobal("MSS_HiddenHeroesQuest")) then
     if (GetGlobal("MSN_Arcade_FromArcade") == 0) then
       if (GetGlobal(data.Global) < 2) then
@@ -17,7 +17,7 @@ Prefab_SetUp_HiddenHeroPhoto = function(target)
   else
     DisableComponent(target, "Camera Ability Target Component")
   end
-  data.CheckpointFunction[1] = CheckpointFunctionParam
+  data.CheckpointFunction[reg_13] = CheckpointFunctionParam
   return 
 end
 HiddenHero_CurrentMarker = ""
@@ -111,3 +111,4 @@ Prefab_HiddenHero_ActivateHintMap = function(target)
   end
   return 
 end
+

@@ -228,10 +228,12 @@ Prefab_QuestIconManager_IconDisplayCheck = function(target)
     else
       Print("QuestIconManager: Quest1 should be active! Will skip everything else since we know we need the icon")
       return 
-      Print("QuestIconManager: Quest1 is completed! Will check remaining quests")
-      Print("QuestIconManager: Quest1 should be active! Will skip everything else since we know we need the icon")
-      return 
-      Print("QuestIconManager: Quest1 not defined, this quest is not being tracked!")
+      if (Quest1Complete == -1) then
+        Print("QuestIconManager: Quest1 is completed! Will check remaining quests")
+      else
+        Print("QuestIconManager: Quest1 should be active! Will skip everything else since we know we need the icon")
+        return 
+      end
     end
   else
     Print("QuestIconManager: No prerequisite set for Quest1, checking to see if it completed or defined!")
@@ -254,10 +256,12 @@ Prefab_QuestIconManager_IconDisplayCheck = function(target)
     else
       Print("QuestIconManager: Quest2 should be active! Will skip everything else since we know we need the icon")
       return 
-      Print("QuestIconManager: Quest2 should be active! Will skip everything else since we know we need the icon")
-      Print("QuestIconManager: Quest2 should be active! Will skip everything else since we know we need the icon")
-      return 
-      Print("QuestIconManager: Quest2 not defined, this quest is not being tracked!")
+      if (Quest2Complete == -1) then
+        Print("QuestIconManager: Quest2 is completed! Will check remaining quests")
+      else
+        Print("QuestIconManager: Quest2 should be active! Will skip everything else since we know we need the icon")
+        return 
+      end
     end
   else
     Print("QuestIconManager: No prerequisite set for Quest2, checking to see if it completed or defined!")
@@ -280,9 +284,12 @@ Prefab_QuestIconManager_IconDisplayCheck = function(target)
     else
       Print("QuestIconManager: Quest3 should be active! Will skip everything else since we know we need the icon")
       return 
-      Print("QuestIconManager: Quest3 should be active! Will skip everything else since we know we need the icon")
-      return 
-      Print("QuestIconManager: Quest3 not defined, this quest is not being tracked!")
+      if (Quest3Complete == -1) then
+        Print("QuestIconManager: Quest3 is completed! Will check remaining quests")
+      else
+        Print("QuestIconManager: Quest3 should be active! Will skip everything else since we know we need the icon")
+        return 
+      end
     end
   else
     Print("QuestIconManager: No prerequisite set for Quest3, checking to see if it completed or defined!")
@@ -306,3 +313,4 @@ Prefab_QuestIconManager_ForceDisplayIcon = function(target)
   DisableAutoQuestGiver(data.QuestGiver, false)
   return 
 end
+

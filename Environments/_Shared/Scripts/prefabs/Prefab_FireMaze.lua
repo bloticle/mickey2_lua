@@ -110,3 +110,4 @@ Prefab_FireMazeChangeState = function(target, state)
   end
   return 
 end
+

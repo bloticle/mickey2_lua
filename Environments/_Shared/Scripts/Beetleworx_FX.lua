@@ -22,3 +22,4 @@ AnimatronicPirateMeleeEndSlowFX = function(target)
   StopEmitterByName(target, "AnimatronicPirateMelee_StatusSlow_FX")
   return 
 end
+

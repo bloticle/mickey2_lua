@@ -38,3 +38,4 @@ end
 if (BuildConfig() ~= "FINAL") then
   TurnOnStrictGlobalVariableChecks()
 end
+

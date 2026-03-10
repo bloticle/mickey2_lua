@@ -8,22 +8,22 @@ Prefab_BunnySuctionDummy_AlwaysSetup = function(target)
     Print(((("__Global " .. tostring(data.PersistGlobal)) .. " value: ") .. tostring(value)))
     if (value == 0) then
       ForceSketched(target)
-      data.States[1] = 0
-      data.States[2] = 0
+      data.States[reg_23] = 0
+      data.States[reg_24] = 0
     elseif (value == 1) then
       ForceSketched(target)
       ForcePainted("BunnySuctionDummy_SwitchBase")
-      data.States[1] = 0
-      data.States[2] = 1
+      data.States[reg_23] = 0
+      data.States[reg_24] = 1
     else
       if (value == 2) then
-        data.States[1] = 1
-        data.States[2] = 0
+        data.States[reg_23] = 1
+        data.States[reg_24] = 0
       end
       if (value == 3) then
         ForcePainted("BunnySuctionDummy_SwitchBase")
-        data.States[1] = 1
-        data.States[2] = 1
+        data.States[reg_23] = 1
+        data.States[reg_24] = 1
       end
     end
   end
@@ -33,13 +33,13 @@ Prefab_BunnySuctionDummy_StateChange = function(target, _State)
   Print(("__Function: Prefab_BunnySuctionDummy_StateChange, _State: " .. tostring(_State)))
   local data = GetPrefabData("BunnySuctionDummy")
   if (_State == "PhoneBox_Paint") then
-    data.States[1] = 1
+    data.States[reg_13] = 1
   elseif (_State == "PhoneBox_Thin") then
-    data.States[1] = 0
+    data.States[reg_13] = 0
   elseif (_State == "HackBox_Paint") then
-    data.States[2] = 1
+    data.States[reg_17] = 1
   elseif (_State == "HackBox_Thin") then
-    data.States[2] = 0
+    data.States[reg_17] = 0
   end
   if (data.States[1] == 0) then
     if (data.States[2] == 0) then
@@ -96,20 +96,20 @@ Prefab_BunnySuction_AlwaysSetup = function(target)
     Print(((("__Global " .. tostring(data.PersistFromDummyGlobal)) .. " value: ") .. tostring(value)))
     if (value == 0) then
       ForceSketched(GetRelativePrefabEntity(target, ".ToonShockCover"))
-      data.States[1] = 0
-      data.States[2] = 0
+      data.States[reg_17] = 0
+      data.States[reg_27] = 0
     elseif (value == 1) then
       ForceSketched(GetRelativePrefabEntity(target, ".ToonShockCover"))
       ForcePainted(data.HackboxEntityGroupName)
-      data.States[1] = 0
-      data.States[2] = 1
+      data.States[reg_17] = 0
+      data.States[reg_27] = 1
     elseif (value == 2) then
-      data.States[1] = 1
-      data.States[2] = 0
+      data.States[reg_17] = 1
+      data.States[reg_27] = 0
     elseif (value == 3) then
       ForcePainted(data.HackboxEntityGroupName)
-      data.States[1] = 1
-      data.States[2] = 1
+      data.States[reg_17] = 1
+      data.States[reg_27] = 1
     end
   end
   SetMapMarkerVisible(GetRelativePrefabEntity(target, ".MapMarker"), true)
@@ -148,10 +148,9 @@ Prefab_BunnySuction_AlwaysSetup = function(target)
   tubeGlobal = (5 - tubeGlobal)
   local bunnyCountGlobal = data.Globals[1]
   bunnyCountGlobal = 1
-  local (for index), (for limit) = tubeGlobal, 1
-  for (for step) = bunnyCountGlobal, (for index), (for limit) do
+  for x = bunnyCountGlobal, tubeGlobal do
     x = Print
-    x(("Spawning Bunny Number " .. (for step)))
+    x(("Spawning Bunny Number " .. x))
     x = data.SpawnMarkersToUse
     if (x >= 1) then
       x = data.SpawnMarkersToUse
@@ -221,8 +220,7 @@ BunniesInSuction = function(target)
 end
 DetachBunnies = function(player)
   local numChildren = GetElementCount(player, "Child Entities")
-  local (for index), (for limit), (for step) = 0, numChildren, 1
-  for index = (for index), (for limit), (for step) do
+  for index = 0, numChildren do
     local child = GetChildEntityByIndex(player, index)
     if IsCharacter(child) then
       ClearParent(child)
@@ -319,13 +317,13 @@ Prefab_BunnySuctionToon_StateChange = function(target, _State)
   Print(("__Function: Prefab_BunnySuctionDummy_StateChange, _State: " .. tostring(_State)))
   local data = GetPrefabData("BunnySuctionTube")
   if (_State == "PhoneBox_Paint") then
-    data.States[1] = 1
+    data.States[reg_13] = 1
   elseif (_State == "PhoneBox_Thin") then
-    data.States[1] = 0
+    data.States[reg_13] = 0
   elseif (_State == "HackBox_Paint") then
-    data.States[2] = 1
+    data.States[reg_17] = 1
   elseif (_State == "HackBox_Thin") then
-    data.States[2] = 0
+    data.States[reg_17] = 0
   end
   if (data.States[1] == 0) then
     if (data.States[2] == 0) then
@@ -351,3 +349,4 @@ Prefab_testerman = function()
   Bark(nil, "Rocking in the free world")
   return 
 end
+

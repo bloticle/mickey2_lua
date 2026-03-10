@@ -244,3 +244,4 @@ PlayerPlace = function(global)
   SetGlobal("MST_GremlinStructure_Entered", -10)
   return 
 end
+

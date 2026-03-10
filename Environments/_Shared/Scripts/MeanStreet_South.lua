@@ -513,7 +513,6 @@ MSS_ToGulchLab = function(target)
   return 
 end
 MST_South_FromGulchLab = function()
-  return 
 end
 MST_South_LoadMuseum = function()
   if (GetGlobal("MSS_Pete_ObservatoryIntro_Played") == 0) then
@@ -534,8 +533,7 @@ end
 MST_South_MuseumShopCheck = function()
   local currentSold = 0
   currentSold = GetTotalSoldCount()
-  local (for index), (for limit), (for step) = 1, 3, 1
-  for i = (for index), (for limit), (for step) do
+  for i = 1, 3 do
     GiveQuestItems(("One_Toons_Trash_Counter" .. tostring(i)), (tonumber(GetCurrentCount(("One_Toons_Trash_Counter" .. tostring(i)))) * -1))
   end
   if (5 < currentSold) then
@@ -1697,8 +1695,7 @@ MST_South_ObservatoryIdleDetermine = function(character)
   return 
 end
 MST_South_ObservatoryUpsetCopernicus = function(character)
-  local (for index), (for limit), (for step) = 2, 9, 1
-  for i = (for index), (for limit), (for step) do
+  for i = 2, 9 do
     if (Quest_CheckStatus("Watch_the_Skies", (("Watch_the_Skies_" .. tostring(i)) .. character), Quest_Discovered) == true) then
       Quest_SetStatus("Watch_the_Skies", (("Watch_the_Skies_" .. tostring(i)) .. character), Quest_Unavailable, false)
     end
@@ -1960,8 +1957,7 @@ MST_South_IncrementFlowerCostume = function(CostumeVar)
   if (CostumeVar == 1) then
     Quest_SetStatus("Clothes_Make_The_Spatter", "Clothes_Make_The_Spatter_1b", Quest_TurnIn, true)
   else
-    local (for index), (for limit), (for step) = 9, 12, 1
-    for i = (for index), (for limit), (for step) do
+    for i = 9, 12 do
       if (CostumeVar == i) then
         Quest_SetStatus("Clothes_Make_The_Spatter", (("Clothes_Make_The_Spatter_" .. i) .. "b"), Quest_TurnIn, true)
       end
@@ -2150,8 +2146,7 @@ MST_South_HiddenHeroesRestart_SafetyNet = function()
   return 
 end
 MST_South_HiddenHeroesUnavailable = function(chain)
-  local (for index), (for limit), (for step) = 1, 3, 1
-  for i = (for index), (for limit), (for step) do
+  for i = 1, 3 do
     if (Quest_CheckStatus("Hidden_Heroes", (("Hidden_Heroes_" .. i) .. tostring(chain)), Quest_Completed) == false) then
       Quest_SetStatus("Hidden_Heroes", (("Hidden_Heroes_" .. i) .. tostring(chain)), Quest_Unavailable, false)
     end
@@ -2703,8 +2698,7 @@ MST_South_MuseumSpiritManage = function(target, action)
   if (action == "FadeOut") then
     DestroyEntity("SpiritApproachTrigger")
     local a = 1
-    local (for index), (for limit), (for step) = 1, 0, -0.05000000074505806
-    for a = (for index), (for limit), (for step) do
+    for a = 1, 0, -0.05000000074505806 do
       SetR3MTConstRegAlpha("MuseumSpiritVFX", 1, a)
       Wait(0.05000000074505806)
     end
@@ -2714,16 +2708,11 @@ MST_South_MuseumSpiritManage = function(target, action)
     SetR3MTConstRegAlpha("MuseumSpiritVFX", 1, 1)
     Unhide("MuseumSpiritVFX")
     local a = 0
-    local (for index), (for limit), (for step) = 0, 1, 0.05000000074505806
-    for a = (for index), (for limit), (for step) do
+    for a = 0, 1, 0.05000000074505806 do
       a = SetR3MTConstRegAlpha
-      (for index) = "MuseumSpiritVFX"
-      (for limit) = 1
-      (for step) = a
-      a((for index), (for limit), (for step))
+      a("MuseumSpiritVFX", 1, a)
       a = Wait
-      (for index) = 0.05000000074505806
-      a((for index))
+      a(0.05000000074505806)
     end
   elseif (action == "load") then
     if (GetGlobal("MSS_Spirit_QuestIntro_Played") == 0) then
@@ -3052,3 +3041,4 @@ MST_South_EpisodeTwoCameraOutro = function()
   MST_South_Checkpoint(nil, "train")
   return 
 end
+

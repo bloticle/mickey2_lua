@@ -43,52 +43,37 @@ Prefab_BogEasyAirlock_GatorLookatTrigger = function(target, _Direction)
   local data = GetPrefabData("BogEasy_Airlock")
   if (_Direction == "At") then
     if (GetName(_activator()) == GetName(GetPlayer())) then
-      data.LookingAtGators[1] = 1
+      data.LookingAtGators[reg_22] = 1
       if (data.LookingAtGators[2] == 1) then
         Print("__Oswald already looking at gators!")
         return 
       end
       Print("__Starting gator anims!")
-      local (for index), (for limit), (for step) = 1, 4, 1
-      for x = (for index), (for limit), (for step) do
+      for x = 1, 4 do
         Unhide(("Airlock_Gator 0" .. tostring(x)))
         AnimGBSequence(("Airlock_Gator 0" .. tostring(x)), ("gator" .. tostring(x)))
       end
     else
-      data.LookingAtGators[2] = 1
+      data.LookingAtGators[reg_23] = 1
       if (data.LookingAtGators[1] == 1) then
         Print("__Mickey already looking at gators!")
         return 
       end
       Print("__Starting gator anims!")
-      local (for index), (for limit), (for step) = 1, 4, 1
-      for x = (for index), (for limit), (for step) do
-        (for index) = Unhide
-        (for limit) = "Airlock_Gator 0"
-        (for step) = tostring
+      for x = 1, 4 do
         x = x
-        (for step) = (for step)(x)
-        (for limit) = ((for limit) .. (for step))
-        (for index)((for limit))
-        (for index) = AnimGBSequence
-        (for limit) = "Airlock_Gator 0"
-        (for step) = tostring
+        Unhide(("Airlock_Gator 0" .. tostring(x)))
         x = x
-        (for step) = (for step)(x)
-        (for limit) = ((for limit) .. (for step))
-        (for step) = "gator"
         x = tostring
         x = x(x)
-        (for step) = ((for step) .. x)
-        (for index)((for limit), (for step))
+        AnimGBSequence(("Airlock_Gator 0" .. tostring(x)), ("gator" .. x))
       end
       if (_Direction == "Away") then
         if (GetName(_activator()) == GetName(GetPlayer())) then
-          data.LookingAtGators[1] = 0
+          data.LookingAtGators[reg_22] = 0
           if (data.LookingAtGators[2] == 0) then
             Print("__Oswald not looking either! Hiding!")
-            local (for index), (for limit), (for step) = 1, 4, 1
-            for x = (for index), (for limit), (for step) do
+            for x = 1, 4 do
               Hide(("Airlock_Gator 0" .. tostring(x)))
               AnimGBSequence(("Airlock_Gator 0" .. tostring(x)), "idle")
             end
@@ -96,8 +81,7 @@ Prefab_BogEasyAirlock_GatorLookatTrigger = function(target, _Direction)
             Print("__Oswald still looking!")
             return 
             Print("__Mickey not looking either! Hiding!")
-            local (for index), (for limit), (for step) = 1, 4, 1
-            for x = (for index), (for limit), (for step) do
+            for x = 1, 4 do
               Hide(("Airlock_Gator 0" .. tostring(x)))
               AnimGBSequence(("Airlock_Gator 0" .. tostring(x)), "idle")
             end
@@ -105,11 +89,10 @@ Prefab_BogEasyAirlock_GatorLookatTrigger = function(target, _Direction)
             return 
           end
         else
-          data.LookingAtGators[2] = 0
+          data.LookingAtGators[reg_23] = 0
           if (data.LookingAtGators[1] == 0) then
             Print("__Mickey not looking either! Hiding!")
-            local (for index), (for limit), (for step) = 1, 4, 1
-            for x = (for index), (for limit), (for step) do
+            for x = 1, 4 do
               Hide(("Airlock_Gator 0" .. tostring(x)))
               AnimGBSequence(("Airlock_Gator 0" .. tostring(x)), "idle")
             end
@@ -122,11 +105,10 @@ Prefab_BogEasyAirlock_GatorLookatTrigger = function(target, _Direction)
     end
   elseif (_Direction == "Away") then
     if (GetName(_activator()) == GetName(GetPlayer())) then
-      data.LookingAtGators[1] = 0
+      data.LookingAtGators[reg_22] = 0
       if (data.LookingAtGators[2] == 0) then
         Print("__Oswald not looking either! Hiding!")
-        local (for index), (for limit), (for step) = 1, 4, 1
-        for x = (for index), (for limit), (for step) do
+        for x = 1, 4 do
           Hide(("Airlock_Gator 0" .. tostring(x)))
           AnimGBSequence(("Airlock_Gator 0" .. tostring(x)), "idle")
         end
@@ -134,8 +116,7 @@ Prefab_BogEasyAirlock_GatorLookatTrigger = function(target, _Direction)
         Print("__Oswald still looking!")
         return 
         Print("__Mickey not looking either! Hiding!")
-        local (for index), (for limit), (for step) = 1, 4, 1
-        for x = (for index), (for limit), (for step) do
+        for x = 1, 4 do
           Hide(("Airlock_Gator 0" .. tostring(x)))
           AnimGBSequence(("Airlock_Gator 0" .. tostring(x)), "idle")
         end
@@ -143,11 +124,10 @@ Prefab_BogEasyAirlock_GatorLookatTrigger = function(target, _Direction)
         return 
       end
     else
-      data.LookingAtGators[2] = 0
+      data.LookingAtGators[reg_23] = 0
       if (data.LookingAtGators[1] == 0) then
         Print("__Mickey not looking either! Hiding!")
-        local (for index), (for limit), (for step) = 1, 4, 1
-        for x = (for index), (for limit), (for step) do
+        for x = 1, 4 do
           Hide(("Airlock_Gator 0" .. tostring(x)))
           AnimGBSequence(("Airlock_Gator 0" .. tostring(x)), "idle")
         end
@@ -176,8 +156,8 @@ Prefab_BogEasyAirlock_Doors = function(target, _Which, _LeverNum)
           Print("__Both LouisShackSwitchState values 1! Closing OldTown doors!!")
           data.AirlockState = "Airlock"
           Prefab_FireworksManager_StreamZoneOut("FireworksManager", "B")
-          data.RespawnTriggerOverride[1] = 2
-          data.RespawnTriggerOverride[2] = 2
+          data.RespawnTriggerOverride[reg_14] = 2
+          data.RespawnTriggerOverride[reg_27] = 2
           Prefab_BogEasyAirlock_OverrideSpawnLocations(target)
           Prefab_BlotAlleyAirlock_HandleSwitchAvailability(nil, "Streaming")
           AnimGBSequence(GetRelativePrefabEntity(target, ".Door_OldTown_AirlockSide"), "close")
@@ -231,8 +211,8 @@ Prefab_BogEasyAirlock_Doors = function(target, _Which, _LeverNum)
           Print("__Both OldTownSwitchState values 1! Closing Louis Shack doors!!")
           data.AirlockState = "Airlock"
           Prefab_FireworksManager_StreamZoneOut("FireworksManager", "A")
-          data.RespawnTriggerOverride[1] = 1
-          data.RespawnTriggerOverride[2] = 1
+          data.RespawnTriggerOverride[reg_14] = 1
+          data.RespawnTriggerOverride[reg_27] = 1
           Prefab_BogEasyAirlock_OverrideSpawnLocations(target)
           Prefab_BlotAlleyAirlock_HandleSwitchAvailability(nil, "Streaming")
           AnimGBSequence(GetRelativePrefabEntity(target, ".Door_LouisShack_AirlockSide"), "close")
@@ -373,27 +353,27 @@ Prefab_BogEasyAirlock_RespawnTriggerOverride = function(target, _Which)
   if (_Which == "LouisShack") then
     if (GetName(_activator()) == GetName(GetPlayer())) then
       Print("__Overridding Mickey to LouisShack respawn marker!")
-      data.RespawnTriggerOverride[1] = 1
+      data.RespawnTriggerOverride[reg_23] = 1
     else
       Print("__Overridding Oswald to LouisShack respawn marker!")
-      data.RespawnTriggerOverride[2] = 1
+      data.RespawnTriggerOverride[reg_25] = 1
       if (_Which == "OldTown") then
         if (GetName(_activator()) == GetName(GetPlayer())) then
           Print("__Overridding Mickey to OldTown respawn marker!")
-          data.RespawnTriggerOverride[1] = 2
+          data.RespawnTriggerOverride[reg_23] = 2
         else
           Print("__Overridding Oswald to OldTown respawn marker!")
-          data.RespawnTriggerOverride[2] = 2
+          data.RespawnTriggerOverride[reg_25] = 2
         end
       end
     end
   elseif (_Which == "OldTown") then
     if (GetName(_activator()) == GetName(GetPlayer())) then
       Print("__Overridding Mickey to OldTown respawn marker!")
-      data.RespawnTriggerOverride[1] = 2
+      data.RespawnTriggerOverride[reg_23] = 2
     else
       Print("__Overridding Oswald to OldTown respawn marker!")
-      data.RespawnTriggerOverride[2] = 2
+      data.RespawnTriggerOverride[reg_25] = 2
     end
   end
   Prefab_BogEasyAirlock_OverrideSpawnLocations("BogEasy_Airlock")
@@ -426,3 +406,4 @@ Prefab_BogEasyAirlock_OverrideSpawnLocations = function(target)
   end
   return 
 end
+

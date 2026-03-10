@@ -100,7 +100,7 @@ gsCT_TrolleyCharged = function(target, event)
       if (0 <= data.StartFunction[2]) then
         if (data.StartFunction[3] == 1) then
           Print("__ONCE ONLY true! Firing once!")
-          data.StartFunction[3] = 2
+          data.StartFunction[reg_16] = 2
           FireThread(gsCT_FireFunction, target, data.StartFunction[1], data.StartFunction[2])
         elseif (data.StartFunction[3] == 2) then
           Print("__This function already fired!")
@@ -160,5 +160,5 @@ gsCT_TestOverride = function(target)
   return 
 end
 gsCT_disableCollsionOswald = function(reg_0)
-  return 
 end
+

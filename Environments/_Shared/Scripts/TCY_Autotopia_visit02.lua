@@ -4075,8 +4075,7 @@ end
 AUT_Spawned_SmashEffects = function(target)
   ApplyImpulseFromCenter(target, 10000)
   Wait(2)
-  local (for index), (for limit), (for step) = 1, 0, -0.05000000074505806
-  for a = (for index), (for limit), (for step) do
+  for a = 1, 0, -0.05000000074505806 do
     SetR3MTConstRegAlpha(target, 3, a)
     Wait(0.05000000074505806)
   end
@@ -4581,3 +4580,4 @@ RaceLoseMusic = function()
   RemoveAllMusicStateOverride()
   return 
 end
+

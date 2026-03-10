@@ -169,8 +169,7 @@ OldMill2_ActionSpotsDone = function()
     DecrementAbilityDisabled(GetPlayer(), "Toss")
     Print("OldMill2_ActionSpotsDone is deactivating action spots")
     wait(1)
-    local (for index), (for limit), (for step) = 1, 7, 1
-    for x = (for index), (for limit), (for step) do
+    for x = 1, 7 do
       Disable(("OldMill2_ActionSpot_Left" .. tostring(x)))
       Disable(("OldMill2_ActionSpot_Right" .. tostring(x)))
     end
@@ -252,3 +251,4 @@ OldMill2_ManageOswaldAssistMickey = function(target, action, node1)
   end
   return 
 end
+

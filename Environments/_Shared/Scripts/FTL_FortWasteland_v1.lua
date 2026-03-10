@@ -243,15 +243,14 @@ FTL_Fort_SpawnSpatters = function(target, loaded)
       ForceSequence("Gus_v1", "FTL_Gus_MachineBroken")
       SetPropertyInt("Spawner_Fort_Spatters", "Index To Spawn", 0, 0)
       LevelManager_SetZoneStatusUnloaded("FTL_Fort01a.airlock_tunnel")
-      local (for index), (for limit), (for step) = 1, 4, 1
-      for i = (for index), (for limit), (for step) do
+      for i = 1, 4 do
         Print(tostring(i))
         FireThread(FTL_Fort_SpawnSpatters, nil, i)
         wait(0.15000000596046448)
       end
       wait(1)
       FTL_SaveCheckpoint("Fort_Entrance")
-      FTL_Fort_InitalSpatterState_var[5] = Prefab_SpatterPipe_Spawn(("Fort_Spatter_Spawner" .. math.random(1, 4)), "return")
+      FTL_Fort_InitalSpatterState_var[reg_108] = Prefab_SpatterPipe_Spawn(("Fort_Spatter_Spawner" .. math.random(1, 4)), "return")
     elseif (loaded ~= nil) then
       Print(("__LOADED ~= " .. loaded))
       FTL_Fort_InitalSpatterState_var[loaded] = Prefab_SpatterPipe_Spawn(("Fort_Spatter_Spawner" .. loaded), "return")
@@ -262,8 +261,7 @@ FTL_Fort_SpawnSpatters = function(target, loaded)
   return 
 end
 ForceSlobberCombatMusic = function()
-  local (for index), (for limit), (for step) = 1, 10, 1
-  for i = (for index), (for limit), (for step) do
+  for i = 1, 10 do
     SetCombatIntensityBias((10 * i))
     Print("Music - setting combat intensity bias + 100")
     wait(1)
@@ -292,7 +290,7 @@ FTL_Fort_BlotlingState = function(target, event, state, Slobber)
   end
   if ((FTL_Fort_BlotlingState_var[1] + FTL_Fort_BlotlingState_var[2]) ~= SpatterMaxCount) then
     if (state == "Death") then
-      FTL_Fort_BlotlingState_var[2] = (FTL_Fort_BlotlingState_var[2] + 1)
+      FTL_Fort_BlotlingState_var[reg_12] = (FTL_Fort_BlotlingState_var[2] + 1)
       if (Slobber == nil) then
         if (GetName(DeathEvent_Killer(_event)) ~= nil) then
           local killer = tostring(GetName(DeathEvent_Killer(_event)))
@@ -301,40 +299,39 @@ FTL_Fort_BlotlingState = function(target, event, state, Slobber)
             if (string.find(killer, "slobber") == nil) then
               if (string.find(killer, "spatter") == nil) then
                 Print((("FTL_Fort_BlotlingState: " .. state) .. " - Killed by Player!"))
-                FTL_Fort_BlotlingState_var[4] = (FTL_Fort_BlotlingState_var[4] + 1)
+                FTL_Fort_BlotlingState_var[" - Killed by Player!"] = (FTL_Fort_BlotlingState_var[4] + 1)
               end
             end
           end
           if string.find(killer, "theblobfrontattack") then
             if (GetCurrentTeam(target) == 3) then
-              FTL_Fort_BlotlingState_var[1] = (FTL_Fort_BlotlingState_var[1] - 1)
+              FTL_Fort_BlotlingState_var[reg_11] = (FTL_Fort_BlotlingState_var[1] - 1)
             end
           end
         end
       else
-        FTL_Fort_BlotlingState_var[4] = (FTL_Fort_BlotlingState_var[4] + 1)
+        FTL_Fort_BlotlingState_var[reg_10] = (FTL_Fort_BlotlingState_var[4] + 1)
       end
-      local (for index), (for index), (for limit) = 1, SpatterMaxCount, 1
-      for (for step) = (for index), (for index), (for limit) do
+      for i = 1, SpatterMaxCount do
         i = FTL_Fort_InitalSpatterState_var
-        i = i[(for step)]
+        i = i[i]
         if (i == GetName(target)) then
           i = FTL_Fort_InitalSpatterState_var
-          i[(for step)] = 0
+          i[i] = 0
         elseif (state == "TeamChange") then
           if (GetCurrentTeam(target) == 2) then
-            FTL_Fort_BlotlingState_var[1] = (FTL_Fort_BlotlingState_var[1] - 1)
+            FTL_Fort_BlotlingState_var[GetName(target)] = (FTL_Fort_BlotlingState_var[1] - 1)
           elseif (GetCurrentTeam(target) == 3) then
-            FTL_Fort_BlotlingState_var[1] = (FTL_Fort_BlotlingState_var[1] + 1)
+            FTL_Fort_BlotlingState_var[GetName(target)] = (FTL_Fort_BlotlingState_var[1] + 1)
             FireThread(FTL_Fort_SpatterToExitPipe, target, "ToPipe")
           end
         end
       end
     elseif (state == "TeamChange") then
       if (GetCurrentTeam(target) == 2) then
-        FTL_Fort_BlotlingState_var[1] = (FTL_Fort_BlotlingState_var[1] - 1)
+        FTL_Fort_BlotlingState_var[reg_11] = (FTL_Fort_BlotlingState_var[1] - 1)
       elseif (GetCurrentTeam(target) == 3) then
-        FTL_Fort_BlotlingState_var[1] = (FTL_Fort_BlotlingState_var[1] + 1)
+        FTL_Fort_BlotlingState_var[reg_11] = (FTL_Fort_BlotlingState_var[1] + 1)
         FireThread(FTL_Fort_SpatterToExitPipe, target, "ToPipe")
       end
     end
@@ -352,9 +349,9 @@ FTL_Fort_BlotlingState = function(target, event, state, Slobber)
     BlotlingState_var1 = BlotlingState_var4
     BlotlingState_var2 = " Player Killed"
     Print((("FTL_Fort_BlotlingState_vars[4] = " .. BlotlingState_var1) .. BlotlingState_var2))
-    FTL_Fort_BlotlingState_var[1] = -100
-    FTL_Fort_BlotlingState_var[2] = -100
-    FTL_Fort_BlotlingState_var[4] = 0
+    FTL_Fort_BlotlingState_var[BlotlingState_var1] = -100
+    FTL_Fort_BlotlingState_var[BlotlingState_var2] = -100
+    FTL_Fort_BlotlingState_var[(("FTL_Fort_BlotlingState_vars[4] = " .. BlotlingState_var1) .. BlotlingState_var2)] = 0
     local global = GetGlobal("FTL_Fort_SpatterState")
     if (global == 10) then
       BlotlingState_var1 = 2
@@ -554,8 +551,7 @@ FTL_Fort_PipeSpatterSpawned = function(target)
   Print("FTL_Fort_PipeSpatterSpawned")
   GoToEntity(target, GetPlayer())
   if (GetGlobal("FTL_Fort_SpatterState") == 10) then
-    local (for index), (for limit), (for step) = 1, 5, 1
-    for i = (for index), (for limit), (for step) do
+    for i = 1, 5 do
       if (FTL_Fort_InitalSpatterState_var[i] == 0) then
         Print((("FTL_Fort_InitalSpatterState_var[" .. i) .. "] == 0"))
         FTL_Fort_InitalSpatterState_var[i] = GetName(target)
@@ -574,7 +570,7 @@ FTL_Fort_SpatterToExitPipe = function(target, state)
     end
   elseif (state == "AtPipe") then
     DestroyEntity(target)
-    FTL_Fort_BlotlingState_var[2] = (FTL_Fort_BlotlingState_var[2] - 1)
+    FTL_Fort_BlotlingState_var[reg_19] = (FTL_Fort_BlotlingState_var[2] - 1)
     if (GetGlobal("FTL_Ian_BlotlingResolution_Played") ~= 0) then
       FireThread(FTL_Fort_SpatterWaves, nil, "PipeExit")
     elseif (GetGlobal("FTL_Fort_SpatterState") == 10) then
@@ -624,42 +620,34 @@ FTL_Fort_ResetAndSpawnSpatters = function(state, spattersToSpawnForSlobberFight)
     SetPropertyInt("Spawner_Fort_Spatters", "Index To Spawn", 1, 0)
     wait(0.30000001192092896)
   end
-  FTL_Fort_BlotlingState_var[1] = 0
-  FTL_Fort_BlotlingState_var[2] = 0
+  FTL_Fort_BlotlingState_var[reg_14] = 0
+  FTL_Fort_BlotlingState_var[reg_20] = 0
   local spattersToSpawn = 3
   if (spattersToSpawnForSlobberFight ~= nil) then
     Print(((("FTL_Fort_ResetAndSpawnSpatters: We have " .. tostring((3 - spattersToSpawnForSlobberFight))) .. " Friended Spatters from the First Fight, so we will only spawn ") .. tostring(spattersToSpawnForSlobberFight)))
     spattersToSpawn = spattersToSpawnForSlobberFight
-    FTL_Fort_BlotlingState_var[1] = (3 - spattersToSpawnForSlobberFight)
+    FTL_Fort_BlotlingState_var[reg_14] = (3 - spattersToSpawnForSlobberFight)
   end
   if (spattersToSpawn ~= 0) then
-    local (for index), (for limit), (for step) = 1, spattersToSpawn, 1
-    for i = (for index), (for limit), (for step) do
+    for i = 1, spattersToSpawn do
       wait((0.25 * i))
       FireThread(Prefab_SpatterPipe_Spawn, ("Fort_Spatter_Spawner" .. i))
     end
     if (GetGlobal("FTL_Shaky_Freed_Played") == 0) then
       if (state == "Ian") then
         FireThread(Prefab_SpatterPipe_Spawn, "Fort_Spatter_Spawner4")
-        FTL_Fort_BlotlingState_var[3] = 4
+        FTL_Fort_BlotlingState_var[reg_21] = 4
       end
     elseif (GetGlobal("FTL_Shaky_Freed_Played") == 1) then
       if (state == "SlobberFight") then
         ForceSequence("Shaky", "FTL_Shaky_PipeDisable")
       else
-        FTL_Fort_BlotlingState_var[3] = 5
+        FTL_Fort_BlotlingState_var[reg_21] = 5
         wait(2)
-        local (for index), (for limit), (for step) = 1, 2, 1
-        for i = (for index), (for limit), (for step) do
-          (for index) = wait
-          (for limit) = 0.25
-          (for index)((for limit))
-          (for index) = FireThread
-          (for limit) = Prefab_SpatterPipe_Spawn
-          (for step) = "Fort_Spatter_Spawner"
+        for i = 1, 2 do
+          wait(0.25)
           i = i
-          (for step) = ((for step) .. i)
-          (for index)((for limit), (for step))
+          FireThread(Prefab_SpatterPipe_Spawn, ("Fort_Spatter_Spawner" .. i))
         end
       end
     end
@@ -789,13 +777,13 @@ FTL_Fort_SpatterWaves = function(target, _event, state)
     if (string.sub(tostring(global), -1) == "0") then
       if (state == "TeamChange") then
         if (GetCurrentTeam(target) == 2) then
-          FTL_Fort_BlotlingState_var[1] = (FTL_Fort_BlotlingState_var[1] - 1)
+          FTL_Fort_BlotlingState_var[reg_25] = (FTL_Fort_BlotlingState_var[1] - 1)
         elseif (GetCurrentTeam(target) == 3) then
-          FTL_Fort_BlotlingState_var[1] = (FTL_Fort_BlotlingState_var[1] + 1)
+          FTL_Fort_BlotlingState_var[reg_25] = (FTL_Fort_BlotlingState_var[1] + 1)
           FireThread(FTL_Fort_SpatterToExitPipe, target, "ToPipe")
           if (state == "Death") then
-            FTL_Fort_BlotlingState_var[3] = (FTL_Fort_BlotlingState_var[3] - 1)
-            FTL_Fort_BlotlingState_var[2] = (FTL_Fort_BlotlingState_var[2] + 1)
+            FTL_Fort_BlotlingState_var[reg_26] = (FTL_Fort_BlotlingState_var[3] - 1)
+            FTL_Fort_BlotlingState_var[reg_24] = (FTL_Fort_BlotlingState_var[2] + 1)
             wait(2)
             if ((FTL_Fort_BlotlingState_var[1] + FTL_Fort_BlotlingState_var[2]) < 6) then
               if (GetGlobal("FTL_Shaky_Freed_Played") == 0) then
@@ -803,13 +791,13 @@ FTL_Fort_SpatterWaves = function(target, _event, state)
               else
                 FireThread(Prefab_SpatterPipe_Spawn, ("Fort_Spatter_Spawner" .. math.random(1, 3)))
               end
-              FTL_Fort_BlotlingState_var[3] = (FTL_Fort_BlotlingState_var[3] + 1)
+              FTL_Fort_BlotlingState_var[reg_26] = (FTL_Fort_BlotlingState_var[3] + 1)
             end
           end
         end
       elseif (state == "Death") then
-        FTL_Fort_BlotlingState_var[3] = (FTL_Fort_BlotlingState_var[3] - 1)
-        FTL_Fort_BlotlingState_var[2] = (FTL_Fort_BlotlingState_var[2] + 1)
+        FTL_Fort_BlotlingState_var[reg_26] = (FTL_Fort_BlotlingState_var[3] - 1)
+        FTL_Fort_BlotlingState_var[reg_24] = (FTL_Fort_BlotlingState_var[2] + 1)
         wait(2)
         if ((FTL_Fort_BlotlingState_var[1] + FTL_Fort_BlotlingState_var[2]) < 6) then
           if (GetGlobal("FTL_Shaky_Freed_Played") == 0) then
@@ -817,14 +805,14 @@ FTL_Fort_SpatterWaves = function(target, _event, state)
           else
             FireThread(Prefab_SpatterPipe_Spawn, ("Fort_Spatter_Spawner" .. math.random(1, 3)))
           end
-          FTL_Fort_BlotlingState_var[3] = (FTL_Fort_BlotlingState_var[3] + 1)
+          FTL_Fort_BlotlingState_var[reg_26] = (FTL_Fort_BlotlingState_var[3] + 1)
         end
       end
       if (FTL_Fort_BlotlingState_var[3] == FTL_Fort_BlotlingState_var[1]) then
         local BlotlingState_var1 = FTL_Fort_BlotlingState_var[1]
         local BlotlingState_var2 = FTL_Fort_BlotlingState_var[2]
-        FTL_Fort_BlotlingState_var[1] = -100
-        FTL_Fort_BlotlingState_var[2] = -100
+        FTL_Fort_BlotlingState_var[reg_25] = -100
+        FTL_Fort_BlotlingState_var[reg_24] = -100
         local end_state = 0
         if (BlotlingState_var1 == 8) then
           end_state = 1
@@ -892,3 +880,4 @@ FTL_NPC_Outro = function(state)
   end
   return 
 end
+

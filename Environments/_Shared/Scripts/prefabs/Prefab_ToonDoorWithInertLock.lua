@@ -26,3 +26,4 @@ Prefab_SetupToonDoors = function(target)
   SetEntitiesToNotCollide(GetRelativePrefabEntity(target, ".LeftToonDoor"), GetRelativePrefabEntity(target, ".RightToonDoor"))
   return 
 end
+

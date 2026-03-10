@@ -8,38 +8,25 @@ Prefab_ScrapMetalSpawner_Launch = function(target)
   local data = GetPrefabData(target)
   Print((("__Will Launch: " .. tostring(data.NumPiecesToLaunch)) .. " pieces of junk!"))
   local Distances = {0, 0, 0, 0}
-  Distances[1] = (GetPosition(GetRelativePrefabEntity(target, ".LaunchLocation")) - GetPosition(target)):normalize3()
-  local (for index), (for limit), (for step) = 1, 3, 1
-  for x = (for index), (for limit), (for step) do
+  Distances[reg_14] = (GetPosition(GetRelativePrefabEntity(target, ".LaunchLocation")) - GetPosition(target)):normalize3()
+  for x = 1, 3 do
     Distances[(x + 1)] = (GetPosition(GetRelativePrefabEntity(target, ".LaunchLocation")) - GetPosition(GetRelativePrefabEntity(target, (".LaunchPosition" .. tostring(x))))):normalize3()
   end
-  local (for index), (for limit), (for step) = 1, 4, 1
-  for x = (for index), (for limit), (for step) do
+  for x = 1, 4 do
     if (x == 1) then
-      (for index) = Print
-      (for limit) = "__Normalized Distance from spawner to target: "
-      (for step) = tostring
       x = Distances[1]
-      (for step) = (for step)(x)
-      (for limit) = ((for limit) .. (for step))
-      (for index)((for limit))
+      Print(("__Normalized Distance from spawner to target: " .. tostring(x)))
     else
-      (for index) = Print
-      (for limit) = "__Normalized Distance from marker: "
-      (for step) = tostring
       x = (x - 1)
-      (for step) = (for step)(x)
       x = " to target: "
-      (for limit) = ((((for limit) .. (for step)) .. x) .. tostring(Distances[x]))
-      (for index)((for limit))
+      Print(((("__Normalized Distance from marker: " .. tostring(x)) .. x) .. tostring(Distances[x])))
     end
   end
   local ImpulseX = 0
   local ImpulseY = 0
   local ImpulseZ = 0
   local randomized = 0
-  local (for index), (for limit), (for step) = 1, data.NumPiecesToLaunch, 1
-  for x = (for index), (for limit), (for step) do
+  for x = 1, data.NumPiecesToLaunch do
     ImpulseX = ForceSpawn
     ImpulseY = target
     ImpulseZ = 1
@@ -50,19 +37,14 @@ Prefab_ScrapMetalSpawner_Launch = function(target)
       ImpulseZ = math
       ImpulseZ = ImpulseZ.random
       randomized = 1
-      (for index) = data.MarkersToUse
-      ImpulseZ = ImpulseZ(randomized, (for index))
+      ImpulseZ = ImpulseZ(randomized, data.MarkersToUse)
       randomized = TeleportToEntity
-      (for index) = target
-      (for limit) = GetRelativePrefabEntity
-      (for step) = target
       x = ".LaunchPosition"
       Spawned = tostring
       IndexDistance = ImpulseZ
       Spawned = Spawned(IndexDistance)
       x = (x .. Spawned)
-      (for limit) = (for limit)((for step), x)
-      randomized((for index), (for limit))
+      randomized(target, GetRelativePrefabEntity(target, x))
       ImpulseY = ImpulseZ
     end
     ImpulseZ = math
@@ -70,10 +52,7 @@ Prefab_ScrapMetalSpawner_Launch = function(target)
     randomized = data.RandomizerLimits
     randomized = randomized[1]
     randomized = randomized[1]
-    (for index) = data.RandomizerLimits
-    (for index) = (for index)[1]
-    (for index) = (for index)[2]
-    ImpulseZ = ImpulseZ(randomized, (for index))
+    ImpulseZ = ImpulseZ(randomized, data.RandomizerLimits[1][2])
     randomized = data.ImpulseValue
     ImpulseZ = (ImpulseZ * randomized)
     randomized = Distances[ImpulseY]
@@ -84,10 +63,7 @@ Prefab_ScrapMetalSpawner_Launch = function(target)
     randomized = data.RandomizerLimits
     randomized = randomized[2]
     randomized = randomized[1]
-    (for index) = data.RandomizerLimits
-    (for index) = (for index)[2]
-    (for index) = (for index)[2]
-    ImpulseZ = ImpulseZ(randomized, (for index))
+    ImpulseZ = ImpulseZ(randomized, data.RandomizerLimits[2][2])
     randomized = data.ImpulseValue
     ImpulseZ = (ImpulseZ * randomized)
     randomized = Distances[ImpulseY]
@@ -98,10 +74,7 @@ Prefab_ScrapMetalSpawner_Launch = function(target)
     randomized = data.RandomizerLimits
     randomized = randomized[3]
     randomized = randomized[1]
-    (for index) = data.RandomizerLimits
-    (for index) = (for index)[3]
-    (for index) = (for index)[2]
-    ImpulseZ = ImpulseZ(randomized, (for index))
+    ImpulseZ = ImpulseZ(randomized, data.RandomizerLimits[3][2])
     randomized = data.ImpulseValue
     ImpulseZ = (ImpulseZ * randomized)
     randomized = Distances[ImpulseY]
@@ -109,28 +82,20 @@ Prefab_ScrapMetalSpawner_Launch = function(target)
     ImpulseZ = (ImpulseZ * randomized)
     ImpulseZ = Print
     randomized = "ImpulseX: "
-    (for index) = tostring
-    (for limit) = ImpulseX
-    (for index) = (for index)((for limit))
-    (for limit) = ", ImpulseY: "
-    (for step) = tostring
     x = ImpulseY
-    (for step) = (for step)(x)
     x = ", ImpulseZ: "
     Spawned = tostring
     IndexDistance = ImpulseZ
     Spawned = Spawned(IndexDistance)
-    randomized = (((((randomized .. (for index)) .. (for limit)) .. (for step)) .. x) .. Spawned)
+    randomized = (((((randomized .. tostring(ImpulseX)) .. ", ImpulseY: ") .. tostring(x)) .. x) .. Spawned)
     ImpulseZ(randomized)
     ImpulseZ = ApplyImpulse
     randomized = ImpulseX[1]
-    (for index) = ImpulseX
-    (for limit) = ImpulseY
-    (for step) = ImpulseZ
-    ImpulseZ(randomized, (for index), (for limit), (for step))
+    ImpulseZ(randomized, ImpulseX, ImpulseY, ImpulseZ)
     ImpulseZ = wait
     randomized = 0.05000000074505806
     ImpulseZ(randomized)
   end
   return 
 end
+

@@ -14,8 +14,7 @@ FTL_Gulch_Setup = function(target)
   end
   DestroyEntity("Trigger_FTL_Gulch_Visit_Setup")
   if (GetGlobal("FTL_WaterTowerCollapsed") ~= 1) then
-    local (for index), (for limit), (for step) = 1, 4, 1
-    for i = (for index), (for limit), (for step) do
+    for i = 1, 4 do
       disableJumpVolumeAvailability(("Jump_WaterTower" .. i))
     end
     DisableComponent("TrainBall3", "Usable")
@@ -41,111 +40,59 @@ FTL_Gulch_Setup = function(target)
     SetMapMarkerVisible("MapMarker_Exit", true)
   end
   FTL_BallsLoaded = 0
-  local (for index), (for limit), (for step) = 1, 3, 1
-  for i = (for index), (for limit), (for step) do
-    (for index) = GetGlobal
-    (for limit) = "FTL_Gulch_TrainCart"
-    (for step) = i
+  for i = 1, 3 do
     i = "State"
-    (for limit) = (((for limit) .. (for step)) .. i)
-    (for index) = (for index)((for limit))
-    if ((for index) == 0) then
-      (for limit) = AnimGBSequence
-      (for step) = "FTL_ballDispenser_0"
+    local TrainCartGlobal = GetGlobal((("FTL_Gulch_TrainCart" .. i) .. i))
+    if (TrainCartGlobal == 0) then
       i = i
-      (for step) = ((for step) .. i)
       i = "rest"
-      (for limit)((for step), i)
-      (for limit) = SetGlobal
-      (for step) = "FTL_Gulch_TrainCart"
+      AnimGBSequence(("FTL_ballDispenser_0" .. i), i)
       i = i
       TrainCartGlobal = "State"
-      (for step) = (((for step) .. i) .. TrainCartGlobal)
       i = 0
-      (for limit)((for step), i)
+      SetGlobal((("FTL_Gulch_TrainCart" .. i) .. TrainCartGlobal), i)
     end
-    (for limit) = GetGlobal
-    (for step) = "FTL_Gulch_Ball0"
-    i = (for index)
+    i = TrainCartGlobal
     TrainCartGlobal = "State"
-    (for step) = (((for step) .. i) .. TrainCartGlobal)
-    (for limit) = (for limit)((for step))
-    if ((for limit) ~= -1) then
-      (for limit) = GetGlobal
-      (for step) = "FTL_Gulch_Ball0"
-      i = (for index)
+    if (GetGlobal((("FTL_Gulch_Ball0" .. i) .. TrainCartGlobal)) ~= -1) then
+      i = TrainCartGlobal
       TrainCartGlobal = "State"
-      (for step) = (((for step) .. i) .. TrainCartGlobal)
-      (for limit) = (for limit)((for step))
     else
-      if ((for index) == 2) then
-        (for limit) = SetPropertyInt
-        (for step) = "TrainBall2"
+      if (TrainCartGlobal == 2) then
         i = "Bone Attach Rotate Mode"
         TrainCartGlobal = 4
-        (for limit)((for step), i, TrainCartGlobal)
+        SetPropertyInt("TrainBall2", i, TrainCartGlobal)
       end
-      (for limit) = SetGlobal
-      (for step) = "FTL_Gulch_Ball0"
-      i = (for index)
+      i = TrainCartGlobal
       TrainCartGlobal = "State"
-      (for step) = (((for step) .. i) .. TrainCartGlobal)
       i = 2
-      (for limit)((for step), i)
-      (for limit) = SetPropertyString
-      (for step) = "TrainBall"
-      i = (for index)
-      (for step) = ((for step) .. i)
+      SetGlobal((("FTL_Gulch_Ball0" .. i) .. TrainCartGlobal), i)
+      i = TrainCartGlobal
       i = "Bone Attach Name"
       TrainCartGlobal = "bone"
-      (for limit)((for step), i, TrainCartGlobal, 0)
-      (for limit) = SetParentEntity
-      (for step) = "TrainBall"
-      i = (for index)
-      (for step) = ((for step) .. i)
+      SetPropertyString(("TrainBall" .. i), i, TrainCartGlobal, 0)
+      i = TrainCartGlobal
       i = "FTL_ballDispenser_0"
       TrainCartGlobal = i
       i = (i .. TrainCartGlobal)
-      (for limit)((for step), i)
-      (for limit) = Print
-      (for step) = "!!!!!!!!!!!!!!!!!!!!!!!!! FTL_Gulch_Setup: Attached TrainBall"
-      i = (for index)
+      SetParentEntity(("TrainBall" .. i), i)
+      i = TrainCartGlobal
       TrainCartGlobal = " to bone"
-      (for step) = (((for step) .. i) .. TrainCartGlobal)
-      (for limit)((for step))
-      (for limit) = FTL_BallsLoaded
-      (for limit) = ((for limit) + 1)
-      FTL_BallsLoaded = (for limit)
+      Print((("!!!!!!!!!!!!!!!!!!!!!!!!! FTL_Gulch_Setup: Attached TrainBall" .. i) .. TrainCartGlobal))
+      FTL_BallsLoaded = (FTL_BallsLoaded + 1)
     end
-    (for limit) = GetGlobal
-    (for step) = "FTL_Gulch_Ball0"
     i = i
     TrainCartGlobal = "State"
-    (for step) = (((for step) .. i) .. TrainCartGlobal)
-    (for limit) = (for limit)((for step))
-    if ((for limit) == 4) then
-      (for limit) = IsValidHandle
-      (for step) = "TrainBall"
+    if (GetGlobal((("FTL_Gulch_Ball0" .. i) .. TrainCartGlobal)) == 4) then
       i = i
-      (for step) = ((for step) .. i)
-      (for limit) = (for limit)((for step))
-      if (for limit) then
-        (for limit) = DestroyEntity
-        (for step) = "TrainBall"
+      if IsValidHandle(("TrainBall" .. i)) then
         i = i
-        (for step) = ((for step) .. i)
-        (for limit)((for step))
-        (for limit) = SetMapMarkerVisible
-        (for step) = "GusHint_TrainBall"
+        DestroyEntity(("TrainBall" .. i))
         i = i
-        (for step) = ((for step) .. i)
         i = false
-        (for limit)((for step), i)
-        (for limit) = Print
-        (for step) = "!!!!!!!!!!!!!!!!!!!!!!!!! FTL_Gulch_Setup: Destroying Entity TrainBall"
+        SetMapMarkerVisible(("GusHint_TrainBall" .. i), i)
         i = i
-        (for step) = ((for step) .. i)
-        (for limit)((for step))
+        Print(("!!!!!!!!!!!!!!!!!!!!!!!!! FTL_Gulch_Setup: Destroying Entity TrainBall" .. i))
       end
     end
   end
@@ -169,8 +116,7 @@ FTL_Gulch_Setup = function(target)
     AnimGBSequence("FTL_Gulch_DancingRocks_Inert", "rest")
   end
   FTL_Gulch_GeysersPainted = 0
-  local (for index), (for limit), (for step) = 1, 8, 1
-  for i = (for index), (for limit), (for step) do
+  for i = 1, 8 do
     if GetPropertyBool((("ftl_gulch_01a_canyon_scripting.geyserjunksteamer 0" .. i) .. ".FTL_geyserJunk_01a_toon"), "Is Painted") then
       FTL_Gulch_GeysersPainted = (FTL_Gulch_GeysersPainted + 1)
     end
@@ -240,7 +186,7 @@ FTL_Gulch_Visit_Setup = function(target, level, visit)
       DEC_Data = DEC_Data[1]
       if (DEC_Data ~= "Busy") then
         DEC_Data = Projector_Data.HardLoadExitFunction
-        DEC_Data[1] = "True"
+        DEC_Data[reg_21] = "True"
         DEC_Data = Prefab_DECFoopToob_AlwaysSetup
         DEC_Data("FoopToob_Gulch_ToDEC")
       end
@@ -512,16 +458,16 @@ FTL_Gulch_Training_GPO = function(target, location, state)
       wait(0.75)
       if (FTL_Gulch_GusGPOHints[1] == 3) then
         FireSequence("Gus_v1", "FTL_Gulch_GPTraining_Thinned")
-        FTL_Gulch_GusGPOHints[1] = 0
+        FTL_Gulch_GusGPOHints[reg_29] = 0
       else
-        FTL_Gulch_GusGPOHints[1] = (FTL_Gulch_GusGPOHints[1] + 1)
+        FTL_Gulch_GusGPOHints[reg_29] = (FTL_Gulch_GusGPOHints[1] + 1)
         if (state == "Painted") then
           wait(0.75)
           if (FTL_Gulch_GusGPOHints[2] == 3) then
             FireSequence("Gus_v1", "FTL_Gulch_GPTraining_Painted")
-            FTL_Gulch_GusGPOHints[2] = 0
+            FTL_Gulch_GusGPOHints[reg_36] = 0
           else
-            FTL_Gulch_GusGPOHints[2] = (FTL_Gulch_GusGPOHints[2] + 1)
+            FTL_Gulch_GusGPOHints[reg_36] = (FTL_Gulch_GusGPOHints[2] + 1)
           end
         end
       end
@@ -529,9 +475,9 @@ FTL_Gulch_Training_GPO = function(target, location, state)
       wait(0.75)
       if (FTL_Gulch_GusGPOHints[2] == 3) then
         FireSequence("Gus_v1", "FTL_Gulch_GPTraining_Painted")
-        FTL_Gulch_GusGPOHints[2] = 0
+        FTL_Gulch_GusGPOHints[reg_36] = 0
       else
-        FTL_Gulch_GusGPOHints[2] = (FTL_Gulch_GusGPOHints[2] + 1)
+        FTL_Gulch_GusGPOHints[reg_36] = (FTL_Gulch_GusGPOHints[2] + 1)
       end
     end
   end
@@ -632,8 +578,7 @@ FTL_Gulch_WaterTowerBase_Thinned = function()
     SetGlobal("DG_QuestHealth", (GetGlobal("DG_QuestHealth") - 10))
     FireThread(FTL_Gulch_CheckPlayerDistance, "CO_TrappedTowerGuardians", "CollapseTower", GetPlayer())
     wait(3)
-    local (for index), (for limit), (for step) = 1, 4, 1
-    for i = (for index), (for limit), (for step) do
+    for i = 1, 4 do
       enableJumpVolumeAvailability(("Jump_WaterTower" .. i))
     end
     Enable("ftl_gulch_01a_canyon_scripting.Trigger_AutoLevel_WaterTower")
@@ -681,8 +626,7 @@ FTL_Gulch_GusHintMarkers = function(target, state, ball_num)
 end
 FTL_ForceSphere2InPosition = function()
   Print("FTL_ForceSphere2InPosition()")
-  local (for index), (for limit), (for step) = 1, 3, 1
-  for i = (for index), (for limit), (for step) do
+  for i = 1, 3 do
     if (GetGlobal((("FTL_Gulch_TrainCart" .. i) .. "State")) == 2) then
       SetParentEntity("TrainBall2", ("FTL_ballDispenser_0" .. i))
       Print("FTL_ForceSphere2InPosition: Forcing TrainBall2 into position")
@@ -813,10 +757,9 @@ FTL_TrainCar_Loaded = function(target, state)
           lights = AudioPostEventOn
           lights("ftl_gulch_01a_audio.SND_event_trainidle", "Play_sfx_dg1_train_idle_lp")
           lights = 1
-          local (for index), (for limit), (for step) = 2, 1, "bone"
-          for (for step) = lights, (for index), (for limit) do
+          for i = lights, 2 do
             i = StartEmitters
-            i(("TrainSteam" .. (for step)))
+            i(("TrainSteam" .. i))
           end
           lights = EnableGuardianHint
           lights("GusHint_Exit")
@@ -902,8 +845,7 @@ FTL_CollapseSaloon = function(target, Rumble)
           else
             AnimGBSequence("SaloonDoors", "break_closed")
           end
-          local (for index), (for limit), (for step) = 1, 3, 1
-          for i = (for index), (for limit), (for step) do
+          for i = 1, 3 do
             StartEmitters(("FTL_Saloon_FallingDust" .. tostring(i)))
             wait(0.25)
           end
@@ -918,13 +860,8 @@ FTL_CollapseSaloon = function(target, Rumble)
           SetPropertyBool(".SaloonCrashBlueChest", "ActionSpotEnabled", true)
           ForEachEntityInGroup(Disable, "Trigger_SphereImpulse")
           ForEachEntityInGroup(Disable, "Trigger_CameraRumble")
-          local (for index), (for limit), (for step), (for index) = 1, 3, 1, JigsawPercentage2
-          for i = (for index), (for limit), (for step) do
-            (for index) = StopEmitters
-            (for limit) = "FTL_Saloon_FallingDust"
-            (for step) = i
-            (for limit) = ((for limit) .. (for step))
-            (for index)((for limit))
+          for i = 1, 3 do
+            StopEmitters(("FTL_Saloon_FallingDust" .. i))
           end
           wait(10)
           FTL_SaloonReviveCheck = false
@@ -1053,93 +990,76 @@ FTL_Gulch_TeleportTrainToCanyon_Shared = function(part, toonConnectorState)
       ClearParent("TrainBall2")
     end
     local toonState = {true, true, true, true}
-    local (for index), (for limit), (for step) = 1, 3, 1
-    for i = (for index), (for limit), (for step) do
+    for i = 1, 3 do
       if (not GetPropertyBool(("FTL_trainCarConnector_01a_toon 0" .. i), "Is Painted")) then
         toonState[(i + 1)] = false
         Print((("FTL_trainCarConnector_01a_toon 0" .. i) .. " Is not Painted"))
       end
     end
-    local (for index), (for limit), (for step) = 1, 4, 1
-    for i = (for index), (for limit), (for step) do
-      (for index) = GetGlobal
-      (for limit) = "FTL_Gulch_TrainCart"
-      (for step) = i
+    for i = 1, 4 do
       i = "State"
-      (for limit) = (((for limit) .. (for step)) .. i)
-      (for index) = (for index)((for limit))
-      (for limit) = (i - 1)
-      (for step) = toonState[i]
-      if (for step) then
-        (for step) = Print
+      local Cart_BallNum = GetGlobal((("FTL_Gulch_TrainCart" .. i) .. i))
+      local toonNum = (i - 1)
+      if toonState[i] then
         i = "FTL_trainCarConnector_01a_toon 0"
-        Cart_BallNum = (for limit)
+        Cart_BallNum = toonNum
         toonNum = " Is Painted"
         i = ((i .. Cart_BallNum) .. toonNum)
-        (for step)(i)
+        Print(i)
         if (i < 4) then
-          if (0 < (for index)) then
-            (for step) = SetGlobal
+          if (0 < Cart_BallNum) then
             i = "FTL_Gulch_Ball0"
-            Cart_BallNum = (for index)
+            Cart_BallNum = Cart_BallNum
             toonNum = "State"
             i = ((i .. Cart_BallNum) .. toonNum)
             Cart_BallNum = 3
-            (for step)(i, Cart_BallNum)
-            (for step) = Print
+            SetGlobal(i, Cart_BallNum)
             i = "Sphere #"
-            Cart_BallNum = (for index)
+            Cart_BallNum = Cart_BallNum
             toonNum = " global is > 0 : Setting to New Value 3"
             i = ((i .. Cart_BallNum) .. toonNum)
-            (for step)(i)
+            Print(i)
           end
         end
       else
-        (for step) = Print
         i = "FTL_trainCarConnector_01a_toon 0"
-        Cart_BallNum = (for limit)
+        Cart_BallNum = toonNum
         toonNum = " Is Not Painted"
         i = ((i .. Cart_BallNum) .. toonNum)
-        (for step)(i)
+        Print(i)
         if (i == 4) then
-          (for step) = SetGlobal
           i = "FTL_Gulch_TrainCart4State"
           Cart_BallNum = -1
-          (for step)(i, Cart_BallNum)
+          SetGlobal(i, Cart_BallNum)
         else
-          if (0 < (for index)) then
-            (for step) = SetGlobal
+          if (0 < Cart_BallNum) then
             i = "FTL_Gulch_Ball0"
-            Cart_BallNum = (for index)
+            Cart_BallNum = Cart_BallNum
             toonNum = "State"
             i = ((i .. Cart_BallNum) .. toonNum)
             Cart_BallNum = -1
-            (for step)(i, Cart_BallNum)
-            (for step) = Print
+            SetGlobal(i, Cart_BallNum)
             i = "Sphere #"
-            Cart_BallNum = (for index)
+            Cart_BallNum = Cart_BallNum
             toonNum = " global is > 0 : Setting to New Value -1"
             i = ((i .. Cart_BallNum) .. toonNum)
-            (for step)(i)
+            Print(i)
           else
-            (for step) = Print
             i = "Train Connector #"
             Cart_BallNum = i
             toonNum = " Is Thinned, so setting Cart to -1"
             i = ((i .. Cart_BallNum) .. toonNum)
-            (for step)(i)
-            (for step) = SetGlobal
+            Print(i)
             i = "FTL_Gulch_TrainCart"
             Cart_BallNum = i
             toonNum = "State"
             i = ((i .. Cart_BallNum) .. toonNum)
             Cart_BallNum = -1
-            (for step)(i, Cart_BallNum)
+            SetGlobal(i, Cart_BallNum)
           end
-          (for step) = 4
           i = i
           Cart_BallNum = -1
-          for toonNum = (for step), i, Cart_BallNum do
+          for toonNum = 4, i, Cart_BallNum do
             toonState[toonNum] = false
           end
         end
@@ -1166,8 +1086,7 @@ FTL_Gulch_TeleportTrainToCanyon_Shared = function(part, toonConnectorState)
     OswaldStartFollowAction()
     SetGlobal("FTL_Gulch_ScurvyPin_Given", 0)
     local hideConnectors = false
-    local (for index), (for limit), (for step) = 1, 3, 1
-    for i = (for index), (for limit), (for step) do
+    for i = 1, 3 do
       Unhide(("FTL_trainConnector 0" .. i))
       if (toonConnectorState[(i + 1)] == true) then
         ForcePainted(("FTL_trainConnector 0" .. i))
@@ -1664,3 +1583,4 @@ FTL_Gulch_CheckForTrainBallRespawn = function()
   FTL_Gulch_CheckForTrainBallRespawn_Hack()
   return 
 end
+

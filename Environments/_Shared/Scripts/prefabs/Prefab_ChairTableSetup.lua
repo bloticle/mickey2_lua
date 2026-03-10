@@ -48,14 +48,14 @@ Prefab_ChairTableSetup_AdBoardSpun = function(target, _event, _Which)
       OswaldSpinAction()
       if (_Which == "Bell") then
         if (data.AdBoxesBusy[1] == 0) then
-          data.AdBoxesBusy[1] = 1
-          data.AdBoxOrientation[1] = 1
+          data.AdBoxesBusy[reg_27] = 1
+          data.AdBoxOrientation[reg_27] = 1
           AnimGBSequence(GetRelativePrefabEntity(target, ".BellAdBox"), "noBell_Bell")
           toFireThread = 1
         end
       elseif (data.AdBoxesBusy[2] == 0) then
-        data.AdBoxesBusy[2] = 1
-        data.AdBoxOrientation[2] = 1
+        data.AdBoxesBusy[reg_37] = 1
+        data.AdBoxOrientation[reg_37] = 1
         AnimGBSequence(GetRelativePrefabEntity(target, ".SquareAdBox"), "Ghost_Ped")
         toFireThread = 1
       end
@@ -73,17 +73,17 @@ Prefab_ChairTableSetup_SpinBackwards = function(target, _Which)
   wait(1)
   if (GetGlobal("NOS_BlotAlley_AdBoxesSolved") == 0) then
     if (_Which == "Bell") then
-      data.AdBoxOrientation[1] = 0
+      data.AdBoxOrientation[reg_13] = 0
       AnimGBSequence(GetRelativePrefabEntity(target, ".BellAdBox"), "Bell_noBell")
     elseif (_Which == "Square") then
-      data.AdBoxOrientation[2] = 0
+      data.AdBoxOrientation[reg_30] = 0
       AnimGBSequence(GetRelativePrefabEntity(target, ".SquareAdBox"), "Ped_Ghost")
     end
     wait(1)
     if (_Which == "Bell") then
-      data.AdBoxesBusy[1] = 0
+      data.AdBoxesBusy[reg_13] = 0
     elseif (_Which == "Square") then
-      data.AdBoxesBusy[2] = 0
+      data.AdBoxesBusy[reg_30] = 0
     end
   end
   return 
@@ -109,3 +109,4 @@ Prefab_ChairTableSetup_CheckComplete = function(target)
   end
   return 
 end
+

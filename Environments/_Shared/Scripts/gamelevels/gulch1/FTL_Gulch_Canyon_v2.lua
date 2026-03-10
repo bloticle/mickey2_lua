@@ -131,5 +131,5 @@ FTL_Gulch_TeleportTrainToCanyon = function()
   return 
 end
 FTL_Gulch_GP_Training = function(reg_0, reg_1)
-  return 
 end
+

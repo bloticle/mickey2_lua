@@ -40,8 +40,7 @@ UtilSouth2_Setup = function(target, Room)
       forStart = 4
       forEnd = 6
     end
-    local (for index), (for limit), (for step) = forStart, forEnd, 1
-    for i = (for index), (for limit), (for step) do
+    for i = forStart, forEnd do
       ForceSketched(((("mst_utilidors_01a_southroom2_scriptingside" .. RoomNum) .. ".MST_south_01a_agencyMachine_toon_02a 0") .. i))
     end
     return 
@@ -53,8 +52,7 @@ UtilSouth2_Setup = function(target, Room)
     Room2State = "0"
   end
   local DisableGusHints = function(RoomNum)
-    local (for index), (for limit), (for step) = 1, 3, 1
-    for i = (for index), (for limit), (for step) do
+    for i = 1, 3 do
       DisableGuardianHint(((("GusHint_PropRoom_Side" .. RoomNum) .. "_") .. tostring(i)))
     end
     EnableGuardianHint((("GusHint_PropRoom_Side" .. RoomNum) .. "_Exit"))
@@ -125,16 +123,11 @@ UtilSouth2_Setup = function(target, Room)
     FireThread(fan_dir, forStart, forEnd)
     fan_dir = forEnd
     forStart = 1
-    local (for index), (for index) = forStart, ".OswaldSwitchStand"
-    for forEnd = (for index), fan_dir, forStart do
-      (for index) = FireThread
-      (for limit) = Prefab_OswaldElectricSwitch_ChangeState
-      (for step) = GetRelativePrefabEntity
+    for forEnd = forStart, fan_dir, forStart do
       i = "UtilSouth2_OswaldSwitch"
       i = (i .. forEnd)
-      (for step) = (for step)(i, ".OswaldSwitchStand")
       i = "FullyCharged"
-      (for index)((for limit), (for step), i)
+      FireThread(Prefab_OswaldElectricSwitch_ChangeState, GetRelativePrefabEntity(i, ".OswaldSwitchStand"), i)
     end
     return 
   end
@@ -164,8 +157,7 @@ UtilSouth2_Setup = function(target, Room)
     end
   end
   if (tonumber(global) == 11) then
-    local (for index), (for limit), (for step) = 1, 2, 1
-    for i = (for index), (for limit), (for step) do
+    for i = 1, 2 do
       SplineFollower_SetDisabled((("SF_Room" .. i) .. "_Gate1"), false)
       ActivateNavMeshObstacle((("SF_Room" .. i) .. "_Gate1"), false)
     end
@@ -392,8 +384,7 @@ UtilSouth2_SwitchTriggered = function(target, Switch_Num)
       EnableGuardianHint((("GusHint_PropRoom_Side" .. side_Num) .. "_Exit"))
       FireSequence("Gus_Bridge", "MST_Gus_EnabledPower")
       if (GetGlobal("MST_BridgeRoomState") == 11) then
-        local (for index), (for limit), (for step) = 1, 2, 1
-        for i = (for index), (for limit), (for step) do
+        for i = 1, 2 do
           SplineFollower_SetDisabled((("SF_Room" .. i) .. "_Gate1"), false)
           ActivateNavMeshObstacle((("SF_Room" .. i) .. "_Gate1"), false)
         end
@@ -528,3 +519,4 @@ UtilSouth2_DisableResCam = function()
   ResCamEnabled = false
   return 
 end
+

@@ -62,8 +62,7 @@ VTL_Oasis_LauncherSetup = function(target, visit)
 end
 VTL_AlwaysSetup = function(projector)
   Print("VTL_AlwaysSetup")
-  local (for index), (for limit), (for step) = 1, 3, 1
-  for i = (for index), (for limit), (for step) do
+  for i = 1, 3 do
     if GetPropertyBool(("vtl_oasis_01a_scripting.mirror_01a_toon 0" .. i), "Is Painted") then
       SetPropertyFloat(("vtl_oasis_01a_scripting.ProjectedLightbeam 0" .. i), "BeamExtendAmount", 0.5)
       SetPropertyFloat(("vtl_oasis_01a_scripting.ProjectedLightbeam 0" .. i), "BeamMaxLength", 50)
@@ -253,7 +252,7 @@ VTL_Oasis_Setup = function(projector)
         SetGlobal("VTL_Oasis_OpeningMoviePlayed", 1)
         Quest_SetCriticalPath("Critical_Ventureland", "Critical_Ventureland_1")
         if (GetGlobal("VTL_TrainStationIntro_Set") == 0) then
-          GetPrefabData("TrainStationExplosion").EpisodeCheck[1] = 3
+          GetPrefabData("TrainStationExplosion").EpisodeCheck[reg_17] = 3
         end
       elseif (projector ~= nil) then
         GetPrefabData("2D_FromMeanStreetNorth").SkipJumpOutAnim = false
@@ -1171,8 +1170,7 @@ chargedOrder = {nil, nil, nil}
 lightningRodCount = 0
 VTL_Oasis_CrowsNestLift = function(target, event, loc_num)
   loc_num = tonumber(loc_num)
-  local (for index), (for limit), (for step) = 1, 3, 1
-  for i = (for index), (for limit), (for step) do
+  for i = 1, 3 do
     if (chargedOrder[i] == loc_num) then
       return 
     end
@@ -1191,20 +1189,11 @@ VTL_Oasis_CrowsNestLift = function(target, event, loc_num)
       Print(("lightningRodCount = " .. lightningRodCount))
       chargedOrder[lightningRodCount] = loc_num
       if (lightningRodCount == 3) then
-        local (for index), (for limit), (for step) = 1, 3, 1
-        for stopShockingLightningRod = (for index), (for limit), (for step) do
-          (for index) = Print
-          (for limit) = "correctOrder["
-          (for step) = stopShockingLightningRod
+        for stopShockingLightningRod = 1, 3 do
           j = "] = "
-          (for limit) = ((((for limit) .. (for step)) .. j) .. correctOrder[stopShockingLightningRod])
-          (for index)((for limit))
-          (for index) = Print
-          (for limit) = "chargedOrder["
-          (for step) = stopShockingLightningRod
+          Print(((("correctOrder[" .. stopShockingLightningRod) .. j) .. correctOrder[stopShockingLightningRod]))
           j = "] = "
-          (for limit) = ((((for limit) .. (for step)) .. j) .. chargedOrder[stopShockingLightningRod])
-          (for index)((for limit))
+          Print(((("chargedOrder[" .. stopShockingLightningRod) .. j) .. chargedOrder[stopShockingLightningRod]))
         end
         if (correctOrder[1] ~= chargedOrder[1]) then
           Print("chargedOrder is incorrect, try again!")
@@ -1448,8 +1437,7 @@ end
 VTL_Oasis_AnvilDestroy_JCDebris = function()
   DestroyEntity("VTL_Oasis_jungleCruiseDebris_inert_01a")
   AudioPostEventOn(GetPlayer(), "Play_sfx_vtl_rubble_falling")
-  local (for index), (for limit), (for step) = 1, 10, 1
-  for i = (for index), (for limit), (for step) do
+  for i = 1, 10 do
     ForceSpawn("vtl_oasis_01a_scripting.SpawnScrapMetalDebris", 1)
     wait(0.10000000149011612)
   end
@@ -1834,3 +1822,4 @@ VTL_Audio_Direction = function(Target, Direction)
   end
   return 
 end
+

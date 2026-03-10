@@ -389,3 +389,4 @@ Blotworx_SaveOffSpawner = function(activator)
   SetPropertyString(_self(), "Instance Level Name", GetName(activator))
   return 
 end
+

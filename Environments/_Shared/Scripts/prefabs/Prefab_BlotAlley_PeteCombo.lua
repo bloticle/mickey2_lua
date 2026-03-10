@@ -168,8 +168,7 @@ Prefab_BlotAlleyPete_DoorBlotworxSequence = function(target, _Section)
   local data = GetPrefabData("NOS_BlotAlley_Petetronic")
   if (_Section == "1") then
     Prefab_BlotAlleyPete_SpawnBlotworx(target, "1")
-    local (for index), (for limit), (for step) = 1, 3, 1
-    for x = (for index), (for limit), (for step) do
+    for x = 1, 3 do
       AI_UnregisterForSensor(data.BlotworxSpawned[x], "SeeEnemy")
       AI_UnregisterForSensor(data.BlotworxSpawned[x], "SeePlayer")
       AI_UnregisterForSensor(data.BlotworxSpawned[x], "HearEnemyFootsteps")
@@ -249,32 +248,13 @@ Prefab_BlotAlleyPete_DoorBlotworxSequence = function(target, _Section)
         EnableSplitScreen(true)
         TeleportToEntity(GetPlayer(), "PeteAfterIGC_MickeyMarker")
         TeleportToEntity(GetPlayer2OrAI(), "PeteAfterIGC_OswaldMarker")
-        local (for index), (for limit), (for step) = 1, 3, 1
-        for x = (for index), (for limit), (for step) do
-          (for index) = data.BlotworxSpawned
-          (for index) = (for index)[x]
-          (for limit) = "SeeEnemy"
-          AI_RegisterForSensor((for index), (for limit))
-          (for index) = data.BlotworxSpawned
-          (for index) = (for index)[x]
-          (for limit) = "SeePlayer"
-          AI_RegisterForSensor((for index), (for limit))
-          (for index) = data.BlotworxSpawned
-          (for index) = (for index)[x]
-          (for limit) = "HearEnemyFootsteps"
-          AI_RegisterForSensor((for index), (for limit))
-          (for index) = data.BlotworxSpawned
-          (for index) = (for index)[x]
-          (for limit) = "Attract"
-          AI_RegisterForSensor((for index), (for limit))
-          (for index) = data.BlotworxSpawned
-          (for index) = (for index)[x]
-          (for limit) = "BlotworxAfterIGCMarker"
-          (for step) = tostring
+        for x = 1, 3 do
+          AI_RegisterForSensor(data.BlotworxSpawned[x], "SeeEnemy")
+          AI_RegisterForSensor(data.BlotworxSpawned[x], "SeePlayer")
+          AI_RegisterForSensor(data.BlotworxSpawned[x], "HearEnemyFootsteps")
+          AI_RegisterForSensor(data.BlotworxSpawned[x], "Attract")
           x = x
-          (for step) = (for step)(x)
-          (for limit) = ((for limit) .. (for step))
-          TeleportToEntity((for index), (for limit))
+          TeleportToEntity(data.BlotworxSpawned[x], ("BlotworxAfterIGCMarker" .. tostring(x)))
         end
         ReleaseCamera(CAMERA_INSTANT_TRANSITION, 0, GetNetworkPlayer())
         StartFadeIn(0.800000011920929)
@@ -299,32 +279,13 @@ Prefab_BlotAlleyPete_DoorBlotworxSequence = function(target, _Section)
     EnableSplitScreen(true)
     TeleportToEntity(GetPlayer(), "PeteAfterIGC_MickeyMarker")
     TeleportToEntity(GetPlayer2OrAI(), "PeteAfterIGC_OswaldMarker")
-    local (for index), (for limit), (for step) = 1, 3, 1
-    for x = (for index), (for limit), (for step) do
-      (for index) = data.BlotworxSpawned
-      (for index) = (for index)[x]
-      (for limit) = "SeeEnemy"
-      AI_RegisterForSensor((for index), (for limit))
-      (for index) = data.BlotworxSpawned
-      (for index) = (for index)[x]
-      (for limit) = "SeePlayer"
-      AI_RegisterForSensor((for index), (for limit))
-      (for index) = data.BlotworxSpawned
-      (for index) = (for index)[x]
-      (for limit) = "HearEnemyFootsteps"
-      AI_RegisterForSensor((for index), (for limit))
-      (for index) = data.BlotworxSpawned
-      (for index) = (for index)[x]
-      (for limit) = "Attract"
-      AI_RegisterForSensor((for index), (for limit))
-      (for index) = data.BlotworxSpawned
-      (for index) = (for index)[x]
-      (for limit) = "BlotworxAfterIGCMarker"
-      (for step) = tostring
+    for x = 1, 3 do
+      AI_RegisterForSensor(data.BlotworxSpawned[x], "SeeEnemy")
+      AI_RegisterForSensor(data.BlotworxSpawned[x], "SeePlayer")
+      AI_RegisterForSensor(data.BlotworxSpawned[x], "HearEnemyFootsteps")
+      AI_RegisterForSensor(data.BlotworxSpawned[x], "Attract")
       x = x
-      (for step) = (for step)(x)
-      (for limit) = ((for limit) .. (for step))
-      TeleportToEntity((for index), (for limit))
+      TeleportToEntity(data.BlotworxSpawned[x], ("BlotworxAfterIGCMarker" .. tostring(x)))
     end
     ReleaseCamera(CAMERA_INSTANT_TRANSITION, 0, GetNetworkPlayer())
     StartFadeIn(0.800000011920929)
@@ -366,8 +327,7 @@ Prefab_BlotAlleyPete_SpawnBlotworx = function(target, _Section)
   Print(("__Function: Prefab_BlotAlleyPete_SpawnBlotworx, _Section: " .. tostring(_Section)))
   local data = GetPrefabData("NOS_BlotAlley_Petetronic")
   if (_Section == "1") then
-    local (for index), (for limit), (for step) = 1, 3, 1
-    for x = (for index), (for limit), (for step) do
+    for x = 1, 3 do
       if (x == 1) then
         SetPropertyInt(GetRelativePrefabEntity(target, ".BlotworxSpawner"), "Index To Spawn", 1)
       end
@@ -384,7 +344,7 @@ Prefab_BlotAlleyPete_SpawnBlotworx = function(target, _Section)
     local SpawnMarker = GetRelativePrefabEntity(target, ".BlotworxSpawnLocation4")
     TeleportToEntity(GetRelativePrefabEntity(target, ".BlotworxSpawner"), SpawnMarker)
     local Spawned = ForceSpawn(GetRelativePrefabEntity(target, ".BlotworxSpawner"), 1)
-    data.BlotworxSpawned[4] = GetName(Spawned[1])
+    data.BlotworxSpawned[reg_40] = GetName(Spawned[1])
   end
   return 
 end
@@ -392,8 +352,7 @@ Prefab_BlotAlleyPete_BlotworxHandled = function(target, _Type)
   Print(("__Function: Prefab_BlotAlleyPete_BlotworxHandled, _Type: " .. tostring(_Type)))
   local data = GetPrefabData("NOS_BlotAlley_Petetronic")
   local Activator = GetName(target)
-  local (for index), (for limit), (for step) = 1, 4, 1
-  for x = (for index), (for limit), (for step) do
+  for x = 1, 4 do
     if (Activator == data.BlotworxSpawned[x]) then
       Print((("__Blotworx at [" .. tostring(x)) .. "] handled!"))
       local Betrayal = 0
@@ -551,3 +510,4 @@ Prefab_BlotAlleyPete_SetEndGameMovieVariableAndChangeVisit = function(target)
   Print("__Function: Prefab_BlotAlleyPete_SetEndGameMovieVariable")
   return 
 end
+

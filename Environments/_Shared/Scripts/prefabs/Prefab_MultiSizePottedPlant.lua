@@ -16,21 +16,21 @@ Prefab_MultiSizePottedPlant_AlwaysSetup = function(target)
     end
     if (data.StartPainted[1] == 1) then
       ForcePainted(Base)
-      data.State[1] = 1
+      data.State[reg_29] = 1
       Prefab_MultiSizePottedPlant_CameraOverrideState(target, "On")
     else
       ForceSketched(Base)
-      data.State[1] = 0
+      data.State[reg_29] = 0
       Prefab_MultiSizePottedPlant_CameraOverrideState(target, "Off")
     end
     if (Active ~= "") then
       if (data.StartPainted[2] == 1) then
         ForcePainted(Active)
-        data.State[2] = 1
+        data.State[reg_42] = 1
         Prefab_MultiSizePottedPlant_CameraOverrideState(target, "Off")
       else
         ForceSketched(Active)
-        data.State[2] = 0
+        data.State[reg_42] = 0
         Print("__PottedPlant: This plant has initialized before! Using persistant data")
       end
     end
@@ -50,8 +50,7 @@ Prefab_MultiSizePottedPlant_ConvertGlobalToTableIndex = function(target)
   Print(("__PottedPlant: Global to split: " .. tostring(GlobalToSplit)))
   Print(("__PottedPlant: Will return index: " .. tostring(IndexToReturn)))
   local GlobalAsString = tostring(GetGlobal(GlobalToSplit))
-  local (for index), (for limit), (for step) = 2, 5, 1
-  for x = (for index), (for limit), (for step) do
+  for x = 2, 5 do
     if (x == IndexToReturn) then
       local State = tonumber(string.sub(GlobalAsString, x, x))
       Print(("__PottedPlant: Returning Value: " .. tostring(State)))
@@ -69,8 +68,7 @@ Prefab_MultiSizePottedPlant_SetPlantToPersist = function(target)
   Print(("__PottedPlant: Old String Value: " .. tostring(GetGlobal(GlobalToSplit))))
   local GlobalAsString = tostring(GetGlobal(GlobalToSplit))
   local NewString = "1"
-  local (for index), (for limit), (for step) = 2, 5, 1
-  for x = (for index), (for limit), (for step) do
+  for x = 2, 5 do
     local ToSet = "0"
     if (x == IndexToSet) then
       ToSet = "1"
@@ -89,24 +87,24 @@ Prefab_MultiSizePottedPlant_StateChanged = function(target, _State)
   local data = GetPrefabData(target)
   if (_State == "PlantPainted") then
     Prefab_MultiSizePottedPlant_CameraOverrideState(target, "Off")
-    data.State[2] = 1
+    data.State[reg_16] = 1
   elseif (_State == "PlantThinned") then
     if (data.State[1] == 1) then
       Prefab_MultiSizePottedPlant_CameraOverrideState(target, "On")
     else
       Prefab_MultiSizePottedPlant_CameraOverrideState(target, "Off")
     end
-    data.State[2] = 0
+    data.State[reg_16] = 0
   elseif (_State == "PotPainted") then
     if (data.State[2] == 0) then
       Prefab_MultiSizePottedPlant_CameraOverrideState(target, "On")
     else
       Prefab_MultiSizePottedPlant_CameraOverrideState(target, "Off")
     end
-    data.State[1] = 1
+    data.State[reg_17] = 1
   elseif (_State == "PotThinned") then
     Prefab_MultiSizePottedPlant_CameraOverrideState(target, "Off")
-    data.State[1] = 0
+    data.State[reg_17] = 0
   end
   if (data.InkWellTarget ~= "None") then
     if (_State == "PotPainted") then
@@ -138,3 +136,4 @@ Prefab_MultiSizePottedPlant_CameraOverrideState = function(target, _On)
   end
   return 
 end
+

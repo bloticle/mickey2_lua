@@ -762,9 +762,9 @@ Projector_2D_Setup = function(data, ProjectorMarker, FromSetup)
       marker_string = Print
       marker_string((("********PROJECTOR************ Projector_2D_Setup: OswaldStart = " .. str_len) .. MickeyStart))
       marker_string = data.TrackMarkers
-      marker_string[1] = tostring((str_len .. global))
+      marker_string[reg_26] = tostring((str_len .. global))
       marker_string = data.TrackMarkers
-      marker_string[2] = tostring((str_len .. MickeyStart))
+      marker_string[str_len] = tostring((str_len .. MickeyStart))
       marker_string = data.ZoneCamOverrideName
       marker_string = marker_string[1]
       if (marker_string == "Multi") then
@@ -842,9 +842,9 @@ Projector_2D_Setup = function(data, ProjectorMarker, FromSetup)
     marker_string = Print
     marker_string((("********PROJECTOR************ Projector_2D_Setup: OswaldStart = " .. str_len) .. MickeyStart))
     marker_string = data.TrackMarkers
-    marker_string[1] = tostring((str_len .. global))
+    marker_string[reg_26] = tostring((str_len .. global))
     marker_string = data.TrackMarkers
-    marker_string[2] = tostring((str_len .. MickeyStart))
+    marker_string[str_len] = tostring((str_len .. MickeyStart))
     marker_string = data.ZoneCamOverrideName
     marker_string = marker_string[1]
     if (marker_string == "Multi") then
@@ -927,3 +927,4 @@ Costume_UnhideCheck = function(self)
   end
   return 
 end
+

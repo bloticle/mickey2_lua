@@ -644,12 +644,11 @@ NOS_BlotAlley_OswaldHint_CompletelyDisable = function(target, _Who, _Direction)
   Print(((("__Function: NOS_BlotAlley_OswaldHint_CompletelyDisable, _Who: " .. tostring(_Who)) .. ", _Direction: ") .. tostring(_Direction)))
   if (_Who == "Section1") then
     if (_Direction == "Down") then
-      CompletelyDisabled[1] = 1
+      CompletelyDisabled[reg_10] = 1
       NOS_BlotAlley_OswaldPathHandler(nil, "None", "OswaldPath_Section1")
     elseif (_Direction == "Up") then
-      CompletelyDisabled[1] = 0
-      local (for index), (for limit), (for step) = 1, 5, 1
-      for x = (for index), (for limit), (for step) do
+      CompletelyDisabled[reg_10] = 0
+      for x = 1, 5 do
         if (HintNodeShouldBeActive_S1[x] == 1) then
           Print((("__Re-enabling node: " .. tostring(x)) .. "!"))
           NOS_BlotAlley_OswaldPathHandler(nil, ("OswaldPath_Section1_Node" .. tostring(x)), "OswaldPath_Section1")
@@ -657,19 +656,19 @@ NOS_BlotAlley_OswaldHint_CompletelyDisable = function(target, _Who, _Direction)
       end
       if (_Who == "Section2") then
         if (_Direction == "Down") then
-          CompletelyDisabled[2] = 1
+          CompletelyDisabled[reg_23] = 1
           NOS_BlotAlley_OswaldPathHandler(nil, "None", "OswaldPath_Section2")
         elseif (_Direction == "Up") then
-          CompletelyDisabled[2] = 0
+          CompletelyDisabled[reg_23] = 0
         end
       end
     end
   elseif (_Who == "Section2") then
     if (_Direction == "Down") then
-      CompletelyDisabled[2] = 1
+      CompletelyDisabled[reg_23] = 1
       NOS_BlotAlley_OswaldPathHandler(nil, "None", "OswaldPath_Section2")
     elseif (_Direction == "Up") then
-      CompletelyDisabled[2] = 0
+      CompletelyDisabled[reg_23] = 0
     end
   end
   return 
@@ -725,8 +724,7 @@ NOS_BlotAlley_OswaldPathHandler = function(target, _NodeToActivate, ...)
   Print("__Function: NOS_BlotAlley_OswaldPathHandler")
   local DeactivateArgs = {}
   if ((#DeactivateArgs) ~= 0) then
-    local (for index), (for limit), (for step) = 1, (#DeactivateArgs), 1
-    for x = (for index), (for limit), (for step) do
+    for x = 1, (#DeactivateArgs) do
       Print(("__Disabling all nodes in group: " .. tostring(DeactivateArgs[x])))
       ForEachEntityInGroup(Disable, DeactivateArgs[x])
     end
@@ -744,16 +742,10 @@ NOS_BlotAlley_OswaldPathHandler = function(target, _NodeToActivate, ...)
     local Table = NOS_BlotAlley_ConvertOswaldStateGlobalToTable(("NOS_BlotAlley_OswaldNodeStates_S" .. Section))
     Section = (#Table)
     ShouldBeActiveTable = 1
-    local (for index) = 1
-    for Table = (for index), Section, ShouldBeActiveTable do
-      (for index) = Print
-      (for limit) = "__Table Value["
-      (for step) = tostring
+    for Table = 1, Section, ShouldBeActiveTable do
       x = Table
-      (for step) = (for step)(x)
       x = "]: "
-      (for limit) = ((((for limit) .. (for step)) .. x) .. tostring(Table[Table]))
-      (for index)((for limit))
+      Print(((("__Table Value[" .. tostring(x)) .. x) .. tostring(Table[Table])))
     end
     Section = string
     Section = Section.sub
@@ -772,10 +764,7 @@ NOS_BlotAlley_OswaldPathHandler = function(target, _NodeToActivate, ...)
       end
       Hint = x
       Hint = "]: "
-      (for index) = tostring
-      (for limit) = ShouldBeActiveTable[x]
-      (for index) = (for index)((for limit))
-      Print(((("__ShouldBeActiveTable[" .. tostring(Hint)) .. Hint) .. (for index)))
+      Print(((("__ShouldBeActiveTable[" .. tostring(Hint)) .. Hint) .. tostring(ShouldBeActiveTable[x])))
     end
     Section = Table[Hint]
     if (Section == 1) then
@@ -835,8 +824,7 @@ NOS_BlotAlley_ConvertOswaldStateGlobalToTable = function(Global)
   local TableLength = string.len(GlobalTable)
   Print(("__GlobalTableSize: " .. tostring(string.len(GlobalTable))))
   local Table = {0}
-  local (for index), (for limit), (for step) = 1, TableLength, 1
-  for x = (for index), (for limit), (for step) do
+  for x = 1, TableLength do
     local State = tonumber(string.sub(GlobalTable, x, x))
     if ((#Table) == 1) then
       Table[x] = State
@@ -849,8 +837,7 @@ end
 NOS_BlotAlley_ConvertOswaldTableToGlobal = function(Table)
   Print("__Function: NOS_BlotAlley_ConvertOswaldTableToGlobal")
   local ToSet = ""
-  local (for index), (for limit), (for step) = 1, (#Table), 1
-  for x = (for index), (for limit), (for step) do
+  for x = 1, (#Table) do
     Print(((("__Table[" .. tostring(x)) .. "]: ") .. tostring(Table[x])))
     ToSet = (ToSet .. tostring(Table[x]))
   end
@@ -867,7 +854,7 @@ NOS_BlotAlley_OswaldHintManipulator = function(target, _WhatAreWe, ...)
       if (args[1] == "Painted") then
         if (GetGlobal("NOS_BlotAlley_Bell1Rang") == 0) then
           Print("__Bell not rung! will set to activate this hint")
-          Table[2] = 1
+          Table[reg_24] = 1
         end
         if (HintNodeShouldBeActive_S1[2] == 1) then
           if (GetGlobal("NOS_BlotAlley_Bell1Rang") == 0) then
@@ -880,12 +867,12 @@ NOS_BlotAlley_OswaldHintManipulator = function(target, _WhatAreWe, ...)
           Print("__We should NOT be enabled based on where mickey is! Don't do anything except set us up to activate!")
           if (args[1] == "Thinned") then
             Print("__Disable us!")
-            Table[2] = 0
+            Table[reg_24] = 0
             Disable("OswaldPath_Section1_Node2")
             if (_WhatAreWe == "Bell1Rung") then
               Print("__Bell 1 Rung! will deactivate all upper oswald hints on the balconies")
-              Table[2] = 0
-              Table[3] = 0
+              Table[reg_24] = 0
+              Table[reg_37] = 0
               Disable("OswaldPath_Section1_Node2")
               Disable("OswaldPath_Section1_Node3")
             elseif (_WhatAreWe == "ThirdBalcony") then
@@ -907,7 +894,7 @@ NOS_BlotAlley_OswaldHintManipulator = function(target, _WhatAreWe, ...)
                 args = CompletelyDisabled
                 args = args[1]
                 if (args == 0) then
-                  Table[3] = 1
+                  Table[reg_37] = 1
                   args = HintNodeShouldBeActive_S1
                   args = args[3]
                   if (args == 1) then
@@ -916,13 +903,13 @@ NOS_BlotAlley_OswaldHintManipulator = function(target, _WhatAreWe, ...)
                   end
                 end
               else
-                Table[3] = 0
+                Table[reg_37] = 0
                 args = Disable
                 args("OswaldPath_Section1_Node3")
                 if (_WhatAreWe == "LastBalcony") then
                   local args = {}
                   if (args[1] == "Painted") then
-                    Table[4] = 1
+                    Table[reg_44] = 1
                     if (HintNodeShouldBeActive_S1[4] == 1) then
                       if (CompletelyDisabled[1] == 0) then
                         args = "OswaldPath_Section1_Node4"
@@ -930,7 +917,7 @@ NOS_BlotAlley_OswaldHintManipulator = function(target, _WhatAreWe, ...)
                       end
                     end
                   elseif (args[1] == "Thinned") then
-                    Table[4] = 0
+                    Table[reg_44] = 0
                     args = "OswaldPath_Section1_Node4"
                     Disable(args)
                     if (_WhatAreWe == "PathToAirlock") then
@@ -949,13 +936,13 @@ NOS_BlotAlley_OswaldHintManipulator = function(target, _WhatAreWe, ...)
                       end
                       if (GetGlobal("NOS_BlotAlley_OswaldS1PathClear") == 4) then
                         if (CompletelyDisabled[1] == 0) then
-                          Table[5] = 1
+                          Table[reg_48] = 1
                           if (HintNodeShouldBeActive_S1[5] == 1) then
                             Enable("OswaldPath_Section1_Node5")
                           end
                         end
                       else
-                        Table[5] = 0
+                        Table[reg_48] = 0
                         Disable("OswaldPath_Section1_Node5")
                       end
                     end
@@ -976,13 +963,13 @@ NOS_BlotAlley_OswaldHintManipulator = function(target, _WhatAreWe, ...)
                   end
                   if (GetGlobal("NOS_BlotAlley_OswaldS1PathClear") == 4) then
                     if (CompletelyDisabled[1] == 0) then
-                      Table[5] = 1
+                      Table[reg_48] = 1
                       if (HintNodeShouldBeActive_S1[5] == 1) then
                         Enable("OswaldPath_Section1_Node5")
                       end
                     end
                   else
-                    Table[5] = 0
+                    Table[reg_48] = 0
                     Disable("OswaldPath_Section1_Node5")
                   end
                 end
@@ -990,7 +977,7 @@ NOS_BlotAlley_OswaldHintManipulator = function(target, _WhatAreWe, ...)
             elseif (_WhatAreWe == "LastBalcony") then
               local args = {}
               if (args[1] == "Painted") then
-                Table[4] = 1
+                Table[reg_44] = 1
                 if (HintNodeShouldBeActive_S1[4] == 1) then
                   if (CompletelyDisabled[1] == 0) then
                     args = "OswaldPath_Section1_Node4"
@@ -998,7 +985,7 @@ NOS_BlotAlley_OswaldHintManipulator = function(target, _WhatAreWe, ...)
                   end
                 end
               elseif (args[1] == "Thinned") then
-                Table[4] = 0
+                Table[reg_44] = 0
                 args = "OswaldPath_Section1_Node4"
                 Disable(args)
                 if (_WhatAreWe == "PathToAirlock") then
@@ -1017,13 +1004,13 @@ NOS_BlotAlley_OswaldHintManipulator = function(target, _WhatAreWe, ...)
                   end
                   if (GetGlobal("NOS_BlotAlley_OswaldS1PathClear") == 4) then
                     if (CompletelyDisabled[1] == 0) then
-                      Table[5] = 1
+                      Table[reg_48] = 1
                       if (HintNodeShouldBeActive_S1[5] == 1) then
                         Enable("OswaldPath_Section1_Node5")
                       end
                     end
                   else
-                    Table[5] = 0
+                    Table[reg_48] = 0
                     Disable("OswaldPath_Section1_Node5")
                   end
                 end
@@ -1044,13 +1031,13 @@ NOS_BlotAlley_OswaldHintManipulator = function(target, _WhatAreWe, ...)
               end
               if (GetGlobal("NOS_BlotAlley_OswaldS1PathClear") == 4) then
                 if (CompletelyDisabled[1] == 0) then
-                  Table[5] = 1
+                  Table[reg_48] = 1
                   if (HintNodeShouldBeActive_S1[5] == 1) then
                     Enable("OswaldPath_Section1_Node5")
                   end
                 end
               else
-                Table[5] = 0
+                Table[reg_48] = 0
                 Disable("OswaldPath_Section1_Node5")
               end
             end
@@ -1058,12 +1045,12 @@ NOS_BlotAlley_OswaldHintManipulator = function(target, _WhatAreWe, ...)
         end
       elseif (args[1] == "Thinned") then
         Print("__Disable us!")
-        Table[2] = 0
+        Table[reg_24] = 0
         Disable("OswaldPath_Section1_Node2")
         if (_WhatAreWe == "Bell1Rung") then
           Print("__Bell 1 Rung! will deactivate all upper oswald hints on the balconies")
-          Table[2] = 0
-          Table[3] = 0
+          Table[reg_24] = 0
+          Table[reg_37] = 0
           Disable("OswaldPath_Section1_Node2")
           Disable("OswaldPath_Section1_Node3")
         elseif (_WhatAreWe == "ThirdBalcony") then
@@ -1085,7 +1072,7 @@ NOS_BlotAlley_OswaldHintManipulator = function(target, _WhatAreWe, ...)
             args = CompletelyDisabled
             args = args[1]
             if (args == 0) then
-              Table[3] = 1
+              Table[reg_37] = 1
               args = HintNodeShouldBeActive_S1
               args = args[3]
               if (args == 1) then
@@ -1094,13 +1081,13 @@ NOS_BlotAlley_OswaldHintManipulator = function(target, _WhatAreWe, ...)
               end
             end
           else
-            Table[3] = 0
+            Table[reg_37] = 0
             args = Disable
             args("OswaldPath_Section1_Node3")
             if (_WhatAreWe == "LastBalcony") then
               local args = {}
               if (args[1] == "Painted") then
-                Table[4] = 1
+                Table[reg_44] = 1
                 if (HintNodeShouldBeActive_S1[4] == 1) then
                   if (CompletelyDisabled[1] == 0) then
                     args = "OswaldPath_Section1_Node4"
@@ -1108,7 +1095,7 @@ NOS_BlotAlley_OswaldHintManipulator = function(target, _WhatAreWe, ...)
                   end
                 end
               elseif (args[1] == "Thinned") then
-                Table[4] = 0
+                Table[reg_44] = 0
                 args = "OswaldPath_Section1_Node4"
                 Disable(args)
                 if (_WhatAreWe == "PathToAirlock") then
@@ -1127,13 +1114,13 @@ NOS_BlotAlley_OswaldHintManipulator = function(target, _WhatAreWe, ...)
                   end
                   if (GetGlobal("NOS_BlotAlley_OswaldS1PathClear") == 4) then
                     if (CompletelyDisabled[1] == 0) then
-                      Table[5] = 1
+                      Table[reg_48] = 1
                       if (HintNodeShouldBeActive_S1[5] == 1) then
                         Enable("OswaldPath_Section1_Node5")
                       end
                     end
                   else
-                    Table[5] = 0
+                    Table[reg_48] = 0
                     Disable("OswaldPath_Section1_Node5")
                   end
                 end
@@ -1154,13 +1141,13 @@ NOS_BlotAlley_OswaldHintManipulator = function(target, _WhatAreWe, ...)
               end
               if (GetGlobal("NOS_BlotAlley_OswaldS1PathClear") == 4) then
                 if (CompletelyDisabled[1] == 0) then
-                  Table[5] = 1
+                  Table[reg_48] = 1
                   if (HintNodeShouldBeActive_S1[5] == 1) then
                     Enable("OswaldPath_Section1_Node5")
                   end
                 end
               else
-                Table[5] = 0
+                Table[reg_48] = 0
                 Disable("OswaldPath_Section1_Node5")
               end
             end
@@ -1168,7 +1155,7 @@ NOS_BlotAlley_OswaldHintManipulator = function(target, _WhatAreWe, ...)
         elseif (_WhatAreWe == "LastBalcony") then
           local args = {}
           if (args[1] == "Painted") then
-            Table[4] = 1
+            Table[reg_44] = 1
             if (HintNodeShouldBeActive_S1[4] == 1) then
               if (CompletelyDisabled[1] == 0) then
                 args = "OswaldPath_Section1_Node4"
@@ -1176,7 +1163,7 @@ NOS_BlotAlley_OswaldHintManipulator = function(target, _WhatAreWe, ...)
               end
             end
           elseif (args[1] == "Thinned") then
-            Table[4] = 0
+            Table[reg_44] = 0
             args = "OswaldPath_Section1_Node4"
             Disable(args)
             if (_WhatAreWe == "PathToAirlock") then
@@ -1195,13 +1182,13 @@ NOS_BlotAlley_OswaldHintManipulator = function(target, _WhatAreWe, ...)
               end
               if (GetGlobal("NOS_BlotAlley_OswaldS1PathClear") == 4) then
                 if (CompletelyDisabled[1] == 0) then
-                  Table[5] = 1
+                  Table[reg_48] = 1
                   if (HintNodeShouldBeActive_S1[5] == 1) then
                     Enable("OswaldPath_Section1_Node5")
                   end
                 end
               else
-                Table[5] = 0
+                Table[reg_48] = 0
                 Disable("OswaldPath_Section1_Node5")
               end
             end
@@ -1222,21 +1209,21 @@ NOS_BlotAlley_OswaldHintManipulator = function(target, _WhatAreWe, ...)
           end
           if (GetGlobal("NOS_BlotAlley_OswaldS1PathClear") == 4) then
             if (CompletelyDisabled[1] == 0) then
-              Table[5] = 1
+              Table[reg_48] = 1
               if (HintNodeShouldBeActive_S1[5] == 1) then
                 Enable("OswaldPath_Section1_Node5")
               end
             end
           else
-            Table[5] = 0
+            Table[reg_48] = 0
             Disable("OswaldPath_Section1_Node5")
           end
         end
       end
     elseif (_WhatAreWe == "Bell1Rung") then
       Print("__Bell 1 Rung! will deactivate all upper oswald hints on the balconies")
-      Table[2] = 0
-      Table[3] = 0
+      Table[reg_24] = 0
+      Table[reg_37] = 0
       Disable("OswaldPath_Section1_Node2")
       Disable("OswaldPath_Section1_Node3")
     elseif (_WhatAreWe == "ThirdBalcony") then
@@ -1258,7 +1245,7 @@ NOS_BlotAlley_OswaldHintManipulator = function(target, _WhatAreWe, ...)
         args = CompletelyDisabled
         args = args[1]
         if (args == 0) then
-          Table[3] = 1
+          Table[reg_37] = 1
           args = HintNodeShouldBeActive_S1
           args = args[3]
           if (args == 1) then
@@ -1267,13 +1254,13 @@ NOS_BlotAlley_OswaldHintManipulator = function(target, _WhatAreWe, ...)
           end
         end
       else
-        Table[3] = 0
+        Table[reg_37] = 0
         args = Disable
         args("OswaldPath_Section1_Node3")
         if (_WhatAreWe == "LastBalcony") then
           local args = {}
           if (args[1] == "Painted") then
-            Table[4] = 1
+            Table[reg_44] = 1
             if (HintNodeShouldBeActive_S1[4] == 1) then
               if (CompletelyDisabled[1] == 0) then
                 args = "OswaldPath_Section1_Node4"
@@ -1281,7 +1268,7 @@ NOS_BlotAlley_OswaldHintManipulator = function(target, _WhatAreWe, ...)
               end
             end
           elseif (args[1] == "Thinned") then
-            Table[4] = 0
+            Table[reg_44] = 0
             args = "OswaldPath_Section1_Node4"
             Disable(args)
             if (_WhatAreWe == "PathToAirlock") then
@@ -1300,13 +1287,13 @@ NOS_BlotAlley_OswaldHintManipulator = function(target, _WhatAreWe, ...)
               end
               if (GetGlobal("NOS_BlotAlley_OswaldS1PathClear") == 4) then
                 if (CompletelyDisabled[1] == 0) then
-                  Table[5] = 1
+                  Table[reg_48] = 1
                   if (HintNodeShouldBeActive_S1[5] == 1) then
                     Enable("OswaldPath_Section1_Node5")
                   end
                 end
               else
-                Table[5] = 0
+                Table[reg_48] = 0
                 Disable("OswaldPath_Section1_Node5")
               end
             end
@@ -1327,13 +1314,13 @@ NOS_BlotAlley_OswaldHintManipulator = function(target, _WhatAreWe, ...)
           end
           if (GetGlobal("NOS_BlotAlley_OswaldS1PathClear") == 4) then
             if (CompletelyDisabled[1] == 0) then
-              Table[5] = 1
+              Table[reg_48] = 1
               if (HintNodeShouldBeActive_S1[5] == 1) then
                 Enable("OswaldPath_Section1_Node5")
               end
             end
           else
-            Table[5] = 0
+            Table[reg_48] = 0
             Disable("OswaldPath_Section1_Node5")
           end
         end
@@ -1341,7 +1328,7 @@ NOS_BlotAlley_OswaldHintManipulator = function(target, _WhatAreWe, ...)
     elseif (_WhatAreWe == "LastBalcony") then
       local args = {}
       if (args[1] == "Painted") then
-        Table[4] = 1
+        Table[reg_44] = 1
         if (HintNodeShouldBeActive_S1[4] == 1) then
           if (CompletelyDisabled[1] == 0) then
             args = "OswaldPath_Section1_Node4"
@@ -1349,7 +1336,7 @@ NOS_BlotAlley_OswaldHintManipulator = function(target, _WhatAreWe, ...)
           end
         end
       elseif (args[1] == "Thinned") then
-        Table[4] = 0
+        Table[reg_44] = 0
         args = "OswaldPath_Section1_Node4"
         Disable(args)
         if (_WhatAreWe == "PathToAirlock") then
@@ -1368,13 +1355,13 @@ NOS_BlotAlley_OswaldHintManipulator = function(target, _WhatAreWe, ...)
           end
           if (GetGlobal("NOS_BlotAlley_OswaldS1PathClear") == 4) then
             if (CompletelyDisabled[1] == 0) then
-              Table[5] = 1
+              Table[reg_48] = 1
               if (HintNodeShouldBeActive_S1[5] == 1) then
                 Enable("OswaldPath_Section1_Node5")
               end
             end
           else
-            Table[5] = 0
+            Table[reg_48] = 0
             Disable("OswaldPath_Section1_Node5")
           end
         end
@@ -1395,13 +1382,13 @@ NOS_BlotAlley_OswaldHintManipulator = function(target, _WhatAreWe, ...)
       end
       if (GetGlobal("NOS_BlotAlley_OswaldS1PathClear") == 4) then
         if (CompletelyDisabled[1] == 0) then
-          Table[5] = 1
+          Table[reg_48] = 1
           if (HintNodeShouldBeActive_S1[5] == 1) then
             Enable("OswaldPath_Section1_Node5")
           end
         end
       else
-        Table[5] = 0
+        Table[reg_48] = 0
         Disable("OswaldPath_Section1_Node5")
       end
     end
@@ -1512,3 +1499,4 @@ NOS_BlotAlley_Section4ProjectorEntered = function(target)
   SetupPosition(target)
   return 
 end
+

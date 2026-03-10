@@ -66,3 +66,4 @@ Prefab_AdjustReapeatingHintTimer = function(target)
   Print(GetPropertyFloat(GetRelativePrefabEntity(target, ".LogicTimer"), "TimerInterval"))
   return 
 end
+

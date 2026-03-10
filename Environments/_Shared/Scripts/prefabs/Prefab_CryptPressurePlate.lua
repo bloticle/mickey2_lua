@@ -40,24 +40,24 @@ Prefab_CryptDoorGuardian_CryptEntered = function(target, _Entered)
   if (_Entered == "Enter") then
     Print((("__" .. tostring(GetName(_activator()))) .. " Entered the crypt!"))
     if (_activator() == _player()) then
-      data.PlayersInside[1] = 1
+      data.PlayersInside[reg_23] = 1
     else
-      data.PlayersInside[2] = 1
+      data.PlayersInside[reg_24] = 1
       if (_Entered == "Exit") then
         Print((("__" .. tostring(GetName(_activator()))) .. " Exited the crypt!"))
         if (_activator() == _player()) then
-          data.PlayersInside[1] = 0
+          data.PlayersInside[reg_23] = 0
         else
-          data.PlayersInside[2] = 0
+          data.PlayersInside[reg_24] = 0
         end
       end
     end
   elseif (_Entered == "Exit") then
     Print((("__" .. tostring(GetName(_activator()))) .. " Exited the crypt!"))
     if (_activator() == _player()) then
-      data.PlayersInside[1] = 0
+      data.PlayersInside[reg_23] = 0
     else
-      data.PlayersInside[2] = 0
+      data.PlayersInside[reg_24] = 0
     end
   end
   Print(((("__PlayersInside[1]: " .. tostring(data.PlayersInside[1])) .. ", [2]: ") .. tostring(data.PlayersInside[2])))
@@ -94,3 +94,4 @@ Prefab_CryptDoorGuardian_HeadTracker = function(target, _Direction)
   end
   return 
 end
+

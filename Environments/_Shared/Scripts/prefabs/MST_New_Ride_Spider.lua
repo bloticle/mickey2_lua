@@ -40,7 +40,6 @@ IGC_0340_block = 0
 IGC_0345_block = 0
 IGC_0350_block = 0
 NewRide_Second_visitSetup = function()
-  return 
 end
 Observatory_setup_Func = function()
   ObservatoryItem_Activate(GetGlobal("MSS_ObservatoryItem_Ride"), "9")
@@ -1543,7 +1542,6 @@ NewRide_Awards = function()
   return 
 end
 NewRide_Transition = function()
-  return 
 end
 local masksStopped = true
 SpiderBoss_MaskAudio = function(speed)
@@ -1573,3 +1571,4 @@ SpiderBoss_MaskAudio = function(speed)
   end
   return 
 end
+

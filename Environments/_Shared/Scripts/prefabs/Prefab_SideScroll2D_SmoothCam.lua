@@ -68,3 +68,4 @@ Prefab_SmoothCam_CustomRescue = function(target, instigator)
   end
   return 
 end
+

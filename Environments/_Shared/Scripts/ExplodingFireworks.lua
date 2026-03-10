@@ -34,3 +34,4 @@ ExplodingFireworks_DestroyEnemy = function(activator, event)
   end
   return 
 end
+

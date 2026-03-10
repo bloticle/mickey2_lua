@@ -33,10 +33,9 @@ prefab_CactusAppleSpawned = function(target, setup)
     apple = AudioPostEventOn
     apple(target, "Play_sfx_dg1_cactus_apple_spawn")
     apple = 1
-    local (for index), (for limit) = 10, 1
-    for (for step) = apple, (for index), (for limit) do
+    for i = apple, 10 do
       i = SetVisualScale
-      i(apple, (0 + ((for step) * 0.10000000149011612)))
+      i(apple, (0 + (i * 0.10000000149011612)))
       i = wait
       i(0)
     end
@@ -58,3 +57,4 @@ Prefab_CactusBreakApple = function(target)
   Print("Prefab_CactusBreakApple: Done")
   return 
 end
+

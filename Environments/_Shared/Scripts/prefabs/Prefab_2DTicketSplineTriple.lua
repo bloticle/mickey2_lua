@@ -50,50 +50,30 @@ Prefab_TicketRain = function(target)
     Enable(GetRelativePrefabEntity(target, ".ETicket2"))
     Enable(GetRelativePrefabEntity(target, ".ETicket3"))
   else
-    local (for index), (for limit), (for step) = 1, 3, 1
-    for x = (for index), (for limit), (for step) do
+    for x = 1, 3 do
       if (data.TicketOrder[x] == 1) then
         wait(((math.random(8) + 2) / 10))
         Prefab_PickTicket_ToSpawn(x)
         Enable(GetRelativePrefabEntity(target, (".ETicket" .. tostring(x))))
       end
     end
-    local (for index), (for limit), (for step) = 1, 3, 1
-    for x = (for index), (for limit), (for step) do
-      (for index) = data.TicketOrder
-      (for index) = (for index)[x]
-      if ((for index) == 2) then
-        (for index) = wait
-        (for limit) = math
-        (for limit) = (for limit).random
-        (for step) = 8
-        (for limit) = (for limit)((for step))
-        (for limit) = ((for limit) + 2)
-        (for limit) = ((for limit) / 10)
-        (for index)((for limit))
-        (for index) = Prefab_PickTicket_ToSpawn
-        (for limit) = x
-        (for index)((for limit))
-        (for index) = Enable
-        (for limit) = GetRelativePrefabEntity
-        (for step) = target
+    for x = 1, 3 do
+      if (data.TicketOrder[x] == 2) then
+        wait(((math.random(8) + 2) / 10))
+        Prefab_PickTicket_ToSpawn(x)
         x = ".ETicket"
         x = (x .. tostring(x))
-        (for limit) = (for limit)((for step), x)
-        (for index)((for limit))
+        Enable(GetRelativePrefabEntity(target, x))
       end
     end
-    local (for index), (for limit), (for step) = 1, 3, 1
-    for x = (for index), (for limit), (for step) do
+    for x = 1, 3 do
       if (data.TicketOrder[x] == 3) then
         wait(((math.random(8) + 2) / 10))
         Prefab_PickTicket_ToSpawn(x)
-        (for index) = tostring
-        (for limit) = x
-        (for index) = (for index)((for limit))
-        Enable(GetRelativePrefabEntity(target, (".ETicket" .. (for index))))
+        Enable(GetRelativePrefabEntity(target, (".ETicket" .. tostring(x))))
       end
     end
   end
   return 
 end
+

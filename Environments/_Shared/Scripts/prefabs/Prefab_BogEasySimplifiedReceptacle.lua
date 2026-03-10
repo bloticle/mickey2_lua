@@ -68,3 +68,4 @@ Prefab_SimplifiedReceptacle_ShockSwitch = function(target)
   OswaldStreamAction("TrainStation_ReceptacleSwitch")
   return 
 end
+

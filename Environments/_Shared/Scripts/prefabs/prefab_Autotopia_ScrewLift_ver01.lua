@@ -20,8 +20,7 @@ end
 TCY_ShowGeyser = function(target)
   local data = GetPrefabData(target)
   local lift = GetRelativePrefabEntity(target, ".GuardianPool_Geyser 01")
-  local (for index), (for limit), (for step) = 0, 1, 0.02500000037252903
-  for a = (for index), (for limit), (for step) do
+  for a = 0, 1, 0.02500000037252903 do
     SetVisualScale(lift, a)
     Wait(0.05000000074505806)
   end
@@ -94,3 +93,4 @@ TCY_GeyserLaunch_Extended = function(target)
   Print((("*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_* TCY_GeyserLaunch_Extended called for " .. target) .. "!!"))
   return 
 end
+

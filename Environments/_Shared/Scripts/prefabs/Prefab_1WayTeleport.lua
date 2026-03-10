@@ -18,3 +18,4 @@ Prefab_1WayTeleport = function(target)
   UnrestrictCutSceneInput()
   return 
 end
+

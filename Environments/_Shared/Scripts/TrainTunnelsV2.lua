@@ -6,3 +6,4 @@ TRT_VisitSpecificSetup = function(target)
   AnimGBSequence("TRT_ProgressionDoor", "Open")
   return 
 end
+

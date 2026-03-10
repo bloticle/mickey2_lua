@@ -101,3 +101,4 @@ NOS_BogEasy_MagicShop_Upgrade = function(target)
   NOS_BogEasy_SaveCheckpoint("CHECKPOINT_OldTown")
   return 
 end
+

@@ -6,8 +6,7 @@ Prefab_ToonGearElectricityMachine_SwitchCheck = function(target, state)
     FireUser2(data.ObjectToActivate)
     ForEachEntityInPrefab(SetRotatorMaxSpeed, GetRelativePrefabEntity(target, ".Gears"), 0)
   else
-    local (for index), (for limit), (for step) = 1, 3, 1
-    for i = (for index), (for limit), (for step) do
+    for i = 1, 3 do
       if GetPropertyBool(GetRelativePrefabEntity(target, (".Gear" .. tostring(i))), "Is Painted") then
         painted_gears = (painted_gears + 1)
       end
@@ -53,3 +52,4 @@ Prefab_MoveGearDoorCovers = function(target, direction)
   end
   return 
 end
+

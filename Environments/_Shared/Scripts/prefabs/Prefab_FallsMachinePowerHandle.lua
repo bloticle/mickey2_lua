@@ -58,3 +58,4 @@ Prefab_EndHandleCam = function(target)
   ClearCameraAttributesForPlayer(GetRelativePrefabEntity(target, ".HandleCameraOverride"), _activator(), 1)
   return 
 end
+

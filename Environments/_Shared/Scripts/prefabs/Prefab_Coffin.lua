@@ -1,8 +1,7 @@
 Prefab_Coffin_AlwaysSetup = function(target)
   Print("__Function: Prefab_Coffin_AlwaysSetup")
   local data = GetPrefabData(target)
-  local (for index), (for limit), (for step) = 1, 4, 1
-  for x = (for index), (for limit), (for step) do
+  for x = 1, 4 do
     if (GetGlobal((("NOS_BogEasy_Gravestone" .. tostring(x)) .. "Placed")) == 1) then
       Print(("__Destroying trigger: " .. tostring(x)))
       DestroyEntity(GetRelativePrefabEntity(target, ((".Coffin" .. tostring(x)) .. "_AttachTrigger")))
@@ -152,3 +151,4 @@ Prefab_CoffinItemGateTriggerLeave = function()
   end
   return 
 end
+

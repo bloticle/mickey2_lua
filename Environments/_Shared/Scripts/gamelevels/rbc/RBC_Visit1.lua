@@ -112,5 +112,5 @@ RBC_LoadMazeMelee = function()
   return 
 end
 RBC_DevilCritPathUpdate = function()
-  return 
 end
+

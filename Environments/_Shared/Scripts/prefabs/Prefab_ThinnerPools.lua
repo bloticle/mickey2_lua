@@ -7,7 +7,7 @@ Prefab_GuardianPool_Setup = function(target)
   local EmptyWeights = 0
   if (data.GP_PaintedObjects[1] == "Global") then
     Print("*_*_*_*_*_*_* Prefab_GuardianPool_Setup: You forgot to name the GP Global. Guardian Pool may not function correctly. SETTING OneShot Weight to 0")
-    data.GP_Weights[1] = 0
+    data.GP_Weights[reg_8] = 0
     OneShotEmpty = true
     EmptyWeights = (EmptyWeights + 1)
   elseif (GetGlobal(data.GP_PaintedObjects[1]) == -1) then
@@ -15,13 +15,13 @@ Prefab_GuardianPool_Setup = function(target)
   end
   if (data.GP_Jigsaw[1] == "EntityGroupName") then
     Print("*_*_*_*_*_*_* Prefab_GuardianPool_Setup: Jigsaw Entity Group Name not set up. Assuming No Jigsaw")
-    data.GP_Weights[2] = 0
+    data.GP_Weights[reg_20] = 0
     JigsawEmpty = true
     EmptyWeights = (EmptyWeights + 1)
   end
   if (data.GP_QuestGlobal[1] == "None") then
     Print("*_*_*_*_*_*_* Prefab_GuardianPool_Setup: Quest Global not Setup. Assuming No Quest Global or Non Toon Objects")
-    data.GP_Weights[3] = 0
+    data.GP_Weights[reg_27] = 0
     QuestEmpty = true
     EmptyWeights = (EmptyWeights + 1)
   end
@@ -40,32 +40,31 @@ Prefab_GuardianPool_Setup = function(target)
       Print("*_*_*_*_*_*_* Prefab_GuardianPool_Setup: total_weight ~= 100: So Dividing up the Missing Weight!")
       local MissingWeight = ((100 - total_weight) / (3 - EmptyWeights))
       if (not OneShotEmpty) then
-        data.GP_Weights[1] = (data.GP_Weights[1] + MissingWeight)
+        data.GP_Weights[data.GP_Weights] = (data.GP_Weights[1] + MissingWeight)
       end
       if (not JigsawEmpty) then
-        data.GP_Weights[2] = (data.GP_Weights[2] + MissingWeight)
+        data.GP_Weights[reg_20] = (data.GP_Weights[2] + MissingWeight)
       end
       if (not QuestEmpty) then
-        data.GP_Weights[3] = (data.GP_Weights[3] + MissingWeight)
+        data.GP_Weights[reg_27] = (data.GP_Weights[3] + MissingWeight)
       end
       Print(((((("*_*_*_*_*_*_* Prefab_GuardianPool_Setup: NEW WEIGHTS: data.GP_Weights[1] = " .. data.GP_Weights[1]) .. " & data.GP_Weights[2] = ") .. data.GP_Weights[2]) .. " & data.GP_Weights[3] = ") .. data.GP_Weights[3]))
     end
   end
   Print(("*_*_*_*_*_*_* Prefab_GuardianPool_Setup: Checking Jump Volumes for " .. data.GuardianNames))
-  data.GP_JumpVolume[3] = "Valid"
-  data.GP_JumpVolume[4] = "Valid"
-  local (for index), (for index), (for limit), (for step) = 1, 2, 1, " & data.GP_Weights[2] = "
-  for (for step) = (for index), (for index), (for limit) do
+  data.GP_JumpVolume[reg_27] = "Valid"
+  data.GP_JumpVolume[reg_40] = "Valid"
+  for i = 1, 2 do
     i = IsValidHandle
-    i = i(data.GP_JumpVolume[(for step)])
+    i = i(data.GP_JumpVolume[i])
     if i then
       i = Print
-      i(((("*_*_*_*_*_*_* Prefab_GuardianPool_Setup: " .. data.GP_JumpVolume[(for step)]) .. " exisits for ") .. data.GuardianNames))
+      i(((("*_*_*_*_*_*_* Prefab_GuardianPool_Setup: " .. data.GP_JumpVolume[i]) .. " exisits for ") .. data.GuardianNames))
     else
       i = Print
-      i((((("*_*_*_*_*_*_* Prefab_GuardianPool_Setup: " .. data.GP_JumpVolume[(for step)]) .. " does not exisit for ") .. data.GuardianNames) .. ". Will Skip setting when state changes"))
+      i((((("*_*_*_*_*_*_* Prefab_GuardianPool_Setup: " .. data.GP_JumpVolume[i]) .. " does not exisit for ") .. data.GuardianNames) .. ". Will Skip setting when state changes"))
       i = data.GP_JumpVolume
-      i[(for step)] = "Skip"
+      i[i] = "Skip"
     end
   end
   data.GP_State = "Startup"
@@ -249,8 +248,7 @@ Prefab_GetGuardianPool_PaintedPercentage = function(data)
   local before, JigsawPercentage = 0, 0
   if (data.GP_Jigsaw[1] ~= "EntityGroupName") then
     if (n ~= 0) then
-      local (for index), (for limit), (for step) = 1, n, 1
-      for i = (for index), (for limit), (for step) do
+      for i = 1, n do
         JigsawPercentage = --[[ return 2 of ]] Jigsaw_GetPercentagePainted((data.GP_Jigsaw[1] .. i))
         before = Jigsaw_GetPercentagePainted((data.GP_Jigsaw[1] .. i))
         JigsawValue = (JigsawValue + (JigsawPercentage * data.GP_Jigsaw[(i + 1)]))
@@ -491,8 +489,7 @@ Prefab_SpawnGuardians = function(target)
     SetPropertyInt(GuardianSpawner, "Index To Spawn", 1)
   end
   if (1 < data.GuardianCount) then
-    local (for index), (for limit), (for step) = 1, data.GuardianCount, 1
-    for i = (for index), (for limit), (for step) do
+    for i = 1, data.GuardianCount do
       Print("FOR LOOP SPAWN")
       ForceSpawn(GetRelativePrefabEntity(target, ".GuardianSpawner"), 1)
       Wait(2)
@@ -517,3 +514,4 @@ Prefab_GenericGiveGuardian = function(target, type)
   DestroyEntity(target)
   return 
 end
+

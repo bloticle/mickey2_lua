@@ -323,10 +323,9 @@ Prefab_SpawnItem_ItemCheck = function(target, _FromToon)
       numChildren = AudioPostEventOn
       numChildren(target, "Play_sfx_Spawner_Spawn")
       numChildren = 0
-      local (for index), (for limit) = spawnedObjs, 1
-      for (for step) = numChildren, (for index), (for limit) do
+      for i = numChildren, spawnedObjs do
         i = GetChildEntityByIndex
-        i = i(spawnedObjs[1], (for step))
+        i = i(spawnedObjs[1], i)
         local childEntity = spawnedObjs[1]
         childEntity = PlayerPickup_SetPendingActivation
         childEntity(i, 0.800000011920929)
@@ -408,8 +407,7 @@ Pickup_Attach_Item_To_Animation = function(target)
 end
 Prefab_DetachChildrenAndRemove = function(target)
   local numChildren = GetElementCount(target, "Child Entities")
-  local (for index), (for limit), (for step) = 0, numChildren, 1
-  for i = (for index), (for limit), (for step) do
+  for i = 0, numChildren do
     local childEntity = GetChildEntityByIndex(target, i)
     ClearParent(childEntity)
   end
@@ -493,3 +491,4 @@ Prefab_SpawnItem_Jigsaw = function(target, event)
   end
   return 
 end
+

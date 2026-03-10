@@ -171,8 +171,7 @@ end
 OST_PumpCheck = function(target, pump)
   pump = tonumber(pump)
   local pumpvar = ("OST_ThinnerPump" .. tostring(pump))
-  local (for index), (for limit), (for step) = 1, 3, 1
-  for i = (for index), (for limit), (for step) do
+  for i = 1, 3 do
     if (pump == i) then
       if (GetGlobal(pumpvar) == 0) then
         SetGlobal(pumpvar, 1)
@@ -184,3 +183,4 @@ OST_PumpCheck = function(target, pump)
   end
   return 
 end
+

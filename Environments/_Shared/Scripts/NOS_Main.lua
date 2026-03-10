@@ -369,7 +369,7 @@ NOS_BogEasy_ExitBuilding = function(target, _WhichBuilding)
     Prefab_FireworksManager_StreamZoneIn("FireworksManager", "A")
     if (GetGlobal("NOS_BogEasy_FirstVisit") ~= 1) then
       Prefab_BunniesForBunnyHat_PlaceBunniesInSection(nil, "LouisShack")
-      GetPrefabData("TrainStationExplosion").FancyCamEndFireUser[1] = "AutoFire"
+      GetPrefabData("TrainStationExplosion").FancyCamEndFireUser[reg_28] = "AutoFire"
       FireUser2("TrainStationExplosion")
     end
     NOS_BogEasy_SaveCheckpoint("CHECKPOINT_ShantyShop_LouisShack")
@@ -475,27 +475,27 @@ InDoorTrigger = {0, 0, 0, 0, 0, 0}
 NOS_BogEasy_OpenDoorTriggerEntered = function(target, _WhichDoor)
   if (_WhichDoor == "LouisShack") then
     if (InDoorTrigger[1] == 0) then
-      InDoorTrigger[1] = 1
+      InDoorTrigger[reg_4] = 1
     else
       return 
       if (InDoorTrigger[2] == 0) then
-        InDoorTrigger[2] = 1
+        InDoorTrigger[reg_7] = 1
       else
         return 
         if (InDoorTrigger[3] == 0) then
-          InDoorTrigger[3] = 1
+          InDoorTrigger[reg_9] = 1
         else
           return 
           if (InDoorTrigger[4] == 0) then
-            InDoorTrigger[4] = 1
+            InDoorTrigger[reg_11] = 1
           else
             return 
             if (InDoorTrigger[5] == 0) then
-              InDoorTrigger[5] = 1
+              InDoorTrigger[reg_13] = 1
             else
               return 
               if (InDoorTrigger[6] == 0) then
-                InDoorTrigger[6] = 1
+                InDoorTrigger[reg_15] = 1
               else
                 return 
               end
@@ -506,23 +506,23 @@ NOS_BogEasy_OpenDoorTriggerEntered = function(target, _WhichDoor)
     end
   elseif (_WhichDoor == "BookStore") then
     if (InDoorTrigger[2] == 0) then
-      InDoorTrigger[2] = 1
+      InDoorTrigger[reg_7] = 1
     else
       return 
       if (InDoorTrigger[3] == 0) then
-        InDoorTrigger[3] = 1
+        InDoorTrigger[reg_9] = 1
       else
         return 
         if (InDoorTrigger[4] == 0) then
-          InDoorTrigger[4] = 1
+          InDoorTrigger[reg_11] = 1
         else
           return 
           if (InDoorTrigger[5] == 0) then
-            InDoorTrigger[5] = 1
+            InDoorTrigger[reg_13] = 1
           else
             return 
             if (InDoorTrigger[6] == 0) then
-              InDoorTrigger[6] = 1
+              InDoorTrigger[reg_15] = 1
             else
               return 
             end
@@ -532,19 +532,19 @@ NOS_BogEasy_OpenDoorTriggerEntered = function(target, _WhichDoor)
     end
   elseif (_WhichDoor == "ShantyShop") then
     if (InDoorTrigger[3] == 0) then
-      InDoorTrigger[3] = 1
+      InDoorTrigger[reg_9] = 1
     else
       return 
       if (InDoorTrigger[4] == 0) then
-        InDoorTrigger[4] = 1
+        InDoorTrigger[reg_11] = 1
       else
         return 
         if (InDoorTrigger[5] == 0) then
-          InDoorTrigger[5] = 1
+          InDoorTrigger[reg_13] = 1
         else
           return 
           if (InDoorTrigger[6] == 0) then
-            InDoorTrigger[6] = 1
+            InDoorTrigger[reg_15] = 1
           else
             return 
           end
@@ -553,15 +553,15 @@ NOS_BogEasy_OpenDoorTriggerEntered = function(target, _WhichDoor)
     end
   elseif (_WhichDoor == "ShantyShop_LouisShack") then
     if (InDoorTrigger[4] == 0) then
-      InDoorTrigger[4] = 1
+      InDoorTrigger[reg_11] = 1
     else
       return 
       if (InDoorTrigger[5] == 0) then
-        InDoorTrigger[5] = 1
+        InDoorTrigger[reg_13] = 1
       else
         return 
         if (InDoorTrigger[6] == 0) then
-          InDoorTrigger[6] = 1
+          InDoorTrigger[reg_15] = 1
         else
           return 
         end
@@ -569,18 +569,18 @@ NOS_BogEasy_OpenDoorTriggerEntered = function(target, _WhichDoor)
     end
   elseif (_WhichDoor == "Forge") then
     if (InDoorTrigger[5] == 0) then
-      InDoorTrigger[5] = 1
+      InDoorTrigger[reg_13] = 1
     else
       return 
       if (InDoorTrigger[6] == 0) then
-        InDoorTrigger[6] = 1
+        InDoorTrigger[reg_15] = 1
       else
         return 
       end
     end
   elseif (_WhichDoor == "MagicShop") then
     if (InDoorTrigger[6] == 0) then
-      InDoorTrigger[6] = 1
+      InDoorTrigger[reg_15] = 1
     else
       return 
     end
@@ -652,17 +652,17 @@ end
 NOS_BogEasy_OpenDoorTriggerExited = function(target, _WhichDoor)
   Print("___Function: NOS_BogEasy_OpenDoorTriggerExited")
   if (_WhichDoor == "LouisShack") then
-    InDoorTrigger[1] = 0
+    InDoorTrigger[reg_8] = 0
   elseif (_WhichDoor == "BookStore") then
-    InDoorTrigger[2] = 0
+    InDoorTrigger[reg_11] = 0
   elseif (_WhichDoor == "ShantyShop") then
-    InDoorTrigger[3] = 0
+    InDoorTrigger[reg_13] = 0
   elseif (_WhichDoor == "ShantyShop_LouisShack") then
-    InDoorTrigger[4] = 0
+    InDoorTrigger[reg_15] = 0
   elseif (_WhichDoor == "Forge") then
-    InDoorTrigger[5] = 0
+    InDoorTrigger[reg_17] = 0
   elseif (_WhichDoor == "MagicShop") then
-    InDoorTrigger[6] = 0
+    InDoorTrigger[reg_19] = 0
   end
   if (GetGlobal("NOS_BogEasy_FirstVisit") == 1) then
     if (_WhichDoor ~= "LouisShack") then
@@ -707,16 +707,14 @@ NOS_BogEasy_ToonStateChanged = function(target, _Type, _State, _GlobalSection, _
     local Value = tostring(GetGlobal(Global))
     Print(((("__Global: " .. tostring(Global)) .. " Value: ") .. tostring(Value)))
     local TableToReturn = {-1, -1, -1, -1}
-    local (for index), (for limit), (for step) = 2, 5, 1
-    for x = (for index), (for limit), (for step) do
+    for x = 2, 5 do
       TableToReturn[(x - 1)] = tonumber(string.sub(Value, x, x))
     end
     return TableToReturn
   end
   local ConvertTableToGlobalValue = function(Table)
     local StringToReturn = "1"
-    local (for index), (for limit), (for step) = 1, 4, 1
-    for x = (for index), (for limit), (for step) do
+    for x = 1, 4 do
       StringToReturn = (StringToReturn .. tostring(Table[x]))
     end
     Print(("__Will return string value: " .. tostring(StringToReturn)))
@@ -1173,3 +1171,4 @@ NOS_BogEasy_MagicShopNavmeshToggle = function(target)
   end
   return 
 end
+

@@ -6,10 +6,8 @@ YS_BroomBucketPour = function(target)
   return 
 end
 YS_BroomShowWater = function(reg_0)
-  return 
 end
 YS_BroomHideWater = function(reg_0)
-  return 
 end
 YS_DestroyBroom = function(target)
   DestroyEntity(_self())
@@ -26,3 +24,4 @@ YS_Broom_StimReact = function(target)
   DestroyEntity(_self())
   return 
 end
+

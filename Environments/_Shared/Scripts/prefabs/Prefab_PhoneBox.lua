@@ -1,8 +1,7 @@
 Prefab_PhoneBox_AlwaysSetup = function(target)
   Print("__Function: Prefab_PhoneBox_AlwaysSetup")
   local data = GetPrefabData(target)
-  local (for index), (for limit), (for step) = 1, 3, 1
-  for x = (for index), (for limit), (for step) do
+  for x = 1, 3 do
     if (data.Globals[x] == "None") then
       Print((("__GLOBAL IN OVERRIDE SLOT [" .. tostring(x)) .. "] WAS NOT OVERRIDDEN"))
     elseif (GetGlobal(data.Globals[x]) == 1) then
@@ -170,3 +169,4 @@ Prefab_PhoneBox_QuestComplete = function()
   end
   return 
 end
+

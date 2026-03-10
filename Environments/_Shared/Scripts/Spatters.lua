@@ -124,3 +124,4 @@ SlobberAllowStomp_Off = function()
   SetPropertyBool(_self(), "AllowStomp", false)
   return 
 end
+

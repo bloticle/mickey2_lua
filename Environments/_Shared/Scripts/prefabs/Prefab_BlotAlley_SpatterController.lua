@@ -4,8 +4,7 @@ Prefab_SpatterController_AlwaysSetup = function(target)
   Print("__Function: Prefab_SpatterController_AlwaysSetup")
   local data = GetPrefabData(prefabTarget)
   Hide(GetRelativePrefabEntity(target, ".Shockwave"))
-  local (for index), (for limit), (for step) = 1, 19, 1
-  for x = (for index), (for limit), (for step) do
+  for x = 1, 19 do
     local SectionNum = 0
     local BlotlingNum = 0
     if (x == 1) then
@@ -112,8 +111,7 @@ end
 Prefab_SpatterController_PrintCurrentGlobalsValues = function()
   Print("__Function(INTERNAL): Prefab_SpatterController_PrintCurrentGlobalsValues")
   local data = GetPrefabData(prefabTarget)
-  local (for index), (for limit), (for step) = 1, 19, 1
-  for x = (for index), (for limit), (for step) do
+  for x = 1, 19 do
     local value = GetGlobal(data.Globals[x])
     local state = ""
     if (value == 1) then
@@ -780,8 +778,10 @@ Prefab_SpatterController_BellRung = function(target, _event, _Section, _Blotling
         end
       else
         return 
-        Prefab_SpatterController_TryAbortBell(target, _Section, _BlotlingNum)
-        return 
+        if (DeltaZDistance >= 1.2000000476837158) then
+          Prefab_SpatterController_TryAbortBell(target, _Section, _BlotlingNum)
+          return 
+        end
         local CurrentIndex = Prefab_SpatterController_SetCurrentBlotlingIndex(_Section, _BlotlingNum)
         SetGlobal(data.Globals[CurrentIndex], -2)
         ForceSequence("NOS_BlotAlley_Gus", "NOS_BlotAlley_Gus_RangBell")
@@ -906,8 +906,7 @@ Prefab_SpatterController_GusAirlockMood = function(target)
   Prefab_SpatterController_PrintCurrentGlobalsValues()
   local Friended = 0
   local Thinned = 0
-  local (for index), (for limit), (for step) = 1, 6, 1
-  for x = (for index), (for limit), (for step) do
+  for x = 1, 6 do
     local value = GetGlobal(data.Globals[x])
     if (value == 1) then
       Friended = (Friended + 1)
@@ -940,8 +939,7 @@ Prefab_SpatterController_IanProgressCheck = function(target)
   Prefab_SpatterController_PrintCurrentGlobalsValues()
   local Friended = 0
   local Thinned = 0
-  local (for index), (for limit), (for step) = 1, 17, 1
-  for x = (for index), (for limit), (for step) do
+  for x = 1, 17 do
     if (x ~= 7) then
       if (x ~= 10) then
         local value = GetGlobal(data.Globals[x])
@@ -994,3 +992,4 @@ Prefab_SpatterController_IanProgressCheck = function(target)
   ForceSequence("NOS_BlotAlley_Ian", ThinnedPercentage)
   return 
 end
+

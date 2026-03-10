@@ -396,5 +396,5 @@ NOS_BogEasy_Visit1_IanBark = function(target, _Section)
   return 
 end
 Blitz_Culling = function(reg_0, reg_1)
-  return 
 end
+

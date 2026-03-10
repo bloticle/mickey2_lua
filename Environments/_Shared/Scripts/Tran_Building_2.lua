@@ -248,8 +248,7 @@ Building2_ActionSpotsDone = function(target, side)
         DecrementAbilityDisabled(GetPlayer(), "Toss")
         Print("Building2_ActionSpotsDone is deactivating action spots")
         wait(1)
-        local (for index), (for limit), (for step) = 1, 9, 1
-        for x = (for index), (for limit), (for step) do
+        for x = 1, 9 do
           Disable(("Building2_ActionSpot_Top" .. tostring(x)))
           Disable(("Building2_ActionSpot_Bottom" .. tostring(x)))
         end
@@ -261,3 +260,4 @@ Building2_ActionSpotsDone = function(target, side)
   end
   return 
 end
+

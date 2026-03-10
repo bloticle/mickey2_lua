@@ -43,8 +43,7 @@ Mech_Stream = function()
   return 
 end
 MechTurret_SpawnJunk = function()
-  local (for index), (for limit), (for step) = 1, 6, 1
-  for num = (for index), (for limit), (for step) do
+  for num = 1, 6 do
     ForEachEntityInGroup(ForceSpawn, ("InsideSpawnerGroup1 " .. num), 1)
     Wait(0.10000000149011612)
     ForEachEntityInGroup(ForceSpawn, ("InsideSpawnerGroup2 " .. num), 1)
@@ -109,3 +108,4 @@ TEMP_TimerForArcadeMech = function()
   end
   return 
 end
+

@@ -12815,3 +12815,4 @@ MSN_CinemaPortal_PrescottArena02 = function()
   LoadLevel(GetPlayer(), "FTL_PrescottsArena.Inside")
   return 
 end
+

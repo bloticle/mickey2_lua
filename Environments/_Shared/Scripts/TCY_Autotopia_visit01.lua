@@ -1384,3 +1384,4 @@ AUT_MagicHatQuest_GildaPhoto = function(target, event, obj)
   end
   return 
 end
+

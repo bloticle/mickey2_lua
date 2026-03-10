@@ -120,3 +120,4 @@ MasksRePaint = function(masks)
   ForceSketched(GetRelativePrefabEntity(masks, ".MaskRotator 06"))
   return 
 end
+

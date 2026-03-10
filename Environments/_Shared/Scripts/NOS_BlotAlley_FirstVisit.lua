@@ -57,7 +57,6 @@ NOS_BlotAlley_FirstCameraShot = function(target)
   return 
 end
 NOS_BlotAlley_ClearFirstCamera = function(reg_0)
-  return 
 end
 NOS_BlotAlley_SpladooshTraining = function(target)
   FireSequence("NOS_BlotAlley_Gus", "NOS_BlotAlley_Gus_SpladooshTraining")
@@ -100,3 +99,4 @@ NOS_BlotAlley_GusBrokenBuildingHint = function(target)
   FireSequence("NOS_BlotAlley_Gus", "NOS_BlotAlley_Gus_BrokenBuildingHint")
   return 
 end
+

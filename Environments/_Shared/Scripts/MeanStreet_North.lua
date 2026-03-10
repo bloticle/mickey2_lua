@@ -51,8 +51,8 @@ MSTN_AlwaysSetupVisit2 = function()
         ForEachEntityInGroup(Unhide, "MSN_Fishhead_OswaldSwitch")
         DestroyEntity("MSN_VaultSign")
         local DECData = GetPrefabData("MSN_DEC_Activator")
-        DECData.HardLoadExitFunction[1] = "Reverse"
-        DECData.HardLoadExitFunction[2] = "MSN_LoadCheckPoint"
+        DECData.HardLoadExitFunction[reg_10] = "Reverse"
+        DECData.HardLoadExitFunction[reg_8] = "MSN_LoadCheckPoint"
         Prefab_DECFoopToob_AlwaysSetup("MSN_DEC_Activator")
         SetGlobal("MSN_HermanQuadrantTracker", 0)
         if (GetGlobal("MSN_UndermillPipeDoor") == 1) then
@@ -511,18 +511,14 @@ MSTN_AlwaysSetup = function()
     screens_activated = 2
     if (screens_activated <= GetGlobal(screens_activated)) then
       screens_activated = 5
-      local (for index), (for index) = 1, 1
-      for (for limit) = (for index), screens_activated, (for index) do
-        (for step) = GetGlobal
+      for i = 1, screens_activated do
         i = "MSN_GremlinPartsBin"
-        i = (i .. (for limit))
-        (for step) = (for step)(i)
+        i = (i .. i)
         i = 1
-        if (i <= (for step)) then
-          (for step) = DestroyEntity
+        if (i <= GetGlobal(i)) then
           i = "MSN_MissingParts0"
-          i = (i .. (for limit))
-          (for step)(i)
+          i = (i .. i)
+          DestroyEntity(i)
         end
       end
     end
@@ -3583,7 +3579,6 @@ MSN_FixSecretDoor = function()
   return 
 end
 MSN_ActivateSecretLedgeHidden = function()
-  return 
 end
 MSN_ShockSecretPanel = function()
   OswaldStreamAction("MSN_OswaldSecretWallTarget")
@@ -3932,3 +3927,4 @@ MSN_ClosetTreasureObtained = function()
   SetGlobal("MSN_UndermillPipeDoor", 2)
   return 
 end
+

@@ -81,8 +81,7 @@ OsTown_Setup_Shared = function(state)
   end
   local superPlaced = false
   local pumpsPlaced = {0, 0, 0}
-  local (for index), (for limit), (for step) = 1, 3, 1
-  for i = (for index), (for limit), (for step) do
+  for i = 1, 3 do
     local global_PumpStatus = GetGlobal((("OST_Pump" .. i) .. "Status"))
     if (global_PumpStatus == 0) then
       if (GetGlobal("OST_PumpPlaced") == 1) then
@@ -145,36 +144,24 @@ OsTown_Setup_Shared = function(state)
   end
   if superPlaced then
     Print("Super Charge Pump placed, so lets wreck some things")
-    local (for index), (for limit), (for step) = 1, 3, 1
-    for i = (for index), (for limit), (for step) do
+    for i = 1, 3 do
       if (pumpsPlaced[i] == 0) then
         Print("Found a Pump station that doesnt have a pump on it so messing it up.")
-        (for index) = i
-        StopEmitters(("OST_Pump_ThinnerFX" .. (for index)))
-        (for index) = i
-        StartEmitters(("OST_Pump_ThinnerFXHigh" .. (for index)))
-        (for index) = i
-        (for index) = "Play_sfx_Geyser_lp"
-        AudioPostEventOn(("ost_center_art_01.OST_center_01a_pumpPad_01a 0" .. (for index)), (for index))
+        StopEmitters(("OST_Pump_ThinnerFX" .. i))
+        StartEmitters(("OST_Pump_ThinnerFXHigh" .. i))
+        AudioPostEventOn(("ost_center_art_01.OST_center_01a_pumpPad_01a 0" .. i), "Play_sfx_Geyser_lp")
         local trigger = ("Trigger_PumpFXDamage" .. i)
-        (for index) = trigger
-        local triggerLoc = GetPosition((for index))
-        (for index) = Enable
-        (for limit) = trigger
-        (for index)((for limit))
-        (for index) = SetTransformation
-        (for limit) = trigger
-        (for step) = vector4
+        local triggerLoc = GetPosition(trigger)
+        Enable(trigger)
         i = triggerLoc.x
         trigger = triggerLoc.y
         trigger = (trigger + 1.5)
         triggerLoc = triggerLoc.z
-        (for step) = (for step)(i, trigger, triggerLoc)
         i = vector4
         trigger = 0
         triggerLoc = 0
         i = i(trigger, triggerLoc, 0)
-        (for index)((for limit), (for step), i)
+        SetTransformation(trigger, vector4(i, trigger, triggerLoc), i)
       end
     end
   end
@@ -186,8 +173,7 @@ OsTown_Setup_Shared = function(state)
   end
   if (10 <= GetGlobal("OST_OswaldStatueState")) then
     ForEachEntityInGroup(Disable, "Triggers_PumpFXDamage")
-    local (for index), (for limit), (for step) = 1, 3, 1
-    for i = (for index), (for limit), (for step) do
+    for i = 1, 3 do
       StopEmitters(("OST_Pump_ThinnerFX" .. i))
       StopEmitters(("OST_Pump_ThinnerFXHigh" .. i))
     end
@@ -300,11 +286,11 @@ OST_DEC_Exit_HardLoad = function(target, visit)
     elseif (GetGlobal("OST_Center_OpeningMoviePlayed") == 0) then
       Print("OST_DEC_Exit_HardLoad: OST_Center_OpeningMoviePlayed == 0, Turing off the Jump Out Anim on Foop TOOB ")
       GetPrefabData("DEC_OSTi_3D").SkipExitAnimationAndTeleport = "True"
-      GetPrefabData("DEC_OSTi_3D").HardLoadExitFunction[3] = "None"
+      GetPrefabData("DEC_OSTi_3D").HardLoadExitFunction[reg_37] = "None"
     end
     if (GetPrefabData("DEC_OSTi_3D").HardLoadExitFunction[1] ~= "Busy") then
       Print("OST_DEC_Exit_HardLoad: GetPrefabData(DEC_OSTi_3D).HardLoadExitFunction[1] ~= Busy, So Fire AWAY!")
-      GetPrefabData("DEC_OSTi_3D").HardLoadExitFunction[1] = "True"
+      GetPrefabData("DEC_OSTi_3D").HardLoadExitFunction[reg_18] = "True"
       Prefab_DECFoopToob_AlwaysSetup("DEC_OSTi_3D")
     end
   elseif (GetGlobal("EM2_TrainRide") == 1) then
@@ -349,8 +335,7 @@ OST_Setup_Sky_Props = function()
     ForEachEntityInGroup(AnimGBSequence, "OST_Center_DancingPillerPoles", "loop")
   end
   local OST_Center_DancingPillers_ToHide = (GetGlobal("OST_Sky_Restored_State") * 2)
-  local (for index), (for limit), (for step) = OST_Center_DancingPillers_ToHide, 1, -2
-  for i = (for index), (for limit), (for step) do
+  for i = OST_Center_DancingPillers_ToHide, 1, -2 do
     Print(("OST_Center_DancingPillers_ToHide: " .. i))
     ForEachEntityInGroup(Hide, ("OST_Center_DancingPiller" .. tostring(i)))
   end
@@ -395,8 +380,7 @@ OST_Center_RevealStatue = function()
     ForEachEntityInGroup(Disable, "OST_Center_TriggerDamageBase_ThinnerSpray_OrtensiaHouse")
     ForEachEntityInGroup(Disable, "OST_Center_TriggerDamageBase_ThinnerSpray_ClaraHouse")
     ForEachEntityInGroup(Disable, "Triggers_PumpFXDamage")
-    local (for index), (for limit), (for step) = 1, 3, 1
-    for i = (for index), (for limit), (for step) do
+    for i = 1, 3 do
       StopEmitters(("OST_Pump_ThinnerFX" .. i))
       StopEmitters(("OST_Pump_ThinnerFXHigh" .. i))
     end
@@ -472,8 +456,7 @@ OST_Center_CrossingStreamsDestroy_TrainStation = function(target, event)
     ForEachEntityInGroup(DestroyEntity, "OST_Center_trainStation")
     OswaldStreamAbort()
     SetGlobal("OST_TrainStationState", -1)
-    local (for index), (for limit), (for step) = 1, 4, 1
-    for i = (for index), (for limit), (for step) do
+    for i = 1, 4 do
       MoveToEntity("Spawner_ScrapMetal", ("PM_ScrapMetal" .. i))
       ForceSpawn("Spawner_ScrapMetal", 1)
     end
@@ -557,8 +540,7 @@ OST_LowerPool = function()
   GiveCollectible("Challenge_GoFlow_Tracker")
   AudioPostEventOn(GetPlayer(), "Play_sfx_ThinnerDrain")
   ActivateGremlinHint("OST_Center_PlayerHintMarkers_Turnstile")
-  local (for index), (for limit), (for step) = 1, 140, 1
-  for i = (for index), (for limit), (for step) do
+  for i = 1, 140 do
     SetTransformation("OST_Pool", vector4(Pool_pos.x, (Pool_pos.y - (0.009999999776482582 * i)), Pool_pos.z), vector4(0, 0, 0))
     wait(0)
   end
@@ -566,21 +548,11 @@ OST_LowerPool = function()
   ForEachEntityInGroup(DestroyEntity, "OST_Pool_Collision")
   ForEachEntityInGroup(DestroyEntity, "OST_Center_PlayerHintMarkers_Pumps")
   SetPropertyFloat("OST_Grate_Outside_Turnstile", "Activate Radius", 2)
-  local (for index), (for limit), (for step) = 1, 3, 1
-  for i = (for index), (for limit), (for step) do
-    (for index) = IsValidHandle
-    (for limit) = "Pump"
-    (for step) = i
+  for i = 1, 3 do
     i = "_Location"
-    (for limit) = (((for limit) .. (for step)) .. i)
-    (for index) = (for index)((for limit))
-    if (for index) then
-      (for index) = DestroyEntity
-      (for limit) = "Pump"
-      (for step) = i
+    if IsValidHandle((("Pump" .. i) .. i)) then
       i = "_Location"
-      (for limit) = (((for limit) .. (for step)) .. i)
-      (for index)((for limit))
+      DestroyEntity((("Pump" .. i) .. i))
     end
   end
   if (GetGlobal("OST_Center_PoolLowered") == 1) then
@@ -638,26 +610,25 @@ OST_PumpStatus = function(target, status, loc_num)
         AudioPostEventOn("ost_center_scripting.EnterInterior_Clarabelle.EnterDoors", "Play_sfx_Fountain_Impact_Lp")
         AudioPostEventOn("ost_center_scripting.EnterInterior_Ortensia.EnterDoors", "Play_sfx_Fountain_Impact_Lp")
         ForEachEntityInGroup(SetPropertyBool, "PumpMachine", "Look At Trigger Enabled", false)
-        local (for index), (for index), (for limit), (for step) = 1, 3, 1, "Look At Trigger Enabled"
-        for (for step) = (for index), (for index), (for limit) do
+        for i = 1, 3 do
           i = IsValidHandle
-          i = i((("Pump" .. (for step)) .. "_Location"))
+          i = i((("Pump" .. i) .. "_Location"))
           if i then
             i = Disable
-            i((("Pump" .. (for step)) .. "_Location"))
+            i((("Pump" .. i) .. "_Location"))
           end
           i = tonumber
           i = i(loc_num)
-          if ((for step) ~= i) then
+          if (i ~= i) then
             i = StopEmitters
-            i(("OST_Pump_ThinnerFX" .. (for step)))
+            i(("OST_Pump_ThinnerFX" .. i))
             i = StartEmitters
-            i(("OST_Pump_ThinnerFXHigh" .. (for step)))
+            i(("OST_Pump_ThinnerFXHigh" .. i))
             i = AudioPostEventOn
-            i(("ost_center_art_01.OST_center_01a_pumpPad_01a 0" .. (for step)), "Play_sfx_Geyser_lp")
+            i(("ost_center_art_01.OST_center_01a_pumpPad_01a 0" .. i), "Play_sfx_Geyser_lp")
             i = "Trigger_PumpFXDamage"
-            i = (i .. (for step))
-            local trigger = (for step)
+            i = (i .. i)
+            local trigger = i
             trigger = GetPosition
             trigger = trigger(i)
             local triggerLoc = i
@@ -700,8 +671,7 @@ OST_PumpCharged = function(target, loc_num)
   OswaldStreamAbort()
   SetPropertyBool(("OswaldAction_ChargePump0" .. loc_num), "ActionSpotEnabled", false)
   local pump_num = 1
-  local (for index), (for limit), (for step) = 1, 3, 1
-  for i = (for index), (for limit), (for step) do
+  for i = 1, 3 do
     if (GetGlobal((("OST_Pump" .. i) .. "Status")) == tonumber(loc_num)) then
       pump_num = i
     end
@@ -1159,8 +1129,7 @@ OST_Center_TelephoneDialogue_Setup = function()
   Print("****OST_Center_TelephoneDialogue_Setup")
   HUBs = {"MeanStreetNorth", "MeanStreetSouth", "BogEasy", "OsTown", "Ventureland"}
   Complete_HUBs = 0
-  local (for index), (for limit), (for step) = 5, 1, -1
-  for i = (for index), (for limit), (for step) do
+  for i = 5, 1, -1 do
     if (GetCurrentCount(("PhoneBox_" .. HUBs[i])) == 3) then
       Print((("****OST_Center_TelephoneDialogue_Setup: PhoneBox_" .. HUBs[i]) .. " == 3 so removing it from the HUB table"))
       Complete_HUBs = (Complete_HUBs + 1)
@@ -1179,15 +1148,10 @@ OST_Center_TelephoneDialogue_Setup = function()
     n = (n - 1)
   end
   n = (#HUBs)
-  local (for index), (for limit), (for step) = 1, n, 1
-  for n = (for index), (for limit), (for step) do
-    (for index) = "****OST_Center_TelephoneDialogue_Setup: HUBs["
-    (for limit) = n
-    (for step) = "] = "
+  for n = 1, n do
     i = HUBs
     i = i[n]
-    (for index) = ((((for index) .. (for limit)) .. (for step)) .. i)
-    Print((for index))
+    Print(((("****OST_Center_TelephoneDialogue_Setup: HUBs[" .. n) .. "] = ") .. i))
   end
   Print(("****OST_Center_TelephoneDialogue_Setup: Complete_HUBs = " .. Complete_HUBs))
   if (Complete_HUBs == 1) then
@@ -2165,3 +2129,4 @@ OST_Center_ResetFallingPlayer = function(target)
   end
   return 
 end
+

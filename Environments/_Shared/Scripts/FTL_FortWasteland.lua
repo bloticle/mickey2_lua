@@ -74,10 +74,9 @@ FTL_Fort_Setup = function(method)
         end
         if (global ~= 10) then
           global = 1
-          local (for index), (for limit) = 2, 1
-          for (for step) = global, (for index), (for limit) do
+          for i = global, 2 do
             i = FireThread
-            i(Prefab_OswaldElectricSwitch_ChangeState, ("Fort_OswaldSwitch" .. (for step)), "FullyCharged")
+            i(Prefab_OswaldElectricSwitch_ChangeState, ("Fort_OswaldSwitch" .. i), "FullyCharged")
           end
         else
           global = IsValidHandle
@@ -125,8 +124,7 @@ FTL_Fort_Setup = function(method)
       FireThread(FTL_Fort_Visit_Setup, method, currentLevel)
     end
   elseif (method == "setupTurrets") then
-    local (for index), (for limit), (for step) = 1, 3, 1
-    for i = (for index), (for limit), (for step) do
+    for i = 1, 3 do
       FireUser1(("turret_dumbo 0" .. i))
       wait(1.5)
       if (i == 1) then
@@ -204,7 +202,7 @@ FTL_Fort_Setup_Launcher = function()
         DEC_Data = DEC_Data[1]
         if (DEC_Data ~= "Busy") then
           DEC_Data = Projector_Data.HardLoadExitFunction
-          DEC_Data[1] = "Reverse"
+          DEC_Data[reg_72] = "Reverse"
           DEC_Data = Prefab_DECFoopToob_AlwaysSetup
           DEC_Data("DEC_toFloat3D")
         end
@@ -915,8 +913,7 @@ FTL_Fort_PullHandles = function(target, mech_Name, Dir)
           if (GetGlobal("FTL_Gus_MachineIntro_Played") == 0) then
             ForceSequence("Gus_v1", "FTL_Gus_MachineIntro")
           end
-          local (for index), (for limit), (for step) = 1, 4, 1
-          for i = (for index), (for limit), (for step) do
+          for i = 1, 4 do
             if IsValidHandle(("ftl_fort_01a_visit1.GusHint_CorePath_" .. i)) then
               DestroyEntity(("ftl_fort_01a_visit1.GusHint_CorePath_" .. i))
             end
@@ -982,8 +979,7 @@ FTL_Fort_AirlockStreaming = function(mech_Name, bool)
         return false
       else
         local zonesStreamed = 0
-        local (for index), (for limit), (for step) = 1, zone_arrayLen, 1
-        for i = (for index), (for limit), (for step) do
+        for i = 1, zone_arrayLen do
           if LevelManager_HasZoneFinishedStreaming(zonesToStream[i]) then
             zonesStreamed = (zonesStreamed + 1)
           end
@@ -1030,8 +1026,7 @@ FTL_Fort_AirlockStreaming = function(mech_Name, bool)
       Wait(0.05000000074505806)
     end
     Print((("FTL_Fort_AirlockStreaming: state = " .. stateToStream) .. " has streamed in. Streaming in Zones now."))
-    local (for index), (for limit), (for step) = 1, zone_arrayLen, 1
-    for i = (for index), (for limit), (for step) do
+    for i = 1, zone_arrayLen do
       Print(("FTL_Fort_AirlockStreaming: zone = " .. zonesToStream[i]))
       LevelManager_SetZoneStatusActive(zonesToStream[i])
       wait(0.25)
@@ -1331,3 +1326,4 @@ FTL_Fort_UnlockAchievement = function()
   end
   return 
 end
+

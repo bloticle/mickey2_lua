@@ -1,7 +1,6 @@
 Boss_SendStimulus = function(self, validStimTypes, event, target, stimAmount)
   if IsValidHandle(target) then
-    local (for generator), (for state), (for control) = ipairs(validStimTypes)
-    for index, stimulusType in (for generator), (for state), (for control) do
+    for index, stimulusType in ipairs(validStimTypes) do
       if StimulusEvent_HasStimulusType(event, stimulusType) then
         local direction = GetVelocity(target)
         direction:normalize3()
@@ -16,8 +15,7 @@ Boss_SendStimulus = function(self, validStimTypes, event, target, stimAmount)
   return 
 end
 Boss_HasCorrectStimulus = function(validStimTypes, event)
-  local (for generator), (for state), (for control) = ipairs(validStimTypes)
-  for index, stimulusType in (for generator), (for state), (for control) do
+  for index, stimulusType in ipairs(validStimTypes) do
     if StimulusEvent_HasStimulusType(event, stimulusType) then
       return true
     end
@@ -30,8 +28,7 @@ Boss_OnPlayerStimulusAlias = function(entityThatReceivedStim, event, eventType, 
     local oswald = GetPlayer2OrAI()
     if (entityThatReceivedStim == mickey) then
       local name = StimulusEvent_SourceStimulusAlias(event)
-      local (for generator), (for state), (for control) = ipairs(eventAliasToFind)
-      for index, currentAlias in (for generator), (for state), (for control) do
+      for index, currentAlias in ipairs(eventAliasToFind) do
         if (name == currentAlias) then
           return true
         end
@@ -50,3 +47,4 @@ Boss_QuitToMain = function()
   LoadLevel(GetPlayer(), "Levels/Main_Menu.level")
   return 
 end
+

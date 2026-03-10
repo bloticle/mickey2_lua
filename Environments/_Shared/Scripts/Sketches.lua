@@ -253,3 +253,4 @@ ImpulseFairyObject = function(target, stimulusEvent)
   end
   return 
 end
+

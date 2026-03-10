@@ -77,14 +77,12 @@ TRT_HideAbe = function()
   return 
 end
 TRT_ExitClockProjector = function()
-  return 
 end
 TRT_ExitBlotProjector = function()
   TRT_SetupTrainTunnels()
   return 
 end
 TRT_SetupProjector = function()
-  return 
 end
 TRT_StreamPerVisit = function(target)
   Print("***TRT_StreamPerVisit")
@@ -672,7 +670,6 @@ TRT_SetClockJumpPath = function(target, state)
   return 
 end
 TRT_PersistPlatformStop = function()
-  return 
 end
 TRT_ResolveClockPhoto = function()
   Print("SET CLOCK PHOTO VARIABLE")
@@ -1258,11 +1255,9 @@ local LeftLedge1 = 0
 local LeftLedge2 = 0
 local LeftLedge3 = 0
 EnableLeftLedges = function(reg_0)
-  return 
 end
 leavingclock = 0
 DisableLeftLedges = function(reg_0)
-  return 
 end
 local OswaldClockGearState = "Exit"
 OswaldClockGearStatusUpdate = function(target, state)
@@ -2142,22 +2137,15 @@ end
 TRT_PaintLights = function(target, state)
   Print("PAINTING ALPHA FADE ZLKXCJ")
   if (state == "paint") then
-    local (for index), (for limit), (for step) = 0, 1, 0.0333000011742115
-    for i = (for index), (for limit), (for step) do
+    for i = 0, 1, 0.0333000011742115 do
       SetR3MTConstRegAlpha(target, 1, i)
       wait(0.0333000011742115)
     end
   else
-    local (for index), (for limit), (for step) = 1, 0, -0.0333000011742115
-    for i = (for index), (for limit), (for step) do
-      (for index) = SetR3MTConstRegAlpha
-      (for limit) = target
-      (for step) = 1
+    for i = 1, 0, -0.0333000011742115 do
       i = i
-      (for index)((for limit), (for step), i)
-      (for index) = wait
-      (for limit) = 0.0333000011742115
-      (for index)((for limit))
+      SetR3MTConstRegAlpha(target, 1, i)
+      wait(0.0333000011742115)
     end
   end
   return 
@@ -2179,7 +2167,6 @@ TRT_RevealBruiser = function()
   return 
 end
 TRT_PersistDocMickeyCutout = function()
-  return 
 end
 TRT_BackupSpawnerPersist = function()
   if (2 < GetGlobal("TRT_DocProgress")) then
@@ -2216,7 +2203,6 @@ TRT_ResolveDocBlotworx = function(state)
   return 
 end
 TRT_CompleteDocRoom = function(state)
-  return 
 end
 TRT_V2BlotAICheck = function()
   if (1 < GetGlobal("TRT_BlotPartsDestroyed")) then
@@ -2441,7 +2427,6 @@ TRT_GroundBlotSteamJet = function()
   return 
 end
 TRT_GroundBlotSteamStim = function(reg_0)
-  return 
 end
 TRT_PersistBlotBox = function()
   if (GetGlobal("TRT_BlotFlyingState") == 1) then
@@ -3436,3 +3421,4 @@ groundSteamOn = 0
 faceBroken = 0
 blotDioramaState = 0
 blotTransitioning = 0
+

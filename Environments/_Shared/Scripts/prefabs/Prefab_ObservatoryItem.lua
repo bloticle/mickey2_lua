@@ -67,7 +67,6 @@ Prefab_ObservatoryItemCollect = function(target)
   return 
 end
 Prefab_ObservatoryItemActivate = function(reg_0)
-  return 
 end
 Prefab_ObservatoryItemQuestUpdate = function(item, target)
   target = _self()
@@ -92,3 +91,4 @@ Prefab_ObservatoryItemQuestUpdate = function(item, target)
   end
   return 
 end
+

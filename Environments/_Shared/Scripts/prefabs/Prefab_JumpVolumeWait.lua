@@ -42,3 +42,4 @@ disableJumpVolumeAvailability = function(target)
   SetUserEdgeDisabled(data.gsaName, data.userEdgeID, true)
   return 
 end
+
